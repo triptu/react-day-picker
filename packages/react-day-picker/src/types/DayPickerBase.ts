@@ -216,6 +216,8 @@ export interface DayPickerBase {
    */
   formatters?: Partial<Formatters>;
 
+  timezone?: string;
+
   onDayClick?: DayClickEventHandler;
   onDayFocus?: DayFocusEventHandler;
   onDayBlur?: DayFocusEventHandler;
