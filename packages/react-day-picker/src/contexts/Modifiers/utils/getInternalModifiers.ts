@@ -21,8 +21,8 @@ const {
 /** Return the {@link InternalModifiers} from the DayPicker and select contexts. */
 export function getInternalModifiers(
   dayPicker: DayPickerContextValue,
-  selectMultiple: SelectMultipleContextValue,
-  selectRange: SelectRangeContextValue
+  selectMultiple: SelectMultipleContextValue | undefined,
+  selectRange: SelectRangeContextValue | undefined
 ) {
   const internalModifiers: InternalModifiers = {
     [Selected]: matcherToArray(dayPicker.selected),

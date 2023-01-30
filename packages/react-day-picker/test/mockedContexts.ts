@@ -48,5 +48,6 @@ export const mockedContexts = {
   single: singleContext,
   multiple: multipleContext,
   range: rangeContext,
-  focus: focusContext
+  focus: focusContext,
+  default: undefined
 };

@@ -46,17 +46,7 @@ export function SelectMultipleProvider(
   props: SelectMultipleProviderProps
 ): JSX.Element {
   if (!isDayPickerMultiple(props.initialProps)) {
-    const emptyContextValue: SelectMultipleContextValue = {
-      selected: undefined,
-      modifiers: {
-        disabled: []
-      }
-    };
-    return (
-      <SelectMultipleContext.Provider value={emptyContextValue}>
-        {props.children}
-      </SelectMultipleContext.Provider>
-    );
+    return <>{props.children}</>;
   }
   return (
     <SelectMultipleProviderInternal
@@ -139,12 +129,7 @@ export function SelectMultipleProviderInternal({
  *
  * This hook is meant to be used inside internal or custom components.
  */
-export function useSelectMultiple(): SelectMultipleContextValue {
+export function useSelectMultiple(): SelectMultipleContextValue | undefined {
   const context = useContext(SelectMultipleContext);
-  if (!context) {
-    throw new Error(
-      'useSelectMultiple must be used within a SelectMultipleProvider'
-    );
-  }
   return context;
 }

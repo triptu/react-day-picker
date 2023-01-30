@@ -9,6 +9,7 @@ import { getInternalModifiers } from './getInternalModifiers';
 
 const defaultDayPickerContext: DayPickerContextValue =
   getDefaultContextValues();
+
 const defaultSelectMultipleContext = {
   selected: undefined,
   modifiers: { disabled: [] }
@@ -116,7 +117,7 @@ describe('when in range select mode', () => {
   beforeEach(() => {
     internalModifiers = getInternalModifiers(
       dayPickerContext,
-      defaultSelectMultipleContext,
+      undefined,
       selectRangeContext
     );
   });

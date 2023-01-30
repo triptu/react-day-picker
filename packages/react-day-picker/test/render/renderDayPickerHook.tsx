@@ -27,10 +27,10 @@ export function renderDayPickerHook<TResult>(
   dayPickerProps?: DayPickerProps,
   /** Pass the mocked contexts. */
   contexts?: {
-    single: SelectSingleContextValue;
-    multiple: SelectMultipleContextValue;
-    range: SelectRangeContextValue;
-    focus: FocusContextValue;
+    single?: SelectSingleContextValue;
+    multiple?: SelectMultipleContextValue;
+    range?: SelectRangeContextValue;
+    focus?: FocusContextValue;
   }
 ): RenderHookResult<TResult> {
   const returnVal = { current: undefined as TResult };

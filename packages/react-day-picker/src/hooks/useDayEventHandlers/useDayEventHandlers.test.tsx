@@ -18,10 +18,15 @@ function renderHook(
   activeModifiers: ActiveModifiers,
   dayPickerProps?: DayPickerProps
 ) {
+  const contexts = {
+    focus: mockedContexts.focus,
+    [dayPickerProps?.mode || 'default']:
+      mockedContexts[dayPickerProps?.mode || 'default']
+  };
   return renderDayPickerHook(
     () => useDayEventHandlers(date, activeModifiers),
     dayPickerProps,
-    mockedContexts
+    contexts
   );
 }
 

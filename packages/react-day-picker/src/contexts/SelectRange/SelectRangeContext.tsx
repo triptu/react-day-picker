@@ -54,20 +54,7 @@ export function SelectRangeProvider(
   props: SelectRangeProviderProps
 ): JSX.Element {
   if (!isDayPickerRange(props.initialProps)) {
-    const emptyContextValue: SelectRangeContextValue = {
-      selected: undefined,
-      modifiers: {
-        range_start: [],
-        range_end: [],
-        range_middle: [],
-        disabled: []
-      }
-    };
-    return (
-      <SelectRangeContext.Provider value={emptyContextValue}>
-        {props.children}
-      </SelectRangeContext.Provider>
-    );
+    return <>{props.children}</>;
   }
   return (
     <SelectRangeProviderInternal
@@ -169,10 +156,7 @@ export function SelectRangeProviderInternal({
  *
  * This hook is meant to be used inside internal or custom components.
  */
-export function useSelectRange(): SelectRangeContextValue {
+export function useSelectRange(): SelectRangeContextValue | undefined {
   const context = useContext(SelectRangeContext);
-  if (!context) {
-    throw new Error('useSelectRange must be used within a SelectRangeProvider');
-  }
   return context;
 }
