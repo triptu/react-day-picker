@@ -23,11 +23,11 @@ export function useSelectedDays(): SelectedDays {
   const range = useSelectRange();
 
   const selectedDays = isDayPickerSingle(dayPicker)
-    ? single.selected
+    ? single?.selected
     : isDayPickerMultiple(dayPicker)
-    ? multiple.selected
+    ? multiple?.selected
     : isDayPickerRange(dayPicker)
-    ? range.selected
+    ? range?.selected
     : undefined;
 
   return selectedDays;

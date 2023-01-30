@@ -94,11 +94,11 @@ export function useDayEventHandlers(
 
   const onClick: MouseEventHandler = (e) => {
     if (isDayPickerSingle(dayPicker)) {
-      single.onDayClick?.(date, activeModifiers, e);
+      single?.onDayClick?.(date, activeModifiers, e);
     } else if (isDayPickerMultiple(dayPicker)) {
-      multiple.onDayClick?.(date, activeModifiers, e);
+      multiple?.onDayClick?.(date, activeModifiers, e);
     } else if (isDayPickerRange(dayPicker)) {
-      range.onDayClick?.(date, activeModifiers, e);
+      range?.onDayClick?.(date, activeModifiers, e);
     } else {
       dayPicker.onDayClick?.(date, activeModifiers, e);
     }

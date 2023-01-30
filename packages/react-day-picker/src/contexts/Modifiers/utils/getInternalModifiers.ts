@@ -42,11 +42,11 @@ export function getInternalModifiers(
     internalModifiers[Disabled].push({ after: dayPicker.toDate });
   }
 
-  if (isDayPickerMultiple(dayPicker)) {
+  if (selectMultiple && isDayPickerMultiple(dayPicker)) {
     internalModifiers[Disabled] = internalModifiers[Disabled].concat(
       selectMultiple.modifiers[Disabled]
     );
-  } else if (isDayPickerRange(dayPicker)) {
+  } else if (selectRange && isDayPickerRange(dayPicker)) {
     internalModifiers[Disabled] = internalModifiers[Disabled].concat(
       selectRange.modifiers[Disabled]
     );
