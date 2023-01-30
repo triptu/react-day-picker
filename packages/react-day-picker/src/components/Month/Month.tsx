@@ -4,7 +4,6 @@ import { Caption } from 'components/Caption';
 import { Table } from 'components/Table';
 import { useDayPicker } from 'contexts/DayPicker';
 import { useNavigation } from 'contexts/Navigation';
-import { useId } from 'hooks/useId';
 
 /** The props for the {@link Month} component. */
 export interface MonthProps {
@@ -18,9 +17,7 @@ export function Month(props: MonthProps) {
   const { dir, classNames, styles, components } = dayPicker;
   const { displayMonths } = useNavigation();
 
-  const captionId = useId(
-    dayPicker.id ? `${dayPicker.id}-${props.displayIndex}` : undefined
-  );
+  const captionId = React.useId();
 
   const className = [classNames.month];
   let style = styles.month;
