@@ -84,3 +84,27 @@ describe('when the caption layout is "buttons"', () => {
     expect(getPrevButton()).toBeInTheDocument();
   });
 });
+
+describe('when the caption layout is "both"', () => {
+  const dayPickerProps: DayPickerProps = {
+    captionLayout: 'both',
+    fromYear: 2020,
+    toYear: 2025
+  };
+  const props = { displayMonth: today };
+  beforeEach(() => {
+    setup(props, dayPickerProps);
+  });
+  test('should render the month drop-down', () => {
+    expect(getMonthDropdown()).toBeInTheDocument();
+  });
+  test('should render the year drop-down', () => {
+    expect(getYearDropdown()).toBeInTheDocument();
+  });
+  test('should render the next month button', () => {
+    expect(getNextButton()).toBeInTheDocument();
+  });
+  test('should render the previous month button', () => {
+    expect(getPrevButton()).toBeInTheDocument();
+  });
+});
