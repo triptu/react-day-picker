@@ -16,7 +16,7 @@ export function HeadRow(): JSX.Element {
     weekStartsOn,
     ISOWeek,
     formatters: { formatWeekdayName },
-    labels: { labelWeekday }
+    labels: { labelWeekday, labelWeekNumberHeader }
   } = useDayPicker();
 
   const weekdays = getWeekdays(locale, weekStartsOn, ISOWeek);
@@ -28,6 +28,7 @@ export function HeadRow(): JSX.Element {
           scope="col"
           style={styles.head_cell}
           className={classNames.head_cell}
+          aria-label={labelWeekNumberHeader()}
         ></th>
       )}
       {weekdays.map((weekday, i) => (

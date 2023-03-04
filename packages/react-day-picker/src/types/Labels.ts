@@ -12,6 +12,7 @@ export type Labels = {
   labelDay: DayLabel;
   labelWeekday: WeekdayLabel;
   labelWeekNumber: WeekNumberLabel;
+  labelWeekNumberHeader: () => string;
 };
 
 /** Return the ARIA label for the {@link Day} component. */
