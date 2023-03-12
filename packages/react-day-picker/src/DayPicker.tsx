@@ -124,9 +124,7 @@ export interface DayPickerProps<T extends DaySelectionMode = DaySelectionMode>
  * ```
  */
 export function DayPicker<T extends DaySelectionMode = 'default'>(
-  props: Omit<DayPickerProps<T>, 'onSelect'> & {
-    onSelect?: SelectEventHandler<T> | undefined;
-  }
+  props: DayPickerProps<T>
 ): JSX.Element {
   return (
     <RootProvider {...props}>
