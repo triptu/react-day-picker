@@ -125,7 +125,7 @@ export interface DayPickerProps<T extends DaySelectionMode = DaySelectionMode>
  */
 export function DayPicker<T extends DaySelectionMode = 'default'>(
   props: Omit<DayPickerProps<T>, 'onSelect'> & {
-    onSelect: UnionToIntersection<SelectEventHandler<T>>;
+    onSelect?: SelectEventHandler<T> | undefined;
   }
 ): JSX.Element {
   return (
