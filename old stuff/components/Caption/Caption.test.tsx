@@ -15,7 +15,7 @@ import {
 } from 'test/selectors';
 import { freezeBeforeAll } from 'test/utils';
 
-import { CustomComponents } from 'types/DayPickerBase';
+import { CustomComponents } from 'types/CustomComponents';
 
 import { Caption, CaptionProps } from './Caption';
 

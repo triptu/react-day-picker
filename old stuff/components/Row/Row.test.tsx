@@ -5,7 +5,7 @@ import { DayPickerProps } from 'DayPicker';
 
 import { customRender } from 'test/render/customRender';
 
-import { CustomComponents } from 'types/DayPickerBase';
+import { CustomComponents } from 'types/CustomComponents';
 
 import { Row, RowProps } from './Row';
 
