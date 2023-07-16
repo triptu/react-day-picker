@@ -1,7 +1,7 @@
 import { startOfDay, startOfMonth } from 'date-fns';
 
-import { DayPickerCalendar } from 'contexts/Calendar';
-import { defaultProps } from 'contexts/Props/defaultProps';
+import { DayPickerCalendar } from 'contexts/CalendarContext';
+import { defaultProps } from 'contexts/PropsContext/defaultProps';
 
 import { getDates } from './utils/getDates';
 import { getDayPickerMonths } from './utils/getDayPickerMonths';

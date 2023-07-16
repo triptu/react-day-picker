@@ -1,21 +1,32 @@
 import React from 'react';
 
-import { DayPickerWeek } from 'contexts/Calendar';
-import { useProps } from 'contexts/Props';
+import { DaysSelectionMode } from 'DayPicker';
 
-import { MonthGrid } from './MonthGrid';
+import { useCalendar } from 'contexts/CalendarContext';
+import { useProps } from 'contexts/PropsContext';
 
-/** The props for the {@link MonthGridInternal} component. */
-export interface MonthGridInternalProps {
-  /** The month where the grid is displayed. */
-  month: Date;
-  /** The weeks contained in the grid. */
-  weeks: DayPickerWeek[];
-  displayIndex: number;
-}
+import { MonthGrid, MonthGridProps } from './MonthGrid';
 
-/** Render a {@link MonthGridProps} using the hooks. */
-export function MonthGridInternal(props: MonthGridInternalProps): JSX.Element {
+/**
+ * The props for the {@link MonthGridInternal} component.
+ *
+ * @internal
+ */
+export type MonthGridInternalProps<TMode extends DaysSelectionMode> = Omit<
+  MonthGridProps<TMode>,
+  'dayPickerProps' | 'calendar'
+>;
+
+/** Render a {@link MonthGridProps} using the hooks.
+ *
+ * @internal
+ */
+export function MonthGridInternal<TMode extends DaysSelectionMode>(
+  props: MonthGridInternalProps<TMode>
+): JSX.Element {
   const dayPickerProps = useProps();
-  return <MonthGrid {...props} dayPickerProps={dayPickerProps} />;
+  const calendar = useCalendar();
+  return (
+    <MonthGrid {...props} calendar={calendar} dayPickerProps={dayPickerProps} />
+  );
 }

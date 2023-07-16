@@ -2,9 +2,9 @@ import React, { createContext, ReactNode, useContext } from 'react';
 
 import { addMonths, isBefore, isSameMonth, startOfMonth } from 'date-fns';
 
-import { DayPickerCalendar } from 'contexts/Calendar';
-import { useProps } from 'contexts/Props';
-import { defaultProps } from 'contexts/Props/defaultProps';
+import { DayPickerCalendar } from 'contexts/CalendarContext';
+import { useProps } from 'contexts/PropsContext';
+import { defaultProps } from 'contexts/PropsContext/defaultProps';
 import { useControlledValue } from 'hooks/useControlledValue';
 
 import { getCalendar } from './getCalendar';

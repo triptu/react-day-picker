@@ -2,10 +2,12 @@ import React from 'react';
 
 import { MonthGridInternal } from 'components/MonthGrid/MonthGridInternal';
 // import { MonthGridInternal } from 'components/MonthGrid/MonthGridInternal';
-import { useCalendar } from 'contexts/Calendar';
-import { useProps } from 'contexts/Props';
+import { useCalendar } from 'contexts/CalendarContext';
+import { useProps } from 'contexts/PropsContext';
 
-/** Render the container with the months according to the number of months to display. */
+/**
+ * Render the container with the months according to the number of months to display.
+ */
 export function Root(): JSX.Element {
   const props = useProps();
   const calendar = useCalendar();
@@ -63,6 +65,7 @@ export function Root(): JSX.Element {
             displayIndex={displayIndex}
             month={month.date}
             weeks={month.weeks}
+            mode={props.mode}
           />
         ))}
       </div>

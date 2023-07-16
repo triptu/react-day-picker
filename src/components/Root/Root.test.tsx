@@ -8,7 +8,7 @@ import { customRender } from 'test/render';
 import { getDayButton, queryMonthGrids } from 'test/selectors';
 import { freezeBeforeAll } from 'test/utils';
 
-import { defaultClassNames } from 'contexts/Props/defaultClassNames';
+import { defaultClassNames } from 'contexts/PropsContext/defaultClassNames';
 import { ClassNames } from 'types/styles';
 
 import { Root } from './Root';

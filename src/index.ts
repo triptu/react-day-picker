@@ -1,5 +1,8 @@
 export * from './DayPicker';
-export * from './contexts/Calendar';
+export * from './contexts/CalendarContext';
+export * from './contexts/PropsContext';
+export * from './components/Root';
+export * from './components/MonthGrid';
 
 import './style.css';
 

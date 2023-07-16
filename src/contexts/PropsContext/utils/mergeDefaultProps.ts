@@ -1,45 +1,46 @@
 import { DayPickerProps, DaysSelectionMode } from 'DayPicker';
 
-import { DayPickerPropsWithDefaults } from 'contexts/Props';
+import { DayPickerPropsWithDefaults } from 'contexts/PropsContext';
 
 import { defaultProps } from '../defaultProps';
 import { parseFromToProps } from './parseFromToProps';
 
+/** Merge the {@link defaultProps} with the props passed in. */
 export function mergeDefaultProps<TMode extends DaysSelectionMode>(
-  dayPickerProps: DayPickerProps<TMode>
+  props: DayPickerProps<TMode>
 ) {
-  const { fromDate, toDate } = parseFromToProps(dayPickerProps);
+  const { fromDate, toDate } = parseFromToProps(props);
 
   const value: DayPickerPropsWithDefaults<TMode> = {
     ...defaultProps,
-    ...dayPickerProps,
+    ...props,
     // captionLayout,
     classNames: {
       ...defaultProps.classNames,
-      ...dayPickerProps.classNames
+      ...props.classNames
     },
     // components: {
     //   ...defaultProps.components
     // },
     formatters: {
       ...defaultProps.formatters,
-      ...dayPickerProps.formatters
+      ...props.formatters
     },
     fromDate,
     labels: {
       ...defaultProps.labels,
-      ...dayPickerProps.labels
+      ...props.labels
     },
     modifiers: {
-      ...dayPickerProps.modifiers,
+      ...props.modifiers,
       ...defaultProps.modifiers
     },
     modifiersClassNames: {
-      ...dayPickerProps.modifiersClassNames,
+      ...props.modifiersClassNames,
       ...defaultProps.modifiersClassNames
     },
     styles: {
-      ...dayPickerProps.styles,
+      ...props.styles,
       ...defaultProps.styles
     },
     toDate

@@ -1,8 +1,8 @@
 import { startOfDay } from 'date-fns';
 import { enUS } from 'date-fns/locale';
+import * as formatters from 'formatters';
+import * as labels from 'labels';
 
-import * as formatters from '../../formatters';
-import * as labels from '../../labels';
 import { defaultClassNames } from './defaultClassNames';
 
 import type { DayPickerBaseProps } from 'DayPicker';
@@ -44,4 +44,5 @@ export const defaultProps: DefaultProps = {
   dataAttributes: {},
   formatters,
   labels
+  // components
 };

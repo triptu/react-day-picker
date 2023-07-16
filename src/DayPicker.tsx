@@ -35,8 +35,6 @@ export type DayPickerSelectedValue<TMode extends DaysSelectionMode> = [
 
 /**
  * The {@link DayPicker} component props shared with all the selection modes.
- *
- * @category Props
  */
 export interface DayPickerBaseProps {
   /**
@@ -303,8 +301,6 @@ export interface DayPickerBaseProps {
 
 /**
  * The props for the {@link DayPicker} component when `mode="single"`.
- *
- * @category Props
  */
 
 export interface DayPickerSingleProps extends DayPickerBaseProps {
@@ -316,8 +312,6 @@ export interface DayPickerSingleProps extends DayPickerBaseProps {
 
 /**
  * The props for the {@link DayPicker} component when `mode="multi"`.
- *
- * @category Props
  */
 export interface DayPickerMultiProps extends DayPickerBaseProps {
   mode: 'multi';
@@ -329,8 +323,6 @@ export interface DayPickerMultiProps extends DayPickerBaseProps {
 
 /**
  * The props for the {@link DayPicker} component when `mode="range"`.
- *
- * @category Props
  */
 export interface DayPickerRangeProps extends DayPickerBaseProps {
   mode: 'range';
@@ -342,8 +334,6 @@ export interface DayPickerRangeProps extends DayPickerBaseProps {
 
 /**
  * The props for the {@link DayPicker} component.
- *
- * @category Props
  */
 export type DayPickerProps<TMode extends DaysSelectionMode> = {
   mode?: TMode | undefined;
@@ -443,8 +433,6 @@ export type DayPickerProps<TMode extends DaysSelectionMode> = {
  * import { es } from 'date-fns/locale';
  * <DayPicker locale={es} />
  * ```
- *
- * @category Components
  */
 export function DayPicker<TMode extends DaysSelectionMode>(
   props: DayPickerProps<TMode>

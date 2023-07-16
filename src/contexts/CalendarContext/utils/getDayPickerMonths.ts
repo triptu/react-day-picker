@@ -1,12 +1,17 @@
 import {
+  endOfISOWeek,
   endOfMonth,
   endOfWeek,
   getWeek,
-  startOfWeek,
   startOfISOWeek,
-  endOfISOWeek
+  startOfWeek
 } from 'date-fns';
-import { DayPickerMonth, DayPickerWeek, DayPickerDay } from 'contexts/Calendar';
+
+import {
+  DayPickerDay,
+  DayPickerMonth,
+  DayPickerWeek
+} from 'contexts/CalendarContext';
 
 /** Return the {@link DayPickerMonth | DayPickerMonths} to display in the calendar. */
 export function getDayPickerMonths(

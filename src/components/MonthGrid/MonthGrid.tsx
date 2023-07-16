@@ -2,19 +2,24 @@ import React from 'react';
 
 import { DaysSelectionMode } from 'DayPicker';
 
-import { DayPickerWeek } from 'contexts/Props';
-import { CustomComponentSharedProps } from 'types/components';
+import { DayPickerWeek } from 'contexts/CalendarContext';
 
-export type MonthGridProps<TMode extends DaysSelectionMode> =
-  CustomComponentSharedProps<TMode> & {
-    /** The month where the grid is displayed. */
-    month: Date;
-    /** The weeks contained in the grid. */
-    weeks: DayPickerWeek[];
-    displayIndex: number;
-  };
+import { CustomComponentProps } from '../CustomComponent';
 
-/** Render the grid with the weeks for the month. */
+export type MonthGridProps<TMode extends DaysSelectionMode> = {
+  /** The month where the grid is displayed. */
+  month: Date;
+  /** The weeks contained in the grid. */
+  weeks: DayPickerWeek[];
+  /** The index where this month is displayed. */
+  displayIndex: number;
+  /** The current selection mode. */
+  mode: TMode | undefined;
+} & CustomComponentProps<TMode>;
+
+/**
+ * Render the grid with the weeks for the month.
+ */
 export function MonthGrid<TMode extends DaysSelectionMode>(
   props: MonthGridProps<TMode>
 ) {
