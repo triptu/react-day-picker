@@ -6,9 +6,9 @@ import { DayPickerProps, DaysSelectionMode } from 'DayPicker';
 import { ContextProviders } from 'contexts/ContextProviders';
 
 /** Render a React Element wrapped with the Root Provider. */
-export function customRender<TMode extends DaysSelectionMode>(
+export function customRender<TMode extends DaysSelectionMode, P>(
   /** The element to render. */
-  element: React.ReactElement,
+  element: React.ReactElement<P>,
   /** The initial DayPicker props to pass to the Root Provider. */
   dayPickerProps: DayPickerProps<TMode>
 ) {

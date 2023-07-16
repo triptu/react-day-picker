@@ -1,11 +1,11 @@
 import { getCalendar } from './getCalendar';
 
-const today = new Date(2023, 1, 22);
+const today = new Date(2023, 6, 19);
 
 jest.setSystemTime(today);
 
-describe('when using the default props', () => {
-  const calendar = getCalendar(new Date());
+describe('when using the default options', () => {
+  const calendar = getCalendar(today);
   test('should match the snapshot', () => {
     expect(calendar).toMatchInlineSnapshot(`
       {
@@ -62,29 +62,64 @@ describe('when using the default props', () => {
                   DayPickerDay {
                     "date": 2023-06-25T05:00:00.000Z,
                     "displayMonth": 2023-07-01T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-06-26T05:00:00.000Z,
                     "displayMonth": 2023-07-01T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-06-27T05:00:00.000Z,
                     "displayMonth": 2023-07-01T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-06-28T05:00:00.000Z,
                     "displayMonth": 2023-07-01T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-06-29T05:00:00.000Z,
                     "displayMonth": 2023-07-01T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-06-30T05:00:00.000Z,
                     "displayMonth": 2023-07-01T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-01T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                 ],
                 "weekNumber": 26,
@@ -93,24 +128,59 @@ describe('when using the default props', () => {
                 "days": [
                   DayPickerDay {
                     "date": 2023-07-02T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-03T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-04T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-05T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-06T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-07T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-08T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                 ],
                 "weekNumber": 27,
@@ -119,24 +189,59 @@ describe('when using the default props', () => {
                 "days": [
                   DayPickerDay {
                     "date": 2023-07-09T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-10T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-11T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-12T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-13T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-14T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-15T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                 ],
                 "weekNumber": 28,
@@ -145,24 +250,59 @@ describe('when using the default props', () => {
                 "days": [
                   DayPickerDay {
                     "date": 2023-07-16T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-17T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-18T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-19T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-20T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-21T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-22T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                 ],
                 "weekNumber": 29,
@@ -171,24 +311,59 @@ describe('when using the default props', () => {
                 "days": [
                   DayPickerDay {
                     "date": 2023-07-23T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-24T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-25T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-26T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-27T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-28T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-29T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                 ],
                 "weekNumber": 30,
@@ -197,29 +372,64 @@ describe('when using the default props', () => {
                 "days": [
                   DayPickerDay {
                     "date": 2023-07-30T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-07-31T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-08-01T05:00:00.000Z,
                     "displayMonth": 2023-07-01T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-08-02T05:00:00.000Z,
                     "displayMonth": 2023-07-01T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-08-03T05:00:00.000Z,
                     "displayMonth": 2023-07-01T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-08-04T05:00:00.000Z,
                     "displayMonth": 2023-07-01T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                   DayPickerDay {
                     "date": 2023-08-05T05:00:00.000Z,
                     "displayMonth": 2023-07-01T05:00:00.000Z,
+                    "modifiers": {
+                      "disabled": false,
+                      "hidden": false,
+                      "today": false,
+                    },
                   },
                 ],
                 "weekNumber": 31,
@@ -241,5 +451,15 @@ describe('when using the default props', () => {
   });
   test('the last date should be sunday', () => {
     expect(calendar.dates[0].getDay()).toBe(0);
+  });
+});
+
+describe('when using fixed weeks', () => {
+  const calendar = getCalendar(today, undefined, { fixedWeeks: true });
+  test('should return 42 dates', () => {
+    expect(calendar.dates).toHaveLength(42);
+  });
+  test('dates should match the snapshot', () => {
+    expect(calendar.dates).toMatchInlineSnapshot();
   });
 });

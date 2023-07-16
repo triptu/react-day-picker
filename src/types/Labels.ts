@@ -6,9 +6,10 @@ import { ActiveModifiers } from 'types/modifiers';
 export type Labels = {
   labelMonthDropdown: () => string;
   labelYearDropdown: () => string;
+  /** Function returning the label for the month grid. */
+  labelGrid: MonthLabel;
   labelNext: NavButtonLabel;
   labelPrevious: NavButtonLabel;
-  /** @deprecated This label is not used anymore and this function will be removed in the future. */
   labelDay: DayLabel;
   labelWeekday: WeekdayLabel;
   labelWeekNumber: WeekNumberLabel;
@@ -20,6 +21,9 @@ export type DayLabel = (
   activeModifiers: ActiveModifiers,
   options?: { locale?: Locale }
 ) => string;
+
+/** Return the ARIA label for the "next month" / "prev month" buttons in the navigation.*/
+export type MonthLabel = (month: Date, options?: { locale?: Locale }) => string;
 
 /** Return the ARIA label for the "next month" / "prev month" buttons in the navigation.*/
 export type NavButtonLabel = (

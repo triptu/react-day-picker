@@ -1,11 +1,8 @@
 import { DayPickerProps, DaysSelectionMode } from 'DayPicker';
 
-import {
-  DataAttributes,
-  DayPickerPropsWithDefaults
-} from 'contexts/DayPickerPropsContext';
+import { DayPickerContext } from 'contexts/DayPickerContext';
 
-import { defaultProps } from '../defaultProps';
+import { DataAttributes, defaultProps } from '../defaultProps';
 import { parseFromToProps } from './parseFromToProps';
 
 /** Merge the {@link defaultProps} with the props passed in. */
@@ -21,7 +18,7 @@ export function mergeDefaultProps<TMode extends DaysSelectionMode>(
     }
   });
 
-  const value: DayPickerPropsWithDefaults<TMode> = {
+  const value: DayPickerContext<TMode> = {
     ...defaultProps,
     ...props,
     // captionLayout,

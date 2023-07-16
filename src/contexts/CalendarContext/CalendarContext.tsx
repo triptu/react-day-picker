@@ -3,8 +3,8 @@ import React, { createContext, ReactNode, useContext } from 'react';
 import { addMonths, isBefore, isSameMonth, startOfMonth } from 'date-fns';
 
 import { DayPickerCalendar } from 'contexts/CalendarContext';
-import { useDayPickerProps } from 'contexts/DayPickerPropsContext';
-import { defaultProps } from 'contexts/DayPickerPropsContext/defaultProps';
+import { useDayPicker } from 'contexts/DayPickerContext';
+import { defaultProps } from 'contexts/DayPickerContext/defaultProps';
 import { useControlledValue } from 'hooks/useControlledValue';
 
 import { getCalendar } from './getCalendar';
@@ -20,10 +20,11 @@ export const CalendarContext = createContext<DayPickerCalendar | undefined>(
  * The provider for the {@link CalendarContext}, storing the calendar state.
  */
 export function CalendarProvider(providerProps: { children?: ReactNode }) {
-  const props = useDayPickerProps();
+  const props = useDayPicker();
   const { numberOfMonths = defaultProps.numberOfMonths } = props;
   const [firstMonth, lastMonth] = getFirstLastMonths(props);
   const [currentMonth, setMonth] = useControlledValue(firstMonth, props.month);
+
   const goToMonth = (date: Date) => {
     if (props.disableNavigation) return;
     const month = startOfMonth(date);
@@ -35,7 +36,8 @@ export function CalendarProvider(providerProps: { children?: ReactNode }) {
     numberOfMonths: props.numberOfMonths,
     ISOWeek: props.ISOWeek,
     locale: props.locale,
-    weekStartsOn: props.weekStartsOn
+    weekStartsOn: props.weekStartsOn,
+    fixedWeeks: props.fixedWeeks
   });
 
   const nextMonth = getNextMonth(currentMonth, props);
@@ -59,9 +61,15 @@ export function CalendarProvider(providerProps: { children?: ReactNode }) {
     }
   };
 
+  const goToNextMonth = () => (nextMonth ? goToMonth(nextMonth) : undefined);
+  const goToPreviousMonth = () =>
+    previousMonth ? goToMonth(previousMonth) : undefined;
+
   const dayPickerCalendar: DayPickerCalendar = {
     ...calendar,
     goToMonth,
+    goToNextMonth,
+    goToPreviousMonth,
     goToDate,
     currentMonth,
     previousMonth,
@@ -76,7 +84,7 @@ export function CalendarProvider(providerProps: { children?: ReactNode }) {
 }
 
 /**
- * Return the {@link DayPickerCalendar} to access and navigate the calendar used in DayPicker.
+ * Use this hook to access to the dates displayed in the calendar and to navigate between months.
  */
 export function useCalendar(): DayPickerCalendar {
   const context = useContext(CalendarContext);

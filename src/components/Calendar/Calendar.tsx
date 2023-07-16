@@ -1,15 +1,26 @@
 import React from 'react';
 
-import { DecorateComponent } from 'components/DecorateComponent';
-import { MonthGrid } from 'components/MonthGrid';
+import { MonthGrid as DefaultMonthGrid } from 'components/MonthGrid';
+import { Nav as DefaultNav } from 'components/Nav';
 import { useCalendar } from 'contexts/CalendarContext';
-import { useDayPickerProps } from 'contexts/DayPickerPropsContext';
+import { useDayPicker } from 'contexts/DayPickerContext';
 
 /**
- * Render the container with the months according to the number of months to display.
+ * Render the container with navigation and the month grids.
  */
 export function Calendar(): JSX.Element {
-  const props = useDayPickerProps();
+  const {
+    classNames,
+    className,
+    id,
+    styles,
+    style,
+    numberOfMonths,
+    showWeekNumber,
+    components,
+    dir,
+    dataAttributes
+  } = useDayPicker();
   const calendar = useCalendar();
 
   // const dayPicker = useDayPicker();
@@ -35,39 +46,36 @@ export function Calendar(): JSX.Element {
   // ]);
 
   // Apply classnames according to props
-  const classNames = [props.classNames.root];
-  if (props.className) {
-    classNames.push(props.className);
+  const cssClassNames = [classNames.root];
+  if (className) {
+    cssClassNames.push(className);
   }
-  if (props.numberOfMonths > 1) {
-    classNames.push(props.classNames.multiple_months);
+  if (numberOfMonths > 1) {
+    cssClassNames.push(classNames.multiple_months);
   }
-  if (props.showWeekNumber) {
-    classNames.push(props.classNames.with_weeknumber);
+  if (showWeekNumber) {
+    cssClassNames.push(classNames.with_weeknumber);
   }
 
-  const style = {
-    ...props.styles.root,
-    ...props.style
-  };
+  const MonthGrid = components?.MonthGrid ?? DefaultMonthGrid;
+  const Nav = components?.Nav ?? DefaultNav;
 
   return (
     <div
-      className={classNames.join(' ')}
-      style={style}
-      dir={props.dir}
-      id={props.id}
-      {...props.dataAttributes}
+      className={cssClassNames.join(' ')}
+      style={{ ...styles.root, ...style }}
+      dir={dir}
+      id={id}
+      {...dataAttributes}
     >
-      <div className={props.classNames.months} style={props.styles.months}>
-        {calendar.months.map((month, displayIndex) => (
-          <DecorateComponent
-            component={MonthGrid}
-            displayIndex={displayIndex}
-            month={month.date}
-            weeks={month.weeks}
-            dayPickerProps={props}
-            calendar={calendar}
+      <Nav />
+      <div className={classNames.months_wrapper} style={styles.months_wrapper}>
+        {calendar.months.map((month, i) => (
+          <MonthGrid
+            aria-aria-labelledby={id}
+            key={i}
+            displayIndex={i}
+            month={month}
           />
         ))}
       </div>

@@ -12,6 +12,15 @@ export class DayPickerDay {
   displayMonth?: Date;
   /** The date. */
   date: Date;
+  modifiers: {
+    today: boolean;
+    hidden: boolean;
+    disabled: boolean;
+  } = {
+    disabled: false,
+    hidden: false,
+    today: false
+  };
 }
 
 export class DayPickerWeek {
@@ -45,6 +54,10 @@ export interface DayPickerCalendar {
   dates: Date[];
   /** Navigate to the specified month. */
   goToMonth: (month: Date) => void;
+  /** Navigate to the next month. */
+  goToNextMonth: () => void;
+  /** Navigate to the previous month. */
+  goToPreviousMonth: () => void;
   /** Navigate to the specified date. */
   goToDate: (date: Date, refDate?: Date) => void;
   /** The next month to display. */

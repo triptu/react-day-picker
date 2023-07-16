@@ -8,6 +8,8 @@ const config: Config.InitialOptions = {
   },
   moduleNameMapper: {
     '^test/(.*)': ['<rootDir>/test/$1'],
+    '^labels(.*)': ['<rootDir>/src/labels$1'],
+    '^formatters(.*)': ['<rootDir>/src/formatters$1'],
     '^components(.*)': ['<rootDir>/src/components$1'],
     '^contexts(.*)': ['<rootDir>/src/contexts$1'],
     '^hooks(.*)': ['<rootDir>/src/hooks$1'],

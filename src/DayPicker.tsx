@@ -1,8 +1,8 @@
 import React from 'react';
 
+import * as CustomComponents from 'components';
 import { Calendar } from 'components/Calendar';
 import { ContextProviders } from 'contexts/ContextProviders';
-import { CustomComponents } from 'types/components';
 import {
   DayFocusEventHandler,
   DayKeyboardEventHandler,
@@ -24,7 +24,7 @@ import {
 import { ClassNames, Styles } from 'types/styles';
 
 /** The selection modes available in DayPicker. Specify the selection mode via the {@link DayPickerProps["mode"]} prop. */
-export type DaysSelectionMode = 'single' | 'multi' | 'range' | 'none';
+export type DaysSelectionMode = 'single' | 'multi' | 'range';
 
 export type DayPickerSelectedValue<TMode extends DaysSelectionMode> = [
   TMode
@@ -34,7 +34,7 @@ export type DayPickerSelectedValue<TMode extends DaysSelectionMode> = [
   ? Array<Date> | undefined
   : [TMode] extends ['range']
   ? DateRange
-  : undefined;
+  : never;
 
 /**
  * The {@link DayPicker} component props shared with all the selection modes.
@@ -79,7 +79,7 @@ export interface DayPickerBaseProps {
   /**
    * The initial month to show in the calendar. Use this prop to let DayPicker
    * control the current month. If you need to set the month programmatically,
-   * use {@link month]] and [[onMonthChange}.
+   * use {@link month} and {@link onMonthChange}.
    *
    * @defaultValue The current month
    */
@@ -213,11 +213,11 @@ export interface DayPickerBaseProps {
   ISOWeek?: boolean;
 
   /**
-   * Map of components used to create the layout. Look at the [components
-   * source](https://github.com/gpbl/react-day-picker/tree/main/src/components)
-   * to understand how internal components are built and provide your custom components.
+   * Replace the components used to create the layout with other components
    */
-  // components?: CustomComponents;
+  components?: {
+    [key in keyof typeof CustomComponents]?: (typeof CustomComponents)[key];
+  };
 
   /**
    * Content to add to the table footer element.
@@ -340,8 +340,8 @@ export interface DayPickerRangeProps extends DayPickerBaseProps {
  */
 export type DayPickerProps<TMode extends DaysSelectionMode> = {
   mode?: TMode;
-} & ([TMode] extends ['none']
-  ? DayPickerMultiProps
+} & ([TMode] extends [undefined]
+  ? DayPickerBaseProps
   : [TMode] extends ['single']
   ? DayPickerSingleProps
   : [TMode] extends ['multi']

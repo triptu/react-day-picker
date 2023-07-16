@@ -1,4 +1,6 @@
 import {
+  addDays,
+  addWeeks,
   endOfISOWeek,
   endOfMonth,
   endOfWeek,
@@ -11,7 +13,7 @@ import {
   DayPickerDay,
   DayPickerMonth,
   DayPickerWeek
-} from 'contexts/CalendarContext';
+} from 'contexts/CalendarContext/DayPickerCalendar';
 
 /** Return the {@link DayPickerMonth | DayPickerMonths} to display in the calendar. */
 export function getDayPickerMonths(
@@ -38,6 +40,15 @@ export function getDayPickerMonths(
       return date >= firstDateOfFirstWeek && date <= lastDateOfLastWeek;
     });
 
+    if (options?.fixedWeeks && monthDates.length < 42) {
+      const extraDates = dates.filter((date) => {
+        return (
+          date > lastDateOfLastWeek && date <= addDays(lastDateOfLastWeek, 7)
+        );
+      });
+      monthDates.push(...extraDates);
+    }
+
     const dayPickerWeeks = monthDates.reduce<DayPickerWeek[]>((weeks, date) => {
       const weekNumber = getWeek(date, options);
       const week = weeks.find((week) => week.weekNumber === weekNumber);
@@ -50,10 +61,9 @@ export function getDayPickerMonths(
       }
       return weeks;
     }, []);
+
     const dayPickerMonth = new DayPickerMonth(month, dayPickerWeeks);
-    if (options?.fixedWeeks && dayPickerMonth.weeks.length < 6) {
-      // TODO: add the missing week
-    }
+
     months.push(dayPickerMonth);
     return months;
   }, []);

@@ -1,7 +1,20 @@
 import React from 'react';
 
 import { format } from 'date-fns';
-import { DayPicker } from 'react-day-picker';
+import { DayGridCellProps, DayPicker, MonthGridProps } from 'react-day-picker';
+
+function CustomMonthGrid(props: MonthGridProps) {
+  return <div role="grid">{props.month.toISOString()}</div>;
+}
+
+function CustomDayGridCell(props: DayGridCellProps) {
+  return (
+    <div {...props}>
+      <span>Wrap:</span>
+      {props.children}
+    </div>
+  );
+}
 
 export default function Example() {
   const [selected, setSelected] = React.useState<Date>();
@@ -11,13 +24,16 @@ export default function Example() {
     footer = <p>You picked {format(selected, 'PP')}.</p>;
   }
   return (
-    <DayPicker
-      data-test="1"
-      mode="single"
-      numberOfMonths={3}
-      selected={selected}
-      onSelect={setSelected}
-      footer={footer}
-    />
+    <main>
+      <DayPicker
+        showWeekNumber
+        data-test="1"
+        mode="single"
+        numberOfMonths={3}
+        selected={selected}
+        onSelect={setSelected}
+        footer={footer}
+      />
+    </main>
   );
 }

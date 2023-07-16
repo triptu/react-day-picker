@@ -1,18 +1,17 @@
 /**
  * A value or a function that matches a specific day.
  *
- *
  * Matchers are passed to DayPicker via {@link DayPickerBase.disabled},
- * {@link DayPickerBase.hidden]] or [[DayPickerProps.selected} and are used to
+ * {@link DayPickerBase.hidden} or {@link DayPickerProps.selected} and are used to
  * determine if a day should get a {@link Modifier}.
  *
  * Matchers can be of different types:
  *
- * ```
+ * ```tsx
  * // will always match the day
  * const booleanMatcher: Matcher = true;
  *
- *  // will match the today's date
+ * // will match the today's date
  * const dateMatcher: Matcher = new Date();
  *
  * // will match the days in the array
@@ -45,10 +44,8 @@
  *  return day.getMonth() === 2 // match when month is March
  * };
  * ```
- *
  * @see {@link isMatch}
- *
- * */
+ */
 export type Matcher =
   | boolean
   | ((date: Date) => boolean)

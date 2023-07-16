@@ -1,8 +1,10 @@
 import React from 'react';
 
+import style from '../style.css';
+
 /** The style (either via class names or via in-line styles) of an element. */
 export type StyledElement<T = string | React.CSSProperties> = {
-  /** The root element. */
+  /** The calendar element (root). */
   readonly root: T;
   /** The root element when `numberOfMonths > 1`. */
   readonly multiple_months: T;
@@ -16,7 +18,7 @@ export type StyledElement<T = string | React.CSSProperties> = {
   readonly button: T;
 
   /** The caption (showing the calendar heading and the navigation) */
-  readonly caption: T;
+  readonly month_caption: T;
   /** The caption when at the start of a series of months. */
   readonly caption_start: T;
   /** The caption when at the end of a series of months. */
@@ -37,24 +39,6 @@ export type StyledElement<T = string | React.CSSProperties> = {
   /** The drop-down icon. */
   readonly dropdown_icon: T;
 
-  /** The months wrapper. */
-  readonly months: T;
-  /** The table wrapper. */
-  readonly month: T;
-  /** Table containing the monthly calendar. */
-  readonly table: T;
-  /** The table body. */
-  readonly tbody: T;
-  /** The table footer. */
-  readonly tfoot: T;
-
-  /** The table’s head. */
-  readonly head: T;
-  /** The row in the head. */
-  readonly head_row: T;
-  /** The head cell. */
-  readonly head_cell: T;
-
   /** The navigation container. */
   readonly nav: T;
 
@@ -67,14 +51,28 @@ export type StyledElement<T = string | React.CSSProperties> = {
   /** The icon for the navigation button. */
   readonly nav_icon: T;
 
-  /** The table’s row. */
-  readonly row: T;
+  /** The months wrapper. */
+  readonly months_wrapper: T;
+  /** The container of the grid displaying the month and the month caption. */
+  readonly month_grid_wrapper: T;
+  /** The grid displaying the month. */
+  readonly month_grid: T;
+  /** The row grouping the week rows in the month grid. */
+  readonly month_rowgroup: T;
+
+  /** The row with the weekday column headers. */
+  readonly weekdays_row: T;
+  /** The weekday column header. */
+  readonly weekday_columnheader: T;
+
+  /** The row with the week. */
+  readonly week_row: T;
   /** The weeknumber displayed in the column. */
   readonly weeknumber: T;
-  /** The table cell containing the day element. */
-  readonly cell: T;
+  /** The cell containing the weeknumber row header. */
+  readonly weeknumber_rowheader: T;
 
-  /** The day element: it is a `span` when not interactive, a `button` otherwise. */
+  /** The day grid cell. */
   readonly day: T;
   /** The day when outside the month. */
   readonly day_outside: T;
@@ -106,7 +104,7 @@ export type InternalModifiersElement =
   | 'day_today';
 
 /** The class names of each element. */
-export type ClassNames = Partial<StyledElement<string>>;
+export type ClassNames = typeof style;
 
 /**
  * The inline-styles of each styled element, to use with the `styles` prop. Day

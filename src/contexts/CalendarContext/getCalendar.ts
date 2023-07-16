@@ -1,7 +1,7 @@
 import { startOfDay, startOfMonth } from 'date-fns';
 
 import { DayPickerCalendar } from 'contexts/CalendarContext';
-import { defaultProps } from 'contexts/DayPickerPropsContext/defaultProps';
+import { defaultProps } from 'contexts/DayPickerContext/defaultProps';
 
 import { getDates } from './utils/getDates';
 import { getDayPickerMonths } from './utils/getDayPickerMonths';
@@ -11,6 +11,7 @@ export function getCalendar(
   firstMonth: Date,
   toDate?: Date | undefined,
   options?: {
+    fixedWeeks?: boolean | undefined;
     numberOfMonths?: number;
     ISOWeek?: boolean;
     locale?: Locale;

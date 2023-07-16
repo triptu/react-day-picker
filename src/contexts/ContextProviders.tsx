@@ -3,7 +3,7 @@ import React from 'react';
 import { DayPickerProps, DaysSelectionMode } from 'DayPicker';
 
 import { CalendarProvider } from './CalendarContext';
-import { DayPickerProvider } from './DayPickerPropsContext';
+import { DayPickerProvider } from './DayPickerContext';
 
 export interface ContextProvidersProps<TMode extends DaysSelectionMode> {
   dayPickerProps: DayPickerProps<TMode>;

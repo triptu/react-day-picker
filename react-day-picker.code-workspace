@@ -24,84 +24,185 @@
     "version": "2.0.0",
     "tasks": [
       {
-        "type": "npm",
-        "script": "build",
+        "label": "build",
+        "type": "shell",
+        "command": "pnpm build",
+        "isBackground": true,
+        "problemMatcher": ["$rollup-ts-watch"],
+        "presentation": {
+          "close": false,
+          "panel": "dedicated",
+          "showReuseMessage": false
+        },
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        }
+      },
+      {
+        "label": "build-watch",
+        "detail": "Run rollup-js to build in watch mode.",
+        "type": "shell",
+        "command": "pnpm run build-watch",
+        "isBackground": true,
+        "problemMatcher": ["$rollup-ts-watch"],
+        "runOptions": {
+          "runOn": "folderOpen",
+          "instanceLimit": 1
+        },
+        "presentation": {
+          "reveal": "silent",
+          "focus": false,
+          "panel": "dedicated",
+          "clear": true
+        },
         "group": {
           "kind": "build",
           "isDefault": true
         },
-        "problemMatcher": [],
-        "label": "build",
-        "detail": "rimraf dist && rollup -c"
+        "dependsOn": ["build"]
       },
       {
-        "type": "npm",
-        "script": "start",
-        "options": {
-          "cwd": "${workspaceFolder}/website",
-          "env": {
-            "TYPEDOC_WATCH": "true"
-          }
-        },
-        "problemMatcher": [],
-        "label": "website: start",
-        "detail": "docusaurus start",
-        "runOptions": {
-          "runOn": "folderOpen"
-        }
-      },
-      {
-        "type": "npm",
-        "script": "build-watch",
-        "group": "build",
-        "problemMatcher": [],
-        "label": "build-watch",
-        "detail": "rollup -c -w",
-        "runOptions": {
-          "runOn": "folderOpen"
-        }
-      },
-      {
-        "type": "npm",
-        "script": "typecheck-watch",
-        "group": "build",
+        "label": "tsc-watch",
+        "detail": "Typecheck in watch mode.",
+        "type": "shell",
+        "command": "pnpm run typecheck-watch",
+        "isBackground": true,
         "problemMatcher": ["$tsc-watch"],
-        "label": "typecheck-watch",
-        "detail": "tsc --project ./tsconfig.json --noEmit --watch",
         "runOptions": {
-          "runOn": "folderOpen"
-        }
-      },
-      {
-        "path": "website",
-        "type": "npm",
-        "script": "typecheck-watch",
-        "group": "build",
-        "problemMatcher": ["$tsc-watch"],
-        "label": "website: typecheck-watch",
-        "detail": "tsc --project ./tsconfig.json --noEmit --watch",
-        "runOptions": {
-          "runOn": "folderOpen"
-        }
-      },
-      {
-        "type": "npm",
-        "script": "start",
-        "options": {
-          "cwd": "${workspaceFolder}/website",
-          "env": {
-            "TYPEDOC_WATCH": "true"
-          }
+          "runOn": "folderOpen",
+          "instanceLimit": 1
         },
-        "problemMatcher": [],
-        "label": "website: start",
-        "detail": "docusaurus start",
+        "presentation": {
+          "reveal": "silent",
+          "focus": false,
+          "panel": "dedicated",
+          "clear": true
+        },
+        "dependsOn": ["build"]
+      },
+      {
+        "label": "website: tsc-watch",
+        "detail": "Typecheck website in watch mode.",
+        "type": "shell",
+        "command": "pnpm -F website typecheck-watch",
+        "isBackground": true,
+        "problemMatcher": ["$tsc-watch"],
         "runOptions": {
-          "runOn": "folderOpen"
-        }
+          "runOn": "folderOpen",
+          "instanceLimit": 1
+        },
+        "presentation": {
+          "reveal": "silent",
+          "focus": false,
+          "panel": "dedicated",
+          "clear": true
+        },
+        "dependsOn": ["build"]
+      },
+      {
+        "label": "website: start",
+        "detail": "Start the website app in development mode.",
+        "type": "shell",
+        "command": "pnpm -F website start",
+        "isBackground": true,
+        "problemMatcher": ["$ts-webpack-watch"],
+        "runOptions": {
+          "runOn": "folderOpen",
+          "instanceLimit": 1
+        },
+        "presentation": {
+          "reveal": "silent",
+          "focus": false,
+          "panel": "dedicated",
+          "clear": true
+        },
+        "dependsOn": ["build"]
       }
     ]
   },
+  // "tasks": {
+  //   "version": "2.0.0",
+  //   "tasks": [
+  //     {
+  //       "type": "npm",
+  //       "script": "build",
+  //       "group": {
+  //         "kind": "build",
+  //         "isDefault": true
+  //       },
+  //       "problemMatcher": [],
+  //       "label": "build",
+  //       "detail": "rimraf dist && rollup -c"
+  //     },
+  //     {
+  //       "type": "npm",
+  //       "script": "start",
+  //       "options": {
+  //         "cwd": "${workspaceFolder}/website",
+  //         "env": {
+  //           "TYPEDOC_WATCH": "true"
+  //         }
+  //       },
+  //       "problemMatcher": [],
+  //       "label": "website: start",
+  //       "detail": "docusaurus start",
+  //       "runOptions": {
+  //         "runOn": "folderOpen"
+  //       }
+  //     },
+  //     {
+  //       "type": "npm",
+  //       "script": "build-watch",
+  //       "group": "build",
+  //       "problemMatcher": [],
+  //       "label": "build-watch",
+  //       "detail": "rollup -c -w",
+  //       "runOptions": {
+  //         "runOn": "folderOpen"
+  //       }
+  //     },
+  //     {
+  //       "type": "npm",
+  //       "script": "typecheck-watch",
+  //       "group": "build",
+  //       "problemMatcher": ["$tsc-watch"],
+  //       "label": "typecheck-watch",
+  //       "detail": "tsc --project ./tsconfig.json --noEmit --watch",
+  //       "runOptions": {
+  //         "runOn": "folderOpen"
+  //       }
+  //     },
+  //     {
+  //       "path": "website",
+  //       "type": "npm",
+  //       "script": "typecheck-watch",
+  //       "group": "build",
+  //       "problemMatcher": ["$tsc-watch"],
+  //       "label": "website: typecheck-watch",
+  //       "detail": "tsc --project ./tsconfig.json --noEmit --watch",
+  //       "runOptions": {
+  //         "runOn": "folderOpen"
+  //       }
+  //     },
+  //     {
+  //       "type": "npm",
+  //       "script": "start",
+  //       "options": {
+  //         "cwd": "${workspaceFolder}/website",
+  //         "env": {
+  //           "TYPEDOC_WATCH": "true"
+  //         }
+  //       },
+  //       "problemMatcher": [],
+  //       "label": "website: start",
+  //       "detail": "docusaurus start",
+  //       "runOptions": {
+  //         "runOn": "folderOpen"
+  //       }
+  //     }
+  //   ]
+  // },
   "settings": {
     "[javascript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -146,6 +247,9 @@
     ],
     "jest.disabledWorkspaceFolders": ["repository"],
     "npm.packageManager": "pnpm",
-    "task.allowAutomaticTasks": "on"
+    "task.allowAutomaticTasks": "on",
+    "github-actions.workflows.pinned.workflows": [
+      "react-day-picker/.github/workflows/website.yml"
+    ]
   }
 }
