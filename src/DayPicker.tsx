@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Root } from 'components/Root';
-import { CalendarProvider } from 'contexts/Calendar';
 import { ContextProviders } from 'contexts/ContextProviders';
 import {
   DayFocusEventHandler,
@@ -24,9 +23,9 @@ import {
 import { ClassNames, Styles } from 'types/styles';
 
 /** The selection modes available in DayPicker. Specify the selection mode via the {@link DayPickerProps["mode"]} prop. */
-export type DaySelectionMode = 'single' | 'multi' | 'range';
+export type DaysSelectionMode = 'single' | 'multi' | 'range';
 
-export type DayPickerSelectedValue<TMode extends DaySelectionMode> = [
+export type DayPickerSelectedValue<TMode extends DaysSelectionMode> = [
   TMode
 ] extends ['single']
   ? Date | undefined
@@ -346,7 +345,7 @@ export interface DayPickerRangeProps extends DayPickerBaseProps {
  *
  * @category Props
  */
-export type DayPickerProps<TMode extends DaySelectionMode> = {
+export type DayPickerProps<TMode extends DaysSelectionMode> = {
   mode?: TMode | undefined;
 } & ([TMode] extends [undefined]
   ? DayPickerBaseProps
@@ -447,7 +446,7 @@ export type DayPickerProps<TMode extends DaySelectionMode> = {
  *
  * @category Components
  */
-export function DayPicker<TMode extends DaySelectionMode>(
+export function DayPicker<TMode extends DaysSelectionMode>(
   props: DayPickerProps<TMode>
 ): JSX.Element {
   return (

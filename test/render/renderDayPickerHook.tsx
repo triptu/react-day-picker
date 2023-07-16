@@ -1,37 +1,18 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { DayPickerProps } from 'DayPicker';
 
-import { FocusContext, FocusContextValue } from 'contexts/Focus';
-import { RootProvider } from 'contexts/RootProvider';
-import {
-  SelectMultipleContext,
-  SelectMultipleContextValue
-} from 'contexts/SelectMultiple';
-import {
-  SelectRangeContext,
-  SelectRangeContextValue
-} from 'contexts/SelectRange';
-import {
-  SelectSingleContext,
-  SelectSingleContextValue
-} from 'contexts/SelectSingle';
+import { DayPickerProps, DaysSelectionMode } from 'components/DayPicker';
+import { ContextProviders } from 'contexts/ContextProviders';
 
 /** Render a DayPicker hook inside the {@link RootProvider}. */
 export type RenderHookResult<TResult> = {
   current: TResult;
 };
-export function renderDayPickerHook<TResult>(
+
+export function renderDayPickerHook<TMode extends DaysSelectionMode, TResult>(
   hook: () => TResult,
-  dayPickerProps?: DayPickerProps,
-  /** Pass the mocked contexts. */
-  contexts?: {
-    single: SelectSingleContextValue;
-    multiple: SelectMultipleContextValue;
-    range: SelectRangeContextValue;
-    focus: FocusContextValue;
-  }
+  dayPickerProps: DayPickerProps<TMode>
 ): RenderHookResult<TResult> {
   const returnVal = { current: undefined as TResult };
   function Test(): JSX.Element {
@@ -39,22 +20,13 @@ export function renderDayPickerHook<TResult>(
     returnVal.current = hookResult;
     return <></>;
   }
+  if (dayPickerProps === undefined) {
+    render(<Test />);
+  }
   render(
-    <RootProvider {...dayPickerProps}>
-      {contexts ? (
-        <SelectSingleContext.Provider value={contexts.single}>
-          <SelectMultipleContext.Provider value={contexts.multiple}>
-            <SelectRangeContext.Provider value={contexts.range}>
-              <FocusContext.Provider value={contexts.focus}>
-                <Test />
-              </FocusContext.Provider>
-            </SelectRangeContext.Provider>
-          </SelectMultipleContext.Provider>
-        </SelectSingleContext.Provider>
-      ) : (
-        <Test />
-      )}
-    </RootProvider>
+    <ContextProviders dayPickerProps={dayPickerProps}>
+      <Test />
+    </ContextProviders>
   );
   return returnVal;
 }

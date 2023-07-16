@@ -12,7 +12,9 @@ export default function Example() {
   }
   return (
     <DayPicker
+      data-test="1"
       mode="single"
+      numberOfMonths={3}
       selected={selected}
       onSelect={setSelected}
       footer={footer}

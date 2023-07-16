@@ -1,13 +1,10 @@
 import React from 'react';
 
-import {
-  DayPickerSelectedValue,
-  DaySelectionMode
-} from 'components/DayPicker/DayPicker';
+import { DayPickerSelectedValue, DaysSelectionMode } from 'DayPicker';
 
 import { ActiveModifiers } from './modifiers';
 
-export type DaySelectEventHandler<TMode extends DaySelectionMode> = (
+export type DaySelectEventHandler<TMode extends DaysSelectionMode> = (
   days: DayPickerSelectedValue<TMode>,
   selectedDay: Date,
   activeModifiers: ActiveModifiers,

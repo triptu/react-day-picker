@@ -5,8 +5,9 @@ import { renderDayPickerHook } from 'test/render';
 import { useControlledValue } from './useControlledValue';
 
 function renderHook(defaultValue: string, controlledValue: string | undefined) {
-  return renderDayPickerHook(() =>
-    useControlledValue<string>(defaultValue, controlledValue)
+  return renderDayPickerHook(
+    () => useControlledValue<string>(defaultValue, controlledValue),
+    {}
   );
 }
 

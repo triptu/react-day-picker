@@ -1,4 +1,6 @@
 export * from './components/DayPicker';
+export * from './contexts/Calendar';
+
 import './style.css';
 
 // export * from 'components/Button';
