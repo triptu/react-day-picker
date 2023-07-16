@@ -5,7 +5,7 @@ import { DaysSelectionMode } from 'DayPicker';
 import { DayPickerCalendar, useCalendar } from 'contexts/CalendarContext';
 import {
   DayPickerPropsWithDefaults,
-  useProps
+  useDayPickerProps
 } from 'contexts/DayPickerPropsContext';
 
 export type DecoratedProps<TMode extends DaysSelectionMode> = {
@@ -25,7 +25,7 @@ export function DecorateComponent<TProps>(
   props: { component: React.ComponentType<TProps> } & TProps
 ): JSX.Element {
   const Component = props.component;
-  const dayPickerProps = useProps();
+  const dayPickerProps = useDayPickerProps();
   const calendar = useCalendar();
   return (
     <Component {...props} calendar={calendar} dayPickerProps={dayPickerProps} />

@@ -3,7 +3,7 @@ import React, { createContext, ReactNode, useContext } from 'react';
 import { addMonths, isBefore, isSameMonth, startOfMonth } from 'date-fns';
 
 import { DayPickerCalendar } from 'contexts/CalendarContext';
-import { useProps } from 'contexts/DayPickerPropsContext';
+import { useDayPickerProps } from 'contexts/DayPickerPropsContext';
 import { defaultProps } from 'contexts/DayPickerPropsContext/defaultProps';
 import { useControlledValue } from 'hooks/useControlledValue';
 
@@ -20,7 +20,7 @@ export const CalendarContext = createContext<DayPickerCalendar | undefined>(
  * The provider for the {@link CalendarContext}, storing the calendar state.
  */
 export function CalendarProvider(providerProps: { children?: ReactNode }) {
-  const props = useProps();
+  const props = useDayPickerProps();
   const { numberOfMonths = defaultProps.numberOfMonths } = props;
   const [firstMonth, lastMonth] = getFirstLastMonths(props);
   const [currentMonth, setMonth] = useControlledValue(firstMonth, props.month);

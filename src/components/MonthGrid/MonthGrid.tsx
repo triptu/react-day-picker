@@ -12,8 +12,6 @@ export type MonthGridProps<TMode extends DaysSelectionMode> = {
   weeks: DayPickerWeek[];
   /** The index where this month is displayed. */
   displayIndex: number;
-  /** The current selection mode. */
-  mode: TMode | undefined;
 } & DecoratedProps<TMode>;
 
 /**

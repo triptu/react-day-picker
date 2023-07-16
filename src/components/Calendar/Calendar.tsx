@@ -3,13 +3,13 @@ import React from 'react';
 import { DecorateComponent } from 'components/DecorateComponent';
 import { MonthGrid } from 'components/MonthGrid';
 import { useCalendar } from 'contexts/CalendarContext';
-import { useProps } from 'contexts/DayPickerPropsContext';
+import { useDayPickerProps } from 'contexts/DayPickerPropsContext';
 
 /**
  * Render the container with the months according to the number of months to display.
  */
 export function Calendar(): JSX.Element {
-  const props = useProps();
+  const props = useDayPickerProps();
   const calendar = useCalendar();
 
   // const dayPicker = useDayPicker();
@@ -66,7 +66,6 @@ export function Calendar(): JSX.Element {
             displayIndex={displayIndex}
             month={month.date}
             weeks={month.weeks}
-            mode={props.mode}
             dayPickerProps={props}
             calendar={calendar}
           />

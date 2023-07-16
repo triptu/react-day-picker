@@ -5,7 +5,7 @@ import * as labels from 'labels';
 
 import { defaultClassNames } from './defaultClassNames';
 
-import type { DayPickerBaseProps } from 'DayPicker';
+import type { DayPickerBaseProps, DaysSelectionMode } from 'DayPicker';
 
 import type { Formatters } from 'types/formatters';
 import type { Labels } from 'types/labels';
@@ -15,10 +15,12 @@ import type { DataAttributes } from './DayPickerPropsContext';
 export type DefaultProps = Required<
   Pick<
     DayPickerBaseProps,
+    | 'labels'
     | 'classNames'
     | 'numberOfMonths'
     | 'formatters'
     // | 'captionLayout'
+    // | 'components'
     | 'locale'
     | 'modifiersClassNames'
     | 'modifiers'
@@ -27,6 +29,7 @@ export type DefaultProps = Required<
     | 'today'
   >
 > & {
+  mode: DaysSelectionMode;
   dataAttributes: DataAttributes;
   formatters: Required<Formatters>;
   labels: Required<Labels>;
@@ -34,6 +37,7 @@ export type DefaultProps = Required<
 
 /** The default props for the DayPicker component. */
 export const defaultProps: DefaultProps = {
+  mode: 'none',
   classNames: defaultClassNames,
   numberOfMonths: 1,
   locale: enUS,

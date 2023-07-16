@@ -1,6 +1,9 @@
 import { DayPickerProps, DaysSelectionMode } from 'DayPicker';
 
-import { DayPickerPropsWithDefaults } from 'contexts/DayPickerPropsContext';
+import {
+  DataAttributes,
+  DayPickerPropsWithDefaults
+} from 'contexts/DayPickerPropsContext';
 
 import { defaultProps } from '../defaultProps';
 import { parseFromToProps } from './parseFromToProps';
@@ -10,6 +13,13 @@ export function mergeDefaultProps<TMode extends DaysSelectionMode>(
   props: DayPickerProps<TMode>
 ) {
   const { fromDate, toDate } = parseFromToProps(props);
+
+  const dataAttributes: DataAttributes = {};
+  Object.entries(props).forEach(([key, val]) => {
+    if (key.startsWith('data-')) {
+      dataAttributes[key] = val;
+    }
+  });
 
   const value: DayPickerPropsWithDefaults<TMode> = {
     ...defaultProps,
@@ -43,7 +53,8 @@ export function mergeDefaultProps<TMode extends DaysSelectionMode>(
       ...props.styles,
       ...defaultProps.styles
     },
-    toDate
+    toDate,
+    dataAttributes
   };
 
   return value;
