@@ -3,7 +3,7 @@ import React from 'react';
 import { DayPickerProps, DaysSelectionMode } from 'DayPicker';
 
 import { CalendarProvider } from './CalendarContext';
-import { PropsProvider } from './PropsContext';
+import { DayPickerPropsProvider } from './DayPickerPropsContext';
 
 export interface ContextProvidersProps<TMode extends DaysSelectionMode> {
   dayPickerProps: DayPickerProps<TMode>;
@@ -18,8 +18,8 @@ export function ContextProviders<TMode extends DaysSelectionMode>(
   props: ContextProvidersProps<TMode>
 ): JSX.Element {
   return (
-    <PropsProvider dayPickerProps={props.dayPickerProps}>
+    <DayPickerPropsProvider dayPickerProps={props.dayPickerProps}>
       <CalendarProvider>{props.children}</CalendarProvider>
-    </PropsProvider>
+    </DayPickerPropsProvider>
   );
 }

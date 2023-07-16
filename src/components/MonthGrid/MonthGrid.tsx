@@ -2,9 +2,8 @@ import React from 'react';
 
 import { DaysSelectionMode } from 'DayPicker';
 
+import { DecoratedProps } from 'components/DecorateComponent';
 import { DayPickerWeek } from 'contexts/CalendarContext';
-
-import { CustomComponentProps } from '../CustomComponent';
 
 export type MonthGridProps<TMode extends DaysSelectionMode> = {
   /** The month where the grid is displayed. */
@@ -15,7 +14,7 @@ export type MonthGridProps<TMode extends DaysSelectionMode> = {
   displayIndex: number;
   /** The current selection mode. */
   mode: TMode | undefined;
-} & CustomComponentProps<TMode>;
+} & DecoratedProps<TMode>;
 
 /**
  * Render the grid with the weeks for the month.

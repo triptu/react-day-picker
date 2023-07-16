@@ -8,10 +8,10 @@ import { customRender } from 'test/render';
 import { getDayButton, queryMonthGrids } from 'test/selectors';
 import { freezeBeforeAll } from 'test/utils';
 
-import { defaultClassNames } from 'contexts/PropsContext/defaultClassNames';
+import { defaultClassNames } from 'contexts/DayPickerPropsContext/defaultClassNames';
 import { ClassNames } from 'types/styles';
 
-import { Root } from './Root';
+import { Root } from './Calendar';
 
 const today = new Date(2020, 10, 4);
 freezeBeforeAll(today);

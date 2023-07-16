@@ -20,21 +20,23 @@ export type DataAttributes = Record<string, unknown>;
 export type DayPickerPropsWithDefaults<TMode extends DaysSelectionMode> =
   DayPickerProps<TMode> & DefaultProps;
 
-export const PropsContext = createContext<
+export const DayPickerPropsContext = createContext<
   DayPickerPropsWithDefaults<DaysSelectionMode> | undefined
 >(undefined);
 
-/** The props for the {@link PropsProvider}. */
-export interface PropsProviderProps {
+/** The props for the {@link DayPickerPropsProvider}. */
+export interface DayPickerPropsProviderProps {
   /** The initial props from the DayPicker component. */
   dayPickerProps: DayPickerBaseProps;
   children?: ReactNode;
 }
 /**
- * The provider for the {@link PropsContext}, storing the props and setting its defaults.
+ * The provider for the {@link DayPickerPropsContext}, storing the props and setting its defaults.
  * Must be the root of all the providers.
  */
-export function PropsProvider(providerProps: PropsProviderProps) {
+export function DayPickerPropsProvider(
+  providerProps: DayPickerPropsProviderProps
+) {
   const props = mergeDefaultProps(providerProps.dayPickerProps);
 
   const dataAttributes = Object.keys(props)
@@ -50,15 +52,15 @@ export function PropsProvider(providerProps: PropsProviderProps) {
   props.dataAttributes = dataAttributes;
 
   return (
-    <PropsContext.Provider value={props}>
+    <DayPickerPropsContext.Provider value={props}>
       {providerProps.children}
-    </PropsContext.Provider>
+    </DayPickerPropsContext.Provider>
   );
 }
 
 /** Use this hook in custom components to access to the props passed to DayPicker. */
 export function useProps(): DayPickerPropsWithDefaults<DaysSelectionMode> {
-  const context = useContext(PropsContext);
+  const context = useContext(DayPickerPropsContext);
   if (!context)
     throw new Error(`useProps must be used within a PropsProvider.`);
 

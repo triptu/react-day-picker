@@ -3,8 +3,8 @@ import React, { createContext, ReactNode, useContext } from 'react';
 import { addMonths, isBefore, isSameMonth, startOfMonth } from 'date-fns';
 
 import { DayPickerCalendar } from 'contexts/CalendarContext';
-import { useProps } from 'contexts/PropsContext';
-import { defaultProps } from 'contexts/PropsContext/defaultProps';
+import { useProps } from 'contexts/DayPickerPropsContext';
+import { defaultProps } from 'contexts/DayPickerPropsContext/defaultProps';
 import { useControlledValue } from 'hooks/useControlledValue';
 
 import { getCalendar } from './getCalendar';

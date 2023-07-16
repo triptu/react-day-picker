@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Root } from 'components/Root';
+import { Calendar } from 'components/Calendar';
 import { ContextProviders } from 'contexts/ContextProviders';
 import {
   DayFocusEventHandler,
@@ -439,7 +439,7 @@ export function DayPicker<TMode extends DaysSelectionMode>(
 ): JSX.Element {
   return (
     <ContextProviders dayPickerProps={props}>
-      <Root />
+      <Calendar />
     </ContextProviders>
   );
 }

@@ -10,7 +10,7 @@ import type { DayPickerBaseProps } from 'DayPicker';
 import type { Formatters } from 'types/formatters';
 import type { Labels } from 'types/labels';
 
-import type { DataAttributes } from './PropsContext';
+import type { DataAttributes } from './DayPickerPropsContext';
 
 export type DefaultProps = Required<
   Pick<
