@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { DayPickerSelectedValue, DaySelectionMode } from 'DayPicker';
+import {
+  DayPickerSelectedValue,
+  DaySelectionMode
+} from 'components/DayPicker/DayPicker';
 
 import { ActiveModifiers } from './modifiers';
 

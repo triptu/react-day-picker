@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { Root } from 'components/Root';
+import { CalendarProvider } from 'contexts/Calendar';
+import { ContextProviders } from 'contexts/ContextProviders';
 import {
   DayFocusEventHandler,
   DayKeyboardEventHandler,
@@ -448,9 +451,8 @@ export function DayPicker<TMode extends DaySelectionMode>(
   props: DayPickerProps<TMode>
 ): JSX.Element {
   return (
-    <pre>{JSON.stringify(props, null, 2)}</pre>
-    // <RootProvider {...props}>
-    //   <Root initialProps={props} />
-    // </RootProvider>
+    <ContextProviders dayPickerProps={props}>
+      <Root />
+    </ContextProviders>
   );
 }
