@@ -2,14 +2,14 @@ import React from 'react';
 
 import { RenderResult } from '@testing-library/react';
 import { addDays } from 'date-fns';
-import { DayPickerProps } from 'components/DayPicker/DayPicker';
+import { DayPickerProps } from 'DayPicker';
 
 import { customRender } from 'test/render';
 import { getDayButton, queryMonthGrids } from 'test/selectors';
 import { freezeBeforeAll } from 'test/utils';
 
-import { defaultClassNames } from 'components/DayPicker/defaultClassNames';
-import { ClassNames } from 'types/Styles';
+import { defaultClassNames } from 'contexts/Props/defaultClassNames';
+import { ClassNames } from 'types/styles';
 
 import { Root } from './Root';
 

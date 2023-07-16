@@ -1,22 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import { DayPickerProps, DaySelectionMode } from 'components/DayPicker';
-
-function isDataAttributes(attrs: DayPickerProps<unknown>): attrs is {
-  [key: string]: string | boolean | number | undefined;
-} {
-  return true;
-}
-
-export interface RootProps<TMode extends DaySelectionMode> {
-  dayPickerProps: DayPickerProps<TMode>;
-}
+import { MonthGridInternal } from 'components/MonthGrid/MonthGridInternal';
+// import { MonthGridInternal } from 'components/MonthGrid/MonthGridInternal';
+import { useCalendar } from 'contexts/Calendar';
+import { useProps } from 'contexts/Props';
 
 /** Render the container with the months according to the number of months to display. */
-export function Root<TMode extends DaySelectionMode>({
-  dayPickerProps
-}: RootProps<TMode>): JSX.Element {
-  const { classNames } = dayPickerProps;
+export function Root(): JSX.Element {
+  const props = useProps();
+  const calendar = useCalendar();
+
   // const dayPicker = useDayPicker();
   // const focusContext = useFocusContext();
   // const navigation = useNavigation();
@@ -25,14 +18,14 @@ export function Root<TMode extends DaySelectionMode>({
 
   // // Focus the focus target when initialFocus is passed in
   // useEffect(() => {
-  //   if (!dayPickerProps.initialFocus) return;
+  //   if (!props.initialFocus) return;
   //   if (!focusContext.focusTarget) return;
   //   if (hasInitialFocus) return;
 
   //   focusContext.focus(focusContext.focusTarget);
   //   setHasInitialFocus(true);
   // }, [
-  //   dayPickerProps.initialFocus,
+  //   props.initialFocus,
   //   hasInitialFocus,
   //   focusContext.focus,
   //   focusContext.focusTarget,
@@ -40,43 +33,37 @@ export function Root<TMode extends DaySelectionMode>({
   // ]);
 
   // Apply classnames according to props
-  const classNames = [dayPickerProps.classNames.root, dayPickerProps.className];
-  if (dayPickerProps.numberOfMonths > 1) {
-    classNames.push(dayPickerProps.classNames.multiple_months);
+  const classNames = [props.classNames.root];
+  if (props.className) {
+    classNames.push(props.className);
   }
-  if (dayPickerProps.showWeekNumber) {
-    classNames.push(dayPickerProps.classNames.with_weeknumber);
+  if (props.numberOfMonths > 1) {
+    classNames.push(props.classNames.multiple_months);
+  }
+  if (props.showWeekNumber) {
+    classNames.push(props.classNames.with_weeknumber);
   }
 
   const style = {
-    ...dayPickerProps.styles.root,
-    ...dayPickerProps.style
+    ...props.styles.root,
+    ...props.style
   };
-
-  const dataAttributes = Object.keys(initialProps)
-    .filter((key) => key.startsWith('data-'))
-    .reduce((attrs, key) => {
-      if (!isDataAttributes(initialProps)) return attrs;
-      return {
-        ...attrs,
-        [key]: initialProps[key]
-      };
-    }, {});
 
   return (
     <div
       className={classNames.join(' ')}
       style={style}
-      dir={dayPickerProps.dir}
-      id={dayPickerProps.id}
-      {...dataAttributes}
+      dir={props.dir}
+      id={props.id}
+      {...props.dataAttributes}
     >
-      <div
-        className={dayPickerProps.classNames.months}
-        style={dayPickerProps.styles.months}
-      >
-        {navigation.displayMonths.map((month, i) => (
-          <Month key={i} displayIndex={i} displayMonth={month} />
+      <div className={props.classNames.months} style={props.styles.months}>
+        {calendar.months.map((month, displayIndex) => (
+          <MonthGridInternal
+            displayIndex={displayIndex}
+            month={month.date}
+            weeks={month.weeks}
+          />
         ))}
       </div>
     </div>

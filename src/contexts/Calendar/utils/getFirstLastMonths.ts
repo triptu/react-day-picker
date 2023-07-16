@@ -1,6 +1,6 @@
 import { addMonths, differenceInCalendarMonths, startOfMonth } from 'date-fns';
+import { DayPickerBaseProps } from 'DayPicker';
 
-import { DayPickerBaseProps } from 'components/DayPicker';
 import { defaultProps } from 'contexts/Props/defaultProps';
 import { parseFromToProps } from 'contexts/Props/utils/parseFromToProps';
 

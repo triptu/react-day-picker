@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DayPickerProps, DaysSelectionMode } from 'components/DayPicker';
+import { DayPickerProps, DaysSelectionMode } from 'DayPicker';
 
 import { CalendarProvider } from './Calendar/CalendarContext';
 import { PropsProvider } from './Props';

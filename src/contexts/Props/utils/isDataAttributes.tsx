@@ -1,4 +1,4 @@
-import { DayPickerBaseProps } from 'components/DayPicker';
+import { DayPickerBaseProps } from 'DayPicker';
 
 /** Typeguard to parse the data- attributes from props. */
 export function isDataAttributes(attrs: DayPickerBaseProps): attrs is {

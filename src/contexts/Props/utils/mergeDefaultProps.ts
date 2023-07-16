@@ -1,4 +1,5 @@
-import { DayPickerProps, DaysSelectionMode } from 'components/DayPicker';
+import { DayPickerProps, DaysSelectionMode } from 'DayPicker';
+
 import { DayPickerPropsWithDefaults } from 'contexts/Props';
 
 import { defaultProps } from '../defaultProps';

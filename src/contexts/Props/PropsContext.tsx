@@ -4,14 +4,19 @@ import {
   DayPickerBaseProps,
   DayPickerProps,
   DaysSelectionMode
-} from 'components/DayPicker';
+} from 'DayPicker';
 
 import { DefaultProps } from './defaultProps';
 import { isDataAttributes } from './utils/isDataAttributes';
 import { mergeDefaultProps } from './utils/mergeDefaultProps';
 
+/** A record with `data-*` attributes passed to {@link DayPicker}. */
 export type DataAttributes = Record<string, unknown>;
 
+/**
+ * The {@link DayPickerProps} with their default values. Use this type within
+ * internal components to use safe props and avoid all conditionals.
+ */
 export type DayPickerPropsWithDefaults<TMode extends DaysSelectionMode> =
   DayPickerProps<TMode> & DefaultProps;
 

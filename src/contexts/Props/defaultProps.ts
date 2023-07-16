@@ -5,7 +5,7 @@ import * as formatters from '../../formatters';
 import * as labels from '../../labels';
 import { defaultClassNames } from './defaultClassNames';
 
-import type { DayPickerBaseProps } from 'components/DayPicker';
+import type { DayPickerBaseProps } from 'DayPicker';
 
 import type { Formatters } from 'types/formatters';
 import type { Labels } from 'types/labels';
