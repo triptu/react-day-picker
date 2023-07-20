@@ -1,0 +1,56 @@
+.playground {
+  display: flex;
+  gap: 2em;
+}
+
+.playground fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  /* margin: 0.5em 0 0; */
+  padding: 0.6em 0 0;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+.playground fieldset legend {
+  color: var(--ifm-color-emphasis-300);
+  font-size: 0.75em;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-right: 1em;
+}
+
+.playground h5 {
+}
+
+.playground form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.playground form label {
+  --ifm-code-background: none;
+  --ifm-code-border-radius: 0;
+  border: none;
+  background: none;
+  display: flex;
+  gap: 1em 0.5em;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.33em 0;
+}
+
+.playground form input,
+.playground form select {
+  padding: 0.25em 0.5em;
+  font-size: 12px;
+}
+
+.playground form select {
+  padding: auto;
+}
+
+.playground-content .sticky {
+  position: sticky;
+  top: 16px;
+}

@@ -178,6 +178,7 @@ export interface DayPickerBaseProps {
    * @defaultValue false
    */
   showOutsideDays?: boolean;
+
   /**
    * Show the week numbers column. Weeks are numbered according to the local
    * week index.
