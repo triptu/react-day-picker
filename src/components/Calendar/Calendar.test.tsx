@@ -50,8 +50,6 @@ describe('when using the "classNames" prop', () => {
     vhidden: '',
     with_weeknumber: '',
     months_wrapper: '',
-    months: '',
-    month: '',
     caption: '',
     multiple_months: '',
     caption_dropdowns: '',
