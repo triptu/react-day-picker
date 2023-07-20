@@ -29,7 +29,7 @@ export function MonthGrid(props: MonthGridProps) {
   } = useDayPicker();
 
   const reactId = React.useId();
-  const captionId = `${id}-caption` || reactId;
+  const captionId = id ? `${id}-caption` : reactId;
 
   const WeekdaysRow = components?.WeekdaysRow ?? DefaultWeekdaysRow;
   const MonthCaption = components?.MonthCaption ?? DefaultMonthCaption;

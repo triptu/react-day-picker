@@ -15,7 +15,7 @@ export default function App() {
 
   return (
     <DayPicker
-      mode="multiple"
+      mode="multi"
       min={1}
       selected={days}
       onSelect={setDays}

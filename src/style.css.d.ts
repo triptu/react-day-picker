@@ -1,52 +1,48 @@
 declare const styles: {
-  'root': string
-  'vhidden': string
-  'with_weeknumber': string
-  'months_wrapper': string
-  'months': string
-  'month': string
   'caption': string
-  'multiple_months': string
+  'caption_between': string
   'caption_dropdowns': string
   'caption_label': string
-  'nav': string
-  'caption_start': string
-  'caption_end': string
-  'nav_button': string
-  'dropdown_year': string
-  'dropdown_month': string
-  'dropdown': string
-  'dropdown_icon': string
-  'head': string
-  'head_row': string
-  'row': string
-  'head_cell': string
-  'tbody': string
-  'tfoot': string
   'cell': string
-  'weeknumber': string
   'day': string
-  'day_today': string
-  'day_outside': string
-  'day_selected': string
   'day_disabled': string
   'day_hidden': string
-  'rdp': string
-  'day_range_start': string
+  'day_outside': string
   'day_range_end': string
+  'day_range_start': string
   'day_range_middle': string
-  'weeknumber_rowheader': string
-  'weekdays_row': string
-  'weekday_columnheader': string
-  'week_row': string
+  'day_selected': string
+  'day_today': string
+  'dropdown': string
+  'dropdown_icon': string
+  'dropdown_month': string
+  'head': string
+  'head_cell': string
+  'month_caption': string
+  'month_grid': string
   'month_grid_wrapper': string
   'month_rowgroup': string
-  'month_grid': string
-  'month_caption': string
-  'caption_between': string
-  'nav_button_previous': string
+  'months_wrapper': string
+  'multiple_months': string
+  'caption_end': string
+  'nav': string
+  'caption_start': string
+  'nav_button': string
   'nav_button_next': string
+  'nav_button_previous': string
   'nav_icon': string
+  'rdp': string
+  'root': string
+  'row': string
+  'tbody': string
+  'tfoot': string
+  'vhidden': string
+  'week_row': string
+  'weekday_columnheader': string
+  'weekdays_row': string
+  'weeknumber': string
+  'weeknumber_rowheader': string
+  'with_weeknumber': string
 }
 
 export default styles
