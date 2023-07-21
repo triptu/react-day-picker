@@ -1,4 +1,16 @@
-.playground {
+.playground h1 {
+  margin-bottom: 1em;
+}
+.playground-props {
+  position: sticky;
+  top: 40px;
+  flex: 1;
+}
+.playground-code {
+  flex: 1;
+}
+.playground-container {
+  flex: 1;
   display: flex;
   gap: 2em;
 }
@@ -8,7 +20,7 @@
   margin: 0;
   padding: 0;
   /* margin: 0.5em 0 0; */
-  padding: 0.6em 0 0;
+  padding: 0.5em 0;
   border-top: 1px solid var(--ifm-color-emphasis-200);
 }
 .playground fieldset legend {
@@ -18,19 +30,26 @@
   text-transform: uppercase;
   padding-right: 1em;
 }
-
+.playground h2 {
+  display: flex;
+  justify-content: space-between;
+}
 .playground h5 {
 }
 
 .playground form {
+  --ifm-code-background: none;
+  --ifm-code-border-radius: 0;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
 }
 
+.playground form code {
+  border: 0;
+}
+
 .playground form label {
-  --ifm-code-background: none;
-  --ifm-code-border-radius: 0;
   border: none;
   background: none;
   display: flex;
@@ -38,6 +57,10 @@
   justify-content: space-between;
   align-items: center;
   margin: 0.33em 0;
+}
+
+.playground form label.disabled {
+  color: var(--ifm-color-emphasis-300);
 }
 
 .playground form input,

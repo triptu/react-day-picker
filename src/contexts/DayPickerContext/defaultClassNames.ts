@@ -32,7 +32,6 @@ export const defaultClassNames: Required<ClassNames> = {
   weekday_columnheader: 'weekday_columnheader',
 
   week_row: 'week_row',
-  weeknumber: 'weeknumber',
 
   weeknumber_rowheader: 'weeknumber_rowheader',
 
@@ -52,15 +51,14 @@ export const defaultClassNames: Required<ClassNames> = {
   day_range_start: 'day_range_start',
   day_range_end: 'day_range_end',
   day_range_middle: 'day_range_middle',
-  months: 'months',
-  month: 'month',
+
   caption: 'caption',
   head: 'head',
   head_row: 'head_row',
   row: 'row',
   head_cell: 'head_cell',
   tbody: 'tbody',
-  tfoot: 'tfoot',
   cell: 'cell',
-  rdp: 'rdp'
+  rdp: 'rdp',
+  footer: ''
 };

@@ -34,6 +34,9 @@
 
 .months_wrapper {
   display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  overflow: auto;
 }
 
 .caption {
@@ -167,7 +170,7 @@
   border: 0;
 }
 
-.tfoot {
+.footer {
   margin: 0.5em;
 }
 
@@ -180,7 +183,7 @@
 }
 
 .weeknumber_rowheader {
-  font-size: 0.75em;
+  font-size: 0.5em;
 }
 
 .weeknumber_rowheader,
@@ -288,7 +291,12 @@
 .month_grid {
 }
 .month_caption {
+  font-weight: 700;
+  font-size: 1.25em;
+  padding: 0.5em 0;
+  text-align: center;
 }
+
 .caption_between {
 }
 .nav_button_previous {
@@ -296,4 +304,6 @@
 .nav_button_next {
 }
 .nav_icon {
+}
+.footer {
 }

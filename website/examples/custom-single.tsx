@@ -11,7 +11,6 @@ export default function App() {
   ) : (
     <p>Please pick a day.</p>
   );
-
   return (
     <DayPicker
       selected={selectedDay}

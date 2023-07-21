@@ -21,11 +21,7 @@ function DayWithShiftKey(props: DayProps) {
   }
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    if (
-      !dayRender.selectedDays ||
-      dayRender.activeModifiers.selected ||
-      e.shiftKey
-    ) {
+    if (!dayRender.selectedDays || dayRender.state.selected || e.shiftKey) {
       dayRender.buttonProps?.onClick?.(e);
     }
   };

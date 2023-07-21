@@ -1,17 +1,23 @@
 import React from 'react';
 
-import { format } from 'date-fns';
-import { DayContent, DayContentProps, DayPicker } from 'react-day-picker';
+import { DayGridCellProps, DayPicker } from 'react-day-picker';
 
-function DateTime(props: DayContentProps) {
-  const dateTime = format(props.date, 'yyyy-MM-dd');
+function CustomDayGridCell(props: DayGridCellProps) {
+  const isFirstDay =
+    props.day.date.getDate() === 1 && props.state.outside === false;
   return (
-    <time dateTime={dateTime}>
-      <DayContent {...props} />
-    </time>
+    <div {...props.htmlAttributes}>
+      {props.children}
+      {isFirstDay && <div>(first day)</div>}
+    </div>
   );
 }
 
 export default function App() {
-  return <DayPicker components={{ DayContent: DateTime }} />;
+  return (
+    <DayPicker
+      today={new Date(2021, 10, 25)}
+      components={{ DayGridCell: CustomDayGridCell }}
+    />
+  );
 }

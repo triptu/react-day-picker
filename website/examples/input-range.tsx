@@ -1,11 +1,7 @@
 import React, { ChangeEventHandler, useState } from 'react';
 
 import { format, isAfter, isBefore, isValid, parse } from 'date-fns';
-import {
-  DateRange,
-  DayPicker,
-  SelectRangeEventHandler
-} from 'react-day-picker';
+import { DateRange, DayPicker, DaySelectEventHandler } from 'react-day-picker';
 
 export default function App() {
   const [selectedRange, setSelectedRange] = useState<DateRange>();
@@ -39,7 +35,7 @@ export default function App() {
     }
   };
 
-  const handleRangeSelect: SelectRangeEventHandler = (
+  const handleRangeSelect: DaySelectEventHandler<'range'> = (
     range: DateRange | undefined
   ) => {
     setSelectedRange(range);

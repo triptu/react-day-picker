@@ -6,7 +6,7 @@ import { freezeBeforeAll } from '@site/test/utils';
 import { focusDaysGrid } from '@site/test/utils/focusDaysGrid';
 import { act, render } from '@testing-library/react';
 import { addDays, addMonths, startOfMonth } from 'date-fns';
-import { DayPickerProps } from 'react-day-picker';
+import { DayPickerProps, DaysSelectionMode } from 'react-day-picker';
 
 import {
   getDayButton,
@@ -23,7 +23,7 @@ const tomorrow = new Date(2022, 5, 11);
 freezeBeforeAll(today);
 
 let container: HTMLElement;
-function setup(props: DayPickerProps) {
+function setup<TMode extends DaysSelectionMode>(props: DayPickerProps<TMode>) {
   container = render(<Example {...props} />).container;
 }
 
@@ -104,7 +104,7 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
   });
 
   describe('when multiple days are selected', () => {
-    const mode = 'multiple';
+    const mode = 'multi';
     const selected = [yesterday, tomorrow];
     beforeEach(() => {
       setup({ dir, selected, mode });

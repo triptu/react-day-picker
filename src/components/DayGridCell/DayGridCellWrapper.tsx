@@ -4,7 +4,7 @@ import { isSameDay, isSameMonth } from 'date-fns';
 
 import { DayPickerDay } from 'contexts/CalendarContext';
 import { useDayPicker } from 'contexts/DayPickerContext';
-import { ActiveModifiers } from 'types/modifiers';
+import { DayState } from 'types/modifiers';
 
 import { DayGridCell as _DayGridCell } from './DayGridCell';
 import { isInternalModifier } from './utils/isInternalModifier';
@@ -16,7 +16,7 @@ export interface DayGridCellWrapperProps
 }
 
 /**
- * Provides a {@link DayGridCell} the active modifiers and the html attributes.
+ * Provides a {@link DayGridCell} the day state and the html attributes.
  * Developers may use a `DayGridCell` component without the need to use hooks.
  */
 export function DayGridCellWrapper(
@@ -34,7 +34,8 @@ export function DayGridCellWrapper(
     hidden,
     modifiers,
     modifiersClassNames,
-    modifiersStyles
+    modifiersStyles,
+    onDayClick
   } = useDayPicker();
 
   const isOutside = Boolean(displayMonth && !isSameMonth(date, displayMonth));
@@ -43,7 +44,7 @@ export function DayGridCellWrapper(
     Boolean(hidden && dateMatchModifiers(date, hidden)) ||
     (!showOutsideDays && isOutside);
 
-  const activeModifiers: ActiveModifiers = {
+  const state: DayState = {
     outside: isOutside,
     disabled: isDisabled,
     hidden: isHidden,
@@ -51,7 +52,7 @@ export function DayGridCellWrapper(
     selected: dateMatchModifiers(date, modifiers.selected)
   };
 
-  const modifierClassNames = Object.entries(activeModifiers)
+  const modifierClassNames = Object.entries(state)
     .filter(([, active]) => active === true)
     .reduce((previousValue, [key]) => {
       if (modifiersClassNames[key]) {
@@ -64,7 +65,7 @@ export function DayGridCellWrapper(
 
   const className = [classNames.day, ...modifierClassNames].join(' ');
   let style: React.CSSProperties = { ...styles.day };
-  Object.keys(activeModifiers).forEach((modifier) => {
+  Object.keys(state).forEach((modifier) => {
     style = {
       ...style,
       ...modifiersStyles?.[modifier]
@@ -75,20 +76,20 @@ export function DayGridCellWrapper(
     role: 'gridcell',
     ['aria-colindex']: props['aria-colindex'],
     ['aria-disabled']: isDisabled,
+    ['aria-selected']: state.selected,
     ['aria-hidden']: isHidden,
     tabIndex: isDisabled || mode === undefined ? -1 : 0,
     className: className,
-    style: style
+    style: style,
+    onClick: (e) => {
+      onDayClick?.(props.day.date, state, e);
+    }
   };
 
   const DayGridCell = components?.DayGridCell ?? _DayGridCell;
 
   return (
-    <DayGridCell
-      day={props.day}
-      activeModifiers={activeModifiers}
-      htmlAttributes={htmlAttributes}
-    >
+    <DayGridCell day={props.day} state={state} htmlAttributes={htmlAttributes}>
       {date.getDate()}
     </DayGridCell>
   );

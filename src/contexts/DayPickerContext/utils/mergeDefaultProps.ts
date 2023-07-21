@@ -40,7 +40,8 @@ export function mergeDefaultProps<TMode extends DaysSelectionMode>(
     },
     modifiers: {
       ...props.modifiers,
-      ...defaultProps.modifiers
+      ...defaultProps.modifiers,
+      ...(props.selected ? { selected: props.selected } : {})
     },
     modifiersClassNames: {
       ...props.modifiersClassNames,

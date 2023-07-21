@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { DayPickerDay } from 'contexts/CalendarContext';
-import { ActiveModifiers } from 'types/modifiers';
+import { DayState } from 'types/modifiers';
 
 export interface DayGridCellProps {
   day: DayPickerDay;
-  activeModifiers: ActiveModifiers;
+  state: DayState;
   htmlAttributes: React.HTMLAttributes<HTMLDivElement>;
   children?: React.ReactNode;
 }

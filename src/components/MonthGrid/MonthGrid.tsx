@@ -21,7 +21,7 @@ export function MonthGrid(props: MonthGridProps) {
   const {
     id,
     mode,
-    hideHead,
+    hideWeekdayRow: hideWeekdayRow,
     components,
     classNames,
     styles,
@@ -48,7 +48,7 @@ export function MonthGrid(props: MonthGridProps) {
         className={classNames.month_grid}
         style={styles.month_grid}
       >
-        {!hideHead && <WeekdaysRow />}
+        {!hideWeekdayRow && <WeekdaysRow />}
         <div
           role="rowgroup"
           className={classNames.month_rowgroup}
@@ -58,7 +58,7 @@ export function MonthGrid(props: MonthGridProps) {
             <WeekRow
               key={week.weekNumber}
               week={week}
-              aria-rowindex={i + (hideHead ? 2 : 1)}
+              aria-rowindex={i + (hideWeekdayRow ? 1 : 2)}
             />
           ))}
         </div>

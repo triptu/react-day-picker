@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
 import { isSameDay } from 'date-fns';
-import { DayClickEventHandler, DayPicker } from 'react-day-picker';
+import { DayMouseEventHandler, DayPicker } from 'react-day-picker';
 
 export default function App() {
   const [selectedDays, setSelectedDays] = useState<Date[]>([]);
 
-  const handleDayClick: DayClickEventHandler = (day, modifiers) => {
+  const handleDayClick: DayMouseEventHandler = (day, state) => {
     const newSelectedDays = [...selectedDays];
-    if (modifiers.selected) {
+    if (state.selected) {
       const index = selectedDays.findIndex((selectedDay) =>
         isSameDay(day, selectedDay)
       );

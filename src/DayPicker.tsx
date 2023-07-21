@@ -51,7 +51,7 @@ export interface DayPickerBaseProps {
    * Use this prop when you need to change the default class names — for example
    * when using CSS modules.
    */
-  classNames?: ClassNames;
+  classNames?: Partial<ClassNames>;
   /**
    * Change the class name for the day matching the {@link modifiers}.
    */
@@ -166,11 +166,11 @@ export interface DayPickerBaseProps {
    */
   fixedWeeks?: boolean;
   /**
-   * Hide the month’s head displaying the weekday names.
+   * Hide the row displaying the weekday row header.
    *
    * @defaultValue false
    */
-  hideHead?: boolean;
+  hideWeekdayRow?: boolean;
   /**
    * Show the outside days.  An outside day is a day falling in the next or the
    * previous month.

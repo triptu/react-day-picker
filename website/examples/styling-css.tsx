@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { DayPicker } from 'react-day-picker';
 
 export default function App() {
@@ -14,7 +15,7 @@ export default function App() {
       <style>{style}</style>
       <DayPicker
         classNames={{
-          caption_label: 'caption_aqua'
+          month_caption: 'caption_aqua'
         }}
       />
     </>

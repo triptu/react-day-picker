@@ -24,7 +24,7 @@ export default function App() {
     <>
       <style>{css}</style>
       <DayPicker
-        mode="multiple"
+        mode="multi"
         selected={selectedDay}
         max={3}
         onSelect={setSelectedDay}

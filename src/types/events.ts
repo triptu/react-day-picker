@@ -2,22 +2,26 @@ import React from 'react';
 
 import { DayPickerSelectedValue, DaysSelectionMode } from 'DayPicker';
 
-import { ActiveModifiers } from './modifiers';
+import { DayState } from './modifiers';
 
 export type DaySelectEventHandler<TMode extends DaysSelectionMode> = (
   days: DayPickerSelectedValue<TMode>,
   selectedDay: Date,
-  activeModifiers: ActiveModifiers,
+  state: DayState,
   e: React.MouseEvent
 ) => void;
 
 export type DayEventHandler<TEvent> = (
   day: Date,
-  activeModifiers: ActiveModifiers,
+  state: DayState,
   e: TEvent
 ) => void;
 
-/** The event handler when a day is clicked. @deprecated use DayMouseEventHandler instead */
+/**
+ * The event handler when a day is clicked.
+ *
+ * @deprecated Use {@link DayMouseEventHandler} instead.
+ */
 export type DayClickEventHandler = DayEventHandler<React.MouseEvent>;
 
 /** The event handler when a day is focused. */

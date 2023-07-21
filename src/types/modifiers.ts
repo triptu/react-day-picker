@@ -32,14 +32,14 @@ export type InternalModifiers = Record<InternalModifier, Matcher[]>;
  * The modifiers that are matching a day in the calendar. Use the {@link useActiveModifiers} hook to get the modifiers for a day.
  *
  * ```
- * const activeModifiers: ActiveModifiers = {
+ * const state: DayState = {
  *  selected: true,
  *  customModifier: true
  * }
  * ```
  *
  * */
-export type ActiveModifiers = Record<Modifier, boolean> &
+export type DayState = Record<Modifier, boolean> &
   Partial<Record<InternalModifier, boolean>>;
 
 /** The style to apply to each day element matching a modifier. */

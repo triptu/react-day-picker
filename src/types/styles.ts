@@ -90,6 +90,9 @@ export type StyledElement<T = string | React.CSSProperties> = {
   readonly day_range_middle: T;
   /** The day when today. */
   readonly day_today: T;
+
+  /** The footer when today. */
+  readonly footer: T;
 };
 
 /** These elements must not be in the `styles` or `classNames` records as they are styled via the `modifiersStyles` or `modifiersClassNames` pop */

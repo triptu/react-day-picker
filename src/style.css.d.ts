@@ -20,7 +20,7 @@ declare const styles: {
   'row': string
   'head_cell': string
   'tbody': string
-  'tfoot': string
+  'footer': string
   'cell': string
   'weeknumber_rowheader': string
   'day': string

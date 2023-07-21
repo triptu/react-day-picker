@@ -67,9 +67,7 @@ describe('when using the "classNames" prop', () => {
     row: '',
     head_cell: '',
     tbody: '',
-    tfoot: '',
     cell: '',
-    weeknumber: '',
     day: '',
     day_today: '',
     day_outside: '',
@@ -91,7 +89,8 @@ describe('when using the "classNames" prop', () => {
     caption_between: '',
     nav_button_previous: '',
     nav_button_next: '',
-    nav_icon: ''
+    nav_icon: '',
+    footer: ''
   };
   beforeEach(() => {
     setup({ classNames });

@@ -19,7 +19,8 @@ export function Calendar(): JSX.Element {
     showWeekNumber,
     components,
     dir,
-    dataAttributes
+    dataAttributes,
+    footer
   } = useDayPicker();
   const calendar = useCalendar();
 
@@ -79,6 +80,11 @@ export function Calendar(): JSX.Element {
           />
         ))}
       </div>
+      {footer && (
+        <div className={classNames.footer} style={styles.footer}>
+          {footer}
+        </div>
+      )}
     </div>
   );
 }

@@ -32,7 +32,9 @@ export class DayPickerWeek {
   days: DayPickerDay[];
 }
 
-/** A month that is displayed as grid. */
+/**
+ * A month displayed in as month grid. Contains the week
+ */
 export class DayPickerMonth {
   constructor(month: Date, weeks: DayPickerWeek[]) {
     this.date = month;

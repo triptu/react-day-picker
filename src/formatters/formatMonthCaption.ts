@@ -8,5 +8,5 @@ export function formatMonthCaption(
   month: Date,
   options?: { locale?: Locale }
 ): string {
-  return format(month, 'LLLL', options);
+  return format(month, 'LLLL yyyy', options);
 }
