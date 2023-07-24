@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { format, isDate, isValid, Locale, parse, startOfMonth } from 'date-fns';
+import { format, isValid, Locale, parse, startOfMonth } from 'date-fns';
 import * as locales from 'date-fns/locale';
 import {
   DayPicker,
   DayPickerBaseProps,
-  DayPickerProps,
   DaysSelectionMode,
   defaultProps
 } from 'react-day-picker';

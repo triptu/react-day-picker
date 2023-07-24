@@ -3,7 +3,7 @@ import React from 'react';
 import { DayPicker, useInput } from 'react-day-picker';
 
 export default function App() {
-  const { inputProps, dayPickerProps } = useInput({
+  const { htmlAttributes, dayPickerProps } = useInput({
     defaultSelected: new Date(),
     fromYear: 2021,
     toYear: 2023,
@@ -14,7 +14,7 @@ export default function App() {
   const footer = (
     <form>
       <label>
-        <input {...inputProps} />
+        <input {...htmlAttributes} />
       </label>
     </form>
   );

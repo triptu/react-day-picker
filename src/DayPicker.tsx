@@ -4,6 +4,7 @@ import * as CustomComponents from 'components';
 import { Calendar } from 'components/Calendar';
 import { CaptionLayout } from 'components/Nav';
 import { ContextProviders } from 'contexts/ContextProviders';
+import { defaultProps } from 'contexts/DayPickerContext';
 import {
   DayFocusEventHandler,
   DayKeyboardEventHandler,
@@ -462,9 +463,7 @@ export type DayPickerProps = DayPickerBaseProps & DaysSelectionProps;
  * <DayPicker locale={es} />
  * ```
  */
-export function DayPicker<TMode extends DaysSelectionMode = 'none'>(
-  props: DayPickerProps
-): JSX.Element {
+export function DayPicker(props: DayPickerProps): JSX.Element {
   return (
     <ContextProviders dayPickerProps={props}>
       <Calendar />
@@ -472,11 +471,4 @@ export function DayPicker<TMode extends DaysSelectionMode = 'none'>(
   );
 }
 
-const test = <DayPicker />;
-const test1 = (
-  <DayPicker mode="single" required onSelect={(date) => console.log(date)} />
-);
-const test2 = <DayPicker mode="multi" />;
-const test3 = <DayPicker mode="range" />;
-
-export const test4wha: DayPickerProps = {};
+DayPicker.defaultProps = defaultProps;
