@@ -316,18 +316,15 @@ export interface DayPickerBaseProps {
  * The props for the {@link DayPicker} component when `mode="single"`.
  */
 
-export interface DayPickerNoneProps extends DayPickerBaseProps {
-  mode: 'none';
-  selected?: DayPickerSelectedValue<'single'> | undefined;
-  onSelect?: DaySelectEventHandler<'single'>;
-  required?: boolean;
+export interface DayPickerNoneProps {
+  mode?: 'none' | undefined;
 }
 
 /**
  * The props for the {@link DayPicker} component when `mode="single"`.
  */
 
-export interface DayPickerSingleProps extends DayPickerBaseProps {
+export interface DayPickerSingleProps {
   mode: 'single';
   selected?: DayPickerSelectedValue<'single'> | undefined;
   onSelect?: DaySelectEventHandler<'single'>;
@@ -337,7 +334,7 @@ export interface DayPickerSingleProps extends DayPickerBaseProps {
 /**
  * The props for the {@link DayPicker} component when `mode="multi"`.
  */
-export interface DayPickerMultiProps extends DayPickerBaseProps {
+export interface DayPickerMultiProps {
   mode: 'multi';
   selected?: DayPickerSelectedValue<'multi'> | undefined;
   onSelect?: DaySelectEventHandler<'multi'>;
@@ -348,7 +345,7 @@ export interface DayPickerMultiProps extends DayPickerBaseProps {
 /**
  * The props for the {@link DayPicker} component when `mode="range"`.
  */
-export interface DayPickerRangeProps extends DayPickerBaseProps {
+export interface DayPickerRangeProps {
   mode: 'range';
   selected?: DayPickerSelectedValue<'range'> | undefined;
   onSelect?: DaySelectEventHandler<'range'>;
@@ -359,18 +356,25 @@ export interface DayPickerRangeProps extends DayPickerBaseProps {
 /**
  * The props for the {@link DayPicker} component.
  */
-export type DayPickerProps<TMode extends DaysSelectionMode = 'none'> = {
-  mode?: TMode;
-} & ([TMode] extends ['none']
-  ? DayPickerBaseProps
-  : [TMode] extends ['single']
-  ? DayPickerSingleProps
-  : [TMode] extends ['multi']
-  ? DayPickerMultiProps
-  : [TMode] extends ['range']
-  ? DayPickerRangeProps
-  : DayPickerBaseProps);
+export type DayPickerPropXs<TMode extends DaysSelectionMode = 'none'> =
+  DayPickerBaseProps &
+    ([TMode] extends ['none']
+      ? DayPickerNoneProps
+      : [TMode] extends ['single']
+      ? DayPickerSingleProps
+      : [TMode] extends ['multi']
+      ? DayPickerMultiProps
+      : [TMode] extends ['range']
+      ? DayPickerRangeProps
+      : DayPickerNoneProps);
 
+type DaysSelectionProps =
+  | DayPickerSingleProps
+  | DayPickerMultiProps
+  | DayPickerRangeProps
+  | DayPickerNoneProps;
+
+export type DayPickerProps = DayPickerBaseProps & DaysSelectionProps;
 /**
  * DayPicker render a date picker component to let users pick dates from a
  * calendar. See http://react-day-picker.js.org for updated documentation and
@@ -459,7 +463,7 @@ export type DayPickerProps<TMode extends DaysSelectionMode = 'none'> = {
  * ```
  */
 export function DayPicker<TMode extends DaysSelectionMode = 'none'>(
-  props: DayPickerProps<TMode>
+  props: DayPickerProps
 ): JSX.Element {
   return (
     <ContextProviders dayPickerProps={props}>

@@ -6,7 +6,7 @@ import { CalendarProvider } from './CalendarContext';
 import { DayPickerProvider } from './DayPickerContext';
 
 export interface ContextProvidersProps<TMode extends DaysSelectionMode> {
-  dayPickerProps: DayPickerProps<TMode>;
+  dayPickerProps: DayPickerProps;
   children: React.ReactNode;
 }
 

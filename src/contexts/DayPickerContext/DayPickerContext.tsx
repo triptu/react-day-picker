@@ -9,26 +9,23 @@ import { mergeDefaultProps } from './utils/mergeDefaultProps';
  * The {@link DayPickerProps} with their default values. Use this type within
  * internal components to use safe props and avoid all conditionals.
  */
-export type DayPickerContext<TMode extends DaysSelectionMode> =
-  DayPickerProps<TMode> & DefaultProps;
+export type DayPickerContext = DayPickerProps & DefaultProps;
 
-export const dayPickerContext = createContext<
-  DayPickerContext<DaysSelectionMode> | undefined
->(undefined);
+export const dayPickerContext = createContext<DayPickerContext | undefined>(
+  undefined
+);
 
 /** The props for the {@link DayPickerProvider}. */
-export interface DayPickerProviderProps<TMode extends DaysSelectionMode> {
+export interface DayPickerProviderProps {
   /** The initial props from the DayPicker component. */
-  dayPickerProps: DayPickerProps<TMode>;
-  children?: ReactNode;
+  dayPickerProps: DayPickerProps;
+  children: ReactNode;
 }
 /**
  * The provider for the {@link dayPickerContext}, storing the props and setting its defaults.
  * Must be the root of all the providers.
  */
-export function DayPickerProvider<TMode extends DaysSelectionMode>(
-  props: DayPickerProviderProps<TMode>
-) {
+export function DayPickerProvider(props: DayPickerProviderProps) {
   const context = mergeDefaultProps(props.dayPickerProps);
 
   return (
@@ -40,7 +37,7 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
 
 /**
  * Use this hook to access to the DayPicker context within custom components. */
-export function useDayPicker(): DayPickerContext<DaysSelectionMode> {
+export function useDayPicker(): DayPickerContext {
   const context = useContext(dayPickerContext);
   if (!context)
     throw new Error(`useProps must be used within a PropsProvider.`);

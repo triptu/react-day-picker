@@ -10,6 +10,11 @@ import {
   defaultProps
 } from 'react-day-picker';
 
+import {
+  DayPickerMultiProps,
+  DayPickerRangeProps,
+  DayPickerSingleProps
+} from '../../dist';
 import './playground.css';
 
 type LocaleString = keyof typeof locales;
@@ -21,13 +26,13 @@ export default function Playground() {
   const [baseProps, setBaseProps] =
     React.useState<DayPickerBaseProps>(defaultProps);
 
-  const [singleProps, setSingleProps] = React.useState<
-    DayPickerProps<'single'>
-  >({ mode: 'single' });
-  const [multiProps, setMultiProps] = React.useState<DayPickerProps<'multi'>>({
+  const [singleProps, setSingleProps] = React.useState<DayPickerSingleProps>({
+    mode: 'single'
+  });
+  const [multiProps, setMultiProps] = React.useState<DayPickerMultiProps>({
     mode: 'multi'
   });
-  const [rangeProps, setRangeProps] = React.useState<DayPickerProps<'range'>>({
+  const [rangeProps, setRangeProps] = React.useState<DayPickerRangeProps>({
     mode: 'range'
   });
 
@@ -546,7 +551,6 @@ export default function Playground() {
           <div className="sticky">
             <DayPicker
               locale={locale}
-              mode={mode}
               {...(mode === 'single'
                 ? singleProps
                 : mode === 'multi'

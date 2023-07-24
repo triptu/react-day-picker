@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { DayPickerProps, DaysSelectionMode } from 'DayPicker';
+import { DayPickerProps } from 'DayPicker';
 
 import { ContextProviders } from 'contexts/ContextProviders';
 
@@ -10,9 +10,9 @@ export type RenderHookResult<TResult> = {
   current: TResult;
 };
 
-export function renderDayPickerHook<TMode extends DaysSelectionMode, TResult>(
+export function renderDayPickerHook<TResult>(
   hook: () => TResult,
-  dayPickerProps: DayPickerProps<TMode>
+  dayPickerProps: DayPickerProps
 ): RenderHookResult<TResult> {
   const returnVal = { current: undefined as TResult };
   function Test(): JSX.Element {

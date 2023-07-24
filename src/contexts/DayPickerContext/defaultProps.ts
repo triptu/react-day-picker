@@ -18,7 +18,6 @@ export type DataAttributes = Record<string, unknown>;
 export type DefaultProps = Required<
   Pick<
     DayPickerBaseProps,
-    // | 'captionLayout' TODO
     | 'showOutsideDays'
     | 'numberOfMonths'
     | 'locale'

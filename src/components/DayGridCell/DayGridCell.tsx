@@ -3,11 +3,10 @@ import React from 'react';
 import { DayPickerDay } from 'contexts/CalendarContext';
 import { DayState } from 'types/modifiers';
 
-export interface DayGridCellProps {
+export interface DayGridCellProps extends React.PropsWithChildren {
   day: DayPickerDay;
   state: DayState;
   htmlAttributes: React.HTMLAttributes<HTMLDivElement>;
-  children?: React.ReactNode;
 }
 
 /** Render the gridcell with the Day. */

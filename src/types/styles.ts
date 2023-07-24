@@ -122,5 +122,4 @@ export type Styles = Partial<
 export type StyledComponent = {
   className?: string;
   style?: React.CSSProperties;
-  children?: React.ReactNode;
-};
+} & React.PropsWithChildren;

@@ -6,9 +6,7 @@ import { DataAttributes, defaultProps } from '../defaultProps';
 import { parseFromToProps } from './parseFromToProps';
 
 /** Merge the {@link defaultProps} with the props passed in. */
-export function mergeDefaultProps<TMode extends DaysSelectionMode>(
-  props: DayPickerProps<TMode>
-) {
+export function mergeDefaultProps(props: DayPickerProps) {
   const { fromDate, toDate } = parseFromToProps(props);
 
   const dataAttributes: DataAttributes = {};
@@ -18,17 +16,15 @@ export function mergeDefaultProps<TMode extends DaysSelectionMode>(
     }
   });
 
-  const value: DayPickerContext<TMode> = {
+  const value: DayPickerContext = {
     ...defaultProps,
+    mode: 'none',
     ...props,
     // captionLayout,
     classNames: {
       ...defaultProps.classNames,
       ...props.classNames
     },
-    // components: {
-    //   ...defaultProps.components
-    // },
     formatters: {
       ...defaultProps.formatters,
       ...props.formatters
