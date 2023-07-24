@@ -1,34 +1,19 @@
 import React from 'react';
 
 import { isSameDay } from 'date-fns';
-import {
-  Button,
-  DateRange,
-  DayPicker,
-  DayProps,
-  useDayRender
-} from 'react-day-picker';
+import { DateRange, DayGridCellProps, DayPicker } from 'react-day-picker';
 
-function DayWithShiftKey(props: DayProps) {
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const dayRender = useDayRender(props.date, props.displayMonth, buttonRef);
+function DayWithShiftKey(props: DayGridCellProps) {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const { state } = props;
 
-  if (dayRender.isHidden) {
-    return <></>;
-  }
-  if (!dayRender.isButton) {
-    return <div {...dayRender.divProps} />;
-  }
-
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    if (!dayRender.selectedDays || dayRender.state.selected || e.shiftKey) {
-      dayRender.buttonProps?.onClick?.(e);
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    if (!state.selected || e.shiftKey) {
+      props.htmlAttributes.onClick?.(e);
     }
   };
 
-  return (
-    <Button {...dayRender.buttonProps} ref={buttonRef} onClick={handleClick} />
-  );
+  return <div {...props.htmlAttributes} ref={ref} onClick={handleClick} />;
 }
 
 export default function App() {
@@ -50,7 +35,7 @@ export default function App() {
   return (
     <DayPicker
       components={{
-        Day: DayWithShiftKey
+        DayGridCell: DayWithShiftKey
       }}
       mode="range"
       onSelect={setRange}

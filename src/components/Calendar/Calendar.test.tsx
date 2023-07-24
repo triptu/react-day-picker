@@ -57,7 +57,6 @@ describe('when using the "classNames" prop', () => {
     nav: '',
     caption_start: '',
     caption_end: '',
-    nav_button: '',
     dropdown_year: '',
     dropdown_month: '',
     dropdown: '',
@@ -87,9 +86,9 @@ describe('when using the "classNames" prop', () => {
     month_grid: '',
     month_caption: '',
     caption_between: '',
-    nav_button_previous: '',
-    nav_button_next: '',
-    nav_icon: '',
+    button_previous: '',
+    button_next: '',
+    button_icon: '',
     footer: ''
   };
   beforeEach(() => {

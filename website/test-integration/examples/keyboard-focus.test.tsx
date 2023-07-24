@@ -6,7 +6,7 @@ import { freezeBeforeAll } from '@site/test/utils';
 import { focusDaysGrid } from '@site/test/utils/focusDaysGrid';
 import { act, render } from '@testing-library/react';
 import { addDays, addMonths, startOfMonth } from 'date-fns';
-import { DayPickerProps, DaysSelectionMode } from 'react-day-picker';
+import { DayPickerProps } from 'react-day-picker';
 
 import {
   getDayButton,
@@ -23,14 +23,14 @@ const tomorrow = new Date(2022, 5, 11);
 freezeBeforeAll(today);
 
 let container: HTMLElement;
-function setup<TMode extends DaysSelectionMode>(props: DayPickerProps<TMode>) {
+function setup(props: DayPickerProps) {
   container = render(<Example {...props} />).container;
 }
 
 describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
   describe('when pressing Tab', () => {
     beforeEach(async () => {
-      setup({ mode: 'single', dir });
+      render(<Example dir={dir} />);
       await act(() => user.tab());
     });
     test('should not have AXE violations', async () => {
@@ -93,7 +93,7 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
   describe('when a day is selected', () => {
     const selected = tomorrow;
     beforeEach(() => {
-      setup({ mode: 'single', dir, selected });
+      render(<Example mode="single" dir={dir} selected={selected} />);
     });
     describe('when focusing the days grid', () => {
       beforeEach(() => focusDaysGrid());
@@ -104,10 +104,9 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
   });
 
   describe('when multiple days are selected', () => {
-    const mode = 'multi';
     const selected = [yesterday, tomorrow];
     beforeEach(() => {
-      setup({ dir, selected, mode });
+      setup({ dir, selected, mode: 'multi' });
     });
     describe('when focusing the days grid', () => {
       beforeEach(() => focusDaysGrid());

@@ -10,20 +10,21 @@ export interface WeekNumberRowHeaderProps {
 /** Render the cell with the number of the week. */
 export function WeekNumberRowHeader(props: WeekNumberRowHeaderProps) {
   const {
-    styles,
     classNames,
+    formatters: { formatWeekNumber },
+    labels: { labelWeekNumber },
     locale,
-    labels: { labelWeekNumber }
+    styles
   } = useDayPicker();
   return (
     <div
-      aria-colindex={1}
       role="rowheader"
+      aria-colindex={1}
       aria-label={labelWeekNumber(props.week.weekNumber, { locale })}
       className={classNames.weeknumber_rowheader}
       style={styles.weeknumber_rowheader}
     >
-      {props.week.weekNumber}
+      {formatWeekNumber(props.week.weekNumber, { locale })}
     </div>
   );
 }

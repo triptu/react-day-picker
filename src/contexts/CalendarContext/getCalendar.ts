@@ -12,9 +12,9 @@ export function getCalendar(
   toDate?: Date | undefined,
   options?: {
     fixedWeeks?: boolean | undefined;
-    numberOfMonths?: number;
     ISOWeek?: boolean;
     locale?: Locale;
+    numberOfMonths?: number;
     weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   }
 ): Pick<DayPickerCalendar, 'months' | 'dates'> {

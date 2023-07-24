@@ -7,7 +7,8 @@ import { useDayPicker } from 'contexts/DayPickerContext';
 import { DayState } from 'types/modifiers';
 
 import { DayGridCell as _DayGridCell } from './DayGridCell';
-import { isInternalModifier } from './utils/isInternalModifier';
+import { getClassNameByDayState } from './getClassNameByDayState';
+import { getStyleFromDayState } from './getStyleFromDayState';
 import { dateMatchModifiers } from './utils/isMatch';
 
 export interface DayGridCellWrapperProps
@@ -15,6 +16,37 @@ export interface DayGridCellWrapperProps
   day: DayPickerDay;
 }
 
+function useDayState(day: DayPickerDay) {
+  const { disabled, hidden, modifiers, showOutsideDays, today } =
+    useDayPicker();
+
+  const { date, displayMonth } = day;
+
+  const dayStateFromModifiers = Object.keys(modifiers).reduce(
+    (previousValue, modifier) => {
+      const modifierValue = modifiers[modifier];
+      if (modifierValue && dateMatchModifiers(date, modifierValue)) {
+        previousValue[modifier] = true;
+      }
+      return previousValue;
+    },
+    {} as DayState
+  );
+  const isOutside = Boolean(displayMonth && !isSameMonth(date, displayMonth));
+  const isDisabled = Boolean(disabled && dateMatchModifiers(date, disabled));
+  const isHidden =
+    Boolean(hidden && dateMatchModifiers(date, hidden)) ||
+    (!showOutsideDays && isOutside);
+
+  const dayState: DayState = {
+    outside: isOutside,
+    disabled: isDisabled,
+    hidden: isHidden,
+    today: isSameDay(date, today),
+    ...dayStateFromModifiers
+  };
+  return dayState;
+}
 /**
  * Provides a {@link DayGridCell} the day state and the html attributes.
  * Developers may use a `DayGridCell` component without the need to use hooks.
@@ -22,75 +54,51 @@ export interface DayGridCellWrapperProps
 export function DayGridCellWrapper(
   props: DayGridCellWrapperProps
 ): JSX.Element {
-  const { displayMonth, date } = props.day;
   const {
-    mode,
-    styles,
     classNames,
-    showOutsideDays,
-    today,
     components,
-    disabled,
-    hidden,
-    modifiers,
+    formatters: { formatDay },
+    locale,
+    mode,
     modifiersClassNames,
     modifiersStyles,
-    onDayClick
+    onDayClick,
+    styles
   } = useDayPicker();
 
-  const isOutside = Boolean(displayMonth && !isSameMonth(date, displayMonth));
-  const isDisabled = Boolean(disabled && dateMatchModifiers(date, disabled));
-  const isHidden =
-    Boolean(hidden && dateMatchModifiers(date, hidden)) ||
-    (!showOutsideDays && isOutside);
+  const dayState = useDayState(props.day);
 
-  const state: DayState = {
-    outside: isOutside,
-    disabled: isDisabled,
-    hidden: isHidden,
-    today: isSameDay(date, today),
-    selected: dateMatchModifiers(date, modifiers.selected)
-  };
+  const className = getClassNameByDayState(
+    dayState,
+    modifiersClassNames,
+    classNames
+  );
 
-  const modifierClassNames = Object.entries(state)
-    .filter(([, active]) => active === true)
-    .reduce((previousValue, [key]) => {
-      if (modifiersClassNames[key]) {
-        previousValue.push(modifiersClassNames[key]);
-      } else if (isInternalModifier(key)) {
-        previousValue.push(classNames[`day_${key}`]);
-      }
-      return previousValue;
-    }, [] as string[]);
-
-  const className = [classNames.day, ...modifierClassNames].join(' ');
-  let style: React.CSSProperties = { ...styles.day };
-  Object.keys(state).forEach((modifier) => {
-    style = {
-      ...style,
-      ...modifiersStyles?.[modifier]
-    };
-  });
+  const style = getStyleFromDayState(dayState, modifiersStyles, styles);
 
   const htmlAttributes: React.HTMLAttributes<HTMLDivElement> = {
     role: 'gridcell',
     ['aria-colindex']: props['aria-colindex'],
-    ['aria-disabled']: isDisabled,
-    ['aria-selected']: state.selected,
-    ['aria-hidden']: isHidden,
-    tabIndex: isDisabled || mode === undefined ? -1 : 0,
+    ['aria-disabled']: dayState.disabled,
+    ['aria-hidden']: dayState.hidden,
+    ['aria-selected']: dayState.selected,
     className: className,
     style: style,
+    tabIndex: dayState.disabled || mode === undefined ? -1 : 0,
     onClick: (e) => {
-      onDayClick?.(props.day.date, state, e);
+      onDayClick?.(props.day.date, dayState, e);
     }
   };
 
   const DayGridCell = components?.DayGridCell ?? _DayGridCell;
 
   return (
-    <DayGridCell day={props.day} state={state} htmlAttributes={htmlAttributes}>
-      {date.getDate()}
+    <DayGridCell
+      day={props.day}
+      state={dayState}
+      htmlAttributes={htmlAttributes}
+    >
+      {formatDay(props.day.date, { locale })}
     </DayGridCell>
   );
 }

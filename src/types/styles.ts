@@ -49,7 +49,7 @@ export type StyledElement<T = string | React.CSSProperties> = {
   /** The "next month" navigation button. */
   readonly nav_button_next: T;
   /** The icon for the navigation button. */
-  readonly nav_icon: T;
+  readonly button_icon: T;
 
   /** The months wrapper. */
   readonly months_wrapper: T;

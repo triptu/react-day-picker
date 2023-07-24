@@ -12,17 +12,24 @@ import {
 
 import './playground.css';
 
-export default function Example() {
+type LocaleString = keyof typeof locales;
+
+export default function Playground() {
   const [mode, setMode] = React.useState<DaysSelectionMode | undefined>();
   const [locale, setLocale] = React.useState<Locale>();
 
   const [baseProps, setBaseProps] =
     React.useState<DayPickerBaseProps>(defaultProps);
 
-  const [singleProps, setSingleProps] =
-    React.useState<DayPickerProps<'single'>>();
-  const [multiProps, setMultiProps] = React.useState<DayPickerProps<'multi'>>();
-  const [rangeProps, setRangeProps] = React.useState<DayPickerProps<'range'>>();
+  const [singleProps, setSingleProps] = React.useState<
+    DayPickerProps<'single'>
+  >({ mode: 'single' });
+  const [multiProps, setMultiProps] = React.useState<DayPickerProps<'multi'>>({
+    mode: 'multi'
+  });
+  const [rangeProps, setRangeProps] = React.useState<DayPickerProps<'range'>>({
+    mode: 'range'
+  });
 
   const handleModeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMode(e.target.value as DaysSelectionMode | undefined);
@@ -30,9 +37,9 @@ export default function Example() {
 
   const handleReset = () => {
     setBaseProps(defaultProps);
-    setSingleProps(undefined);
-    setMultiProps(undefined);
-    setRangeProps(undefined);
+    setSingleProps({ mode: 'single' });
+    setMultiProps({ mode: 'multi' });
+    setRangeProps({ mode: 'range' });
     setMode(undefined);
   };
   return (
@@ -146,7 +153,7 @@ export default function Example() {
               <input
                 type="date"
                 value={
-                  isDate(baseProps.defaultMonth)
+                  baseProps.defaultMonth
                     ? format(startOfMonth(baseProps.defaultMonth), 'yyyy-MM-dd')
                     : ''
                 }
@@ -222,7 +229,7 @@ export default function Example() {
               <input
                 type="date"
                 value={
-                  isDate(baseProps.fromDate)
+                  baseProps.fromDate
                     ? format(baseProps.fromDate, 'yyyy-MM-dd')
                     : ''
                 }
@@ -246,9 +253,7 @@ export default function Example() {
               <input
                 type="date"
                 value={
-                  isDate(baseProps.toDate)
-                    ? format(baseProps.toDate, 'yyyy-MM-dd')
-                    : ''
+                  baseProps.toDate ? format(baseProps.toDate, 'yyyy-MM-dd') : ''
                 }
                 onChange={(e) => {
                   const parsed = parse(
@@ -296,11 +301,21 @@ export default function Example() {
               />
             </label>
 
-            <label className={baseProps.numberOfMonths < 2 ? 'disabled' : ''}>
+            <label
+              className={
+                baseProps.numberOfMonths !== undefined &&
+                baseProps.numberOfMonths < 2
+                  ? 'disabled'
+                  : ''
+              }
+            >
               <code>─ pagedNavigation</code>
               <input
                 type="checkbox"
-                disabled={baseProps.numberOfMonths < 2}
+                disabled={
+                  baseProps.numberOfMonths !== undefined &&
+                  baseProps.numberOfMonths < 2
+                }
                 onChange={(e) =>
                   setBaseProps({
                     ...baseProps,
@@ -309,10 +324,20 @@ export default function Example() {
                 }
               />
             </label>
-            <label className={baseProps.numberOfMonths < 2 ? 'disabled' : ''}>
+            <label
+              className={
+                baseProps.numberOfMonths !== undefined &&
+                baseProps.numberOfMonths < 2
+                  ? 'disabled'
+                  : ''
+              }
+            >
               <code>─ reverseMonths</code>
               <input
-                disabled={baseProps.numberOfMonths < 2}
+                disabled={
+                  baseProps.numberOfMonths !== undefined &&
+                  baseProps.numberOfMonths < 2
+                }
                 type="checkbox"
                 onChange={(e) =>
                   setBaseProps({
@@ -325,34 +350,79 @@ export default function Example() {
           </fieldset>
           <fieldset>
             <legend>Modifiers</legend>
-            {['selected', 'disabled', 'hidden'].map((modifier) => {
-              return (
-                <label>
-                  <code>{modifier}</code>
-                  <input
-                    type="date"
-                    value={
-                      isDate(baseProps[modifier])
-                        ? format(baseProps[modifier], 'yyyy-MM-dd')
-                        : ''
-                    }
-                    onChange={(e) => {
-                      const parsed = parse(
-                        e.target.value,
-                        'yyyy-MM-dd',
-                        new Date()
-                      );
-                      if (isValid(parsed)) {
-                        setBaseProps({
-                          ...baseProps,
-                          [modifier]: parsed
-                        });
-                      }
-                    }}
-                  />
-                </label>
-              );
-            })}
+
+            <label>
+              <code>selected</code>
+              <input
+                type="date"
+                value={
+                  baseProps.selected && baseProps.selected instanceof Date
+                    ? format(baseProps.selected, 'yyyy-MM-dd')
+                    : ''
+                }
+                onChange={(e) => {
+                  const parsed = parse(
+                    e.target.value,
+                    'yyyy-MM-dd',
+                    new Date()
+                  );
+                  if (isValid(parsed)) {
+                    setBaseProps({
+                      ...baseProps,
+                      selected: parsed
+                    });
+                  }
+                }}
+              />
+            </label>
+            <label>
+              <code>disabled</code>
+              <input
+                type="date"
+                value={
+                  baseProps.disabled && baseProps.disabled instanceof Date
+                    ? format(baseProps.disabled, 'yyyy-MM-dd')
+                    : ''
+                }
+                onChange={(e) => {
+                  const parsed = parse(
+                    e.target.value,
+                    'yyyy-MM-dd',
+                    new Date()
+                  );
+                  if (isValid(parsed)) {
+                    setBaseProps({
+                      ...baseProps,
+                      disabled: parsed
+                    });
+                  }
+                }}
+              />
+            </label>
+            <label>
+              <code>hidden</code>
+              <input
+                type="date"
+                value={
+                  baseProps.hidden && baseProps.hidden instanceof Date
+                    ? format(baseProps.hidden, 'yyyy-MM-dd')
+                    : ''
+                }
+                onChange={(e) => {
+                  const parsed = parse(
+                    e.target.value,
+                    'yyyy-MM-dd',
+                    new Date()
+                  );
+                  if (isValid(parsed)) {
+                    setBaseProps({
+                      ...baseProps,
+                      hidden: parsed
+                    });
+                  }
+                }}
+              />
+            </label>
           </fieldset>
           <fieldset>
             <legend>Localization</legend>
@@ -360,11 +430,8 @@ export default function Example() {
               <code>locale</code>
               <select
                 onChange={(e) =>
-                  setBaseProps({
-                    ...baseProps,
-                    // eslint-disable-next-line import/namespace
-                    locale: locales[e.target.value]
-                  })
+                  // eslint-disable-next-line import/namespace
+                  setLocale(locales[e.target.value as LocaleString])
                 }
               >
                 <option></option>
@@ -455,9 +522,7 @@ export default function Example() {
               <input
                 type="date"
                 value={
-                  isDate(baseProps.today)
-                    ? format(baseProps.today, 'yyyy-MM-dd')
-                    : ''
+                  baseProps.today ? format(baseProps.today, 'yyyy-MM-dd') : ''
                 }
                 onChange={(e) => {
                   const parsed = parse(
@@ -480,7 +545,6 @@ export default function Example() {
           <h2>Result</h2>
           <div className="sticky">
             <DayPicker
-              {...baseProps}
               locale={locale}
               mode={mode}
               {...(mode === 'single'
@@ -489,7 +553,7 @@ export default function Example() {
                 ? multiProps
                 : mode === 'range'
                 ? rangeProps
-                : {})}
+                : baseProps)}
             />
           </div>
         </div>

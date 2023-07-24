@@ -1,4 +1,6 @@
 .root {
+  display: inline-block;
+  position: relative;
   --rdp-cell-size: 40px;
   --rdp-caption-font-size: 18px;
   --rdp-accent-color: #0000ff;
@@ -74,6 +76,8 @@
 }
 
 .nav {
+  position: absolute;
+  right: 0;
   white-space: nowrap;
 }
 
@@ -91,14 +95,25 @@
   transform: translateY(-50%);
 }
 
-.nav_button {
-  display: inline-flex;
+.button_next,
+.button_previous {
+  -moz-appearance: none;
+  -webkit-appearance: none;
   align-items: center;
-  justify-content: center;
-  width: var(--rdp-cell-size);
-  height: var(--rdp-cell-size);
-  padding: 0.25em;
+  appearance: none;
+  background: none;
   border-radius: 100%;
+  color: inherit;
+  cursor: default;
+  display: inline-flex;
+  font: inherit;
+  height: var(--rdp-cell-size);
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  padding: 0.25em;
+  position: relative;
+  width: var(--rdp-cell-size);
 }
 
 /* ---------- */
@@ -286,24 +301,21 @@
 
 .month_grid_wrapper {
 }
+
 .month_rowgroup {
 }
 .month_grid {
 }
 .month_caption {
+  margin-bottom: 0.5em;
   font-weight: 700;
-  font-size: 1.25em;
-  padding: 0.5em 0;
-  text-align: center;
+  font-size: 1.325em;
 }
 
 .caption_between {
 }
-.nav_button_previous {
-}
-.nav_button_next {
-}
-.nav_icon {
+
+.button_icon {
 }
 .footer {
 }

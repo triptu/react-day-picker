@@ -10,17 +10,17 @@ import { useDayPicker } from 'contexts/DayPickerContext';
  */
 export function Calendar(): JSX.Element {
   const {
-    classNames,
     className,
+    classNames,
+    components,
+    dataAttributes,
+    dir,
+    footer,
     id,
-    styles,
-    style,
     numberOfMonths,
     showWeekNumber,
-    components,
-    dir,
-    dataAttributes,
-    footer
+    style,
+    styles
   } = useDayPicker();
   const calendar = useCalendar();
 

@@ -36,11 +36,10 @@ export const defaultClassNames: Required<ClassNames> = {
   weeknumber_rowheader: 'weeknumber_rowheader',
 
   nav: 'nav',
-  nav_button: 'nav_button',
-  nav_button_previous: 'nav_button_previous',
-  nav_button_next: 'nav_button_next',
+  button_previous: 'button_previous',
+  button_next: 'button_next',
 
-  nav_icon: 'nav_icon',
+  button_icon: 'button_icon',
 
   day: 'day',
   day_today: 'day_today',

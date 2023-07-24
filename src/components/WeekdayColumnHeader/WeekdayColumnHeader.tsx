@@ -9,11 +9,11 @@ export interface WeekdayColumnHeaderProps
 /** Render the column header with the weekday name (e.g. "Mo", "Tu", etc.) */
 export function WeekdayColumnHeader(props: WeekdayColumnHeaderProps) {
   const {
-    styles,
     classNames,
-    locale,
     formatters: { formatWeekdayName },
-    labels: { labelWeekday }
+    labels: { labelWeekday },
+    locale,
+    styles
   } = useDayPicker();
   return (
     <span

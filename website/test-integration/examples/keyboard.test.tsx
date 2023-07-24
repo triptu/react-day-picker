@@ -35,7 +35,7 @@ function setup(props: DayPickerProps) {
 }
 
 describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
-  beforeEach(() => setup({ mode: 'single', dir }));
+  beforeEach(() => setup({ dir }));
   test('should not have AXE violations', async () => {
     expect(await axe(container)).toHaveNoViolations();
   });
@@ -268,7 +268,7 @@ describe('when week is set to start on a Monday', () => {
   const endOfWeekDay = endOfWeek(day, { weekStartsOn: 1 });
 
   beforeEach(() => {
-    setup({ mode: 'single', weekStartsOn: 1 });
+    setup({ weekStartsOn: 1 });
   });
 
   beforeEach(() => act(() => getDayButton(day).focus()));

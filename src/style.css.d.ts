@@ -10,7 +10,8 @@ declare const styles: {
   'nav': string
   'caption_start': string
   'caption_end': string
-  'nav_button': string
+  'button_next': string
+  'button_previous': string
   'dropdown_year': string
   'dropdown_month': string
   'dropdown': string
@@ -41,9 +42,7 @@ declare const styles: {
   'month_grid': string
   'month_caption': string
   'caption_between': string
-  'nav_button_previous': string
-  'nav_button_next': string
-  'nav_icon': string
+  'button_icon': string
 }
 
 export default styles

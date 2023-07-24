@@ -33,7 +33,7 @@ exports[`should match the snapshot 1`] = `
               type="button"
             >
               <svg
-                class="rdp-nav_icon"
+                class="rdp-button_icon"
                 height="16px"
                 viewBox="0 0 120 120"
                 width="16px"
@@ -52,7 +52,7 @@ exports[`should match the snapshot 1`] = `
               type="button"
             >
               <svg
-                class="rdp-nav_icon"
+                class="rdp-button_icon"
                 height="16px"
                 viewBox="0 0 120 120"
                 width="16px"
@@ -673,7 +673,7 @@ exports[`when a day in the range is clicked when the day is clicked again when a
               type="button"
             >
               <svg
-                class="rdp-nav_icon"
+                class="rdp-button_icon"
                 height="16px"
                 viewBox="0 0 120 120"
                 width="16px"
@@ -692,7 +692,7 @@ exports[`when a day in the range is clicked when the day is clicked again when a
               type="button"
             >
               <svg
-                class="rdp-nav_icon"
+                class="rdp-button_icon"
                 height="16px"
                 viewBox="0 0 120 120"
                 width="16px"

@@ -2,6 +2,7 @@ import React from 'react';
 
 import * as CustomComponents from 'components';
 import { Calendar } from 'components/Calendar';
+import { CaptionLayout } from 'components/Nav';
 import { ContextProviders } from 'contexts/ContextProviders';
 import {
   DayFocusEventHandler,
@@ -24,7 +25,15 @@ import {
 import { ClassNames, Styles } from 'types/styles';
 
 /** The selection modes available in DayPicker. Specify the selection mode via the {@link DayPickerProps["mode"]} prop. */
-export type DaysSelectionMode = 'single' | 'multi' | 'range';
+export enum DaysSelectionModeEnum {
+  single = 'single',
+  multi = 'multi',
+  range = 'range',
+  none = 'none'
+}
+
+/** The name of a color in our color palette. */
+export type DaysSelectionMode = keyof typeof DaysSelectionModeEnum;
 
 export type DayPickerSelectedValue<TMode extends DaysSelectionMode> = [
   TMode
@@ -157,7 +166,7 @@ export interface DayPickerBaseProps {
    *
    * @defaultValue buttons
    */
-  // captionLayout?: CaptionLayout;
+  captionLayout?: CaptionLayout;
   /**
    * Display six weeks per months, regardless the month’s number of weeks.
    * To use this prop, {@link showOutsideDays} must be set.
@@ -307,6 +316,17 @@ export interface DayPickerBaseProps {
  * The props for the {@link DayPicker} component when `mode="single"`.
  */
 
+export interface DayPickerNoneProps extends DayPickerBaseProps {
+  mode: 'none';
+  selected?: DayPickerSelectedValue<'single'> | undefined;
+  onSelect?: DaySelectEventHandler<'single'>;
+  required?: boolean;
+}
+
+/**
+ * The props for the {@link DayPicker} component when `mode="single"`.
+ */
+
 export interface DayPickerSingleProps extends DayPickerBaseProps {
   mode: 'single';
   selected?: DayPickerSelectedValue<'single'> | undefined;
@@ -339,9 +359,9 @@ export interface DayPickerRangeProps extends DayPickerBaseProps {
 /**
  * The props for the {@link DayPicker} component.
  */
-export type DayPickerProps<TMode extends DaysSelectionMode> = {
+export type DayPickerProps<TMode extends DaysSelectionMode = 'none'> = {
   mode?: TMode;
-} & ([TMode] extends [undefined]
+} & ([TMode] extends ['none']
   ? DayPickerBaseProps
   : [TMode] extends ['single']
   ? DayPickerSingleProps
@@ -438,7 +458,7 @@ export type DayPickerProps<TMode extends DaysSelectionMode> = {
  * <DayPicker locale={es} />
  * ```
  */
-export function DayPicker<TMode extends DaysSelectionMode>(
+export function DayPicker<TMode extends DaysSelectionMode = 'none'>(
   props: DayPickerProps<TMode>
 ): JSX.Element {
   return (
@@ -447,3 +467,12 @@ export function DayPicker<TMode extends DaysSelectionMode>(
     </ContextProviders>
   );
 }
+
+const test = <DayPicker />;
+const test1 = (
+  <DayPicker mode="single" required onSelect={(date) => console.log(date)} />
+);
+const test2 = <DayPicker mode="multi" />;
+const test3 = <DayPicker mode="range" />;
+
+export const test4wha: DayPickerProps = {};

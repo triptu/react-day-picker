@@ -6,9 +6,9 @@ import styles from 'react-day-picker/dist/style.module.css';
 export default function App() {
   const [selectedDay, setSelectedDay] = React.useState<Date>();
 
-  const classNames: ClassNames = {
+  const classNames: Partial<ClassNames> = {
     ...styles,
-    head: 'custom-head'
+    head_row: 'custom-head'
   };
   return (
     <>

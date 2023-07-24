@@ -1,20 +1,6 @@
 import React from 'react';
 
-import { format } from 'date-fns';
-import { DayGridCellProps, DayPicker, MonthGridProps } from 'react-day-picker';
-
-function CustomMonthGrid(props: MonthGridProps) {
-  return <div role="grid">{props.month.toISOString()}</div>;
-}
-
-function CustomDayGridCell(props: DayGridCellProps) {
-  return (
-    <div {...props}>
-      <span>Wrap:</span>
-      {props.children}
-    </div>
-  );
-}
+import { DayPicker } from 'react-day-picker';
 
 export default function Example() {
   const [selected, setSelected] = React.useState<Date>();

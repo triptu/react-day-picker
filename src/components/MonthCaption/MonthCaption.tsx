@@ -9,9 +9,10 @@ export interface MonthCaptionProps {
 }
 export function MonthCaption(props: MonthCaptionProps) {
   const {
-    styles,
     classNames,
-    formatters: { formatMonthCaption }
+    formatters: { formatMonthCaption },
+    locale,
+    styles
   } = useDayPicker();
   return (
     <div
@@ -20,7 +21,7 @@ export function MonthCaption(props: MonthCaptionProps) {
       className={classNames.month_caption}
       style={styles.month_caption}
     >
-      {formatMonthCaption(props.month.date)}{' '}
+      {formatMonthCaption(props.month.date, { locale })}{' '}
     </div>
   );
 }

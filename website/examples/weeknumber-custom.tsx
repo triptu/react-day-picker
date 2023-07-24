@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { startOfYear } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 
 export default function App() {
   return (
     <DayPicker
+      month={startOfYear(new Date())}
       showWeekNumber
       weekStartsOn={2} // Tuesday as first day of the week
       firstWeekContainsDate={4} // Number the first week of the year from day 4
