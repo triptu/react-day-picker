@@ -58,6 +58,5 @@ export const defaultClassNames: Required<ClassNames> = {
   head_cell: 'head_cell',
   tbody: 'tbody',
   cell: 'cell',
-  rdp: 'rdp',
   footer: ''
 };

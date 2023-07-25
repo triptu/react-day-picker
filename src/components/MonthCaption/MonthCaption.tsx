@@ -19,7 +19,7 @@ export function MonthCaption(props: MonthCaptionProps) {
       id={props.id}
       role="presentation"
       className={classNames.month_caption}
-      style={styles.month_caption}
+      style={styles?.month_caption}
     >
       {formatMonthCaption(props.month.date, { locale })}{' '}
     </div>

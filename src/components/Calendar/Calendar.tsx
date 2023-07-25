@@ -64,13 +64,13 @@ export function Calendar(): JSX.Element {
   return (
     <div
       className={cssClassNames.join(' ')}
-      style={{ ...styles.root, ...style }}
+      style={{ ...styles?.root, ...style }}
       dir={dir}
       id={id}
       {...dataAttributes}
     >
       <Nav />
-      <div className={classNames.months_wrapper} style={styles.months_wrapper}>
+      <div className={classNames.months_wrapper} style={styles?.months_wrapper}>
         {calendar.months.map((month, i) => (
           <MonthGrid
             aria-aria-labelledby={id}
@@ -81,7 +81,7 @@ export function Calendar(): JSX.Element {
         ))}
       </div>
       {footer && (
-        <div className={classNames.footer} style={styles.footer}>
+        <div className={classNames.footer} style={styles?.footer}>
           {footer}
         </div>
       )}

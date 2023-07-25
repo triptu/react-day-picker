@@ -8,6 +8,7 @@ import React, {
 
 import { DayPickerDay } from 'contexts/CalendarContext';
 import { useDayPicker } from 'contexts/DayPickerContext';
+import { useSelection } from 'contexts/SelectionContext';
 
 import { DayGridCell as _DayGridCell } from './DayGridCell';
 import { getClassNameByDayState } from './getClassNameByDayState';
@@ -32,9 +33,11 @@ export function DayGridCellWrapper(
     formatters: { formatDay },
     locale,
     mode,
-    modifiersClassNames,
-    modifiersStyles,
-    onSelect,
+    modifiersClassNames = {},
+    modifiersStyles = {},
+    onSelectSingle,
+    onSelectMulti,
+    onSelectRange,
     onDayBlur,
     onDayClick,
     onDayKeyDown,
@@ -48,11 +51,10 @@ export function DayGridCellWrapper(
     onDayTouchEnd,
     onDayTouchMove,
     onDayTouchStart,
-    required,
-    min,
-    max,
-    styles
+    styles = {}
   } = useDayPicker();
+
+  const { setSingleValue, setMultiValue, setRangeValue } = useSelection();
 
   const dayState = useDayState(props.day);
 
@@ -65,15 +67,25 @@ export function DayGridCellWrapper(
   const style = getStyleFromDayState(dayState, modifiersStyles, styles);
 
   const onClick: MouseEventHandler = (e) => {
+    console.log('click');
     switch (mode) {
-      case 'single':
-        if (dayState.selected && !required) {
-          onSelect?.(undefined, day, dayState, e);
-          return;
-        }
-        onSelect?.(day, day, dayState, e);
+      case 'single': {
+        const newValue = setSingleValue(props.day.date, dayState);
+        onSelectSingle?.(newValue, props.day.date, dayState, e);
+        console.log(newValue);
+        break;
+      }
+      case 'multi': {
+        const newValue = setMultiValue(props.day.date, dayState);
+        onSelectMulti?.(newValue, props.day.date, dayState, e);
+        break;
+      }
+      case 'range': {
+        const newValue = setRangeValue(props.day.date, dayState);
+        onSelectRange?.(newValue, props.day.date, dayState, e);
+        break;
+      }
     }
-
     onDayClick?.(props.day.date, dayState, e);
   };
 
@@ -174,7 +186,7 @@ export function DayGridCellWrapper(
     ['aria-selected']: dayState.selected,
     className: className,
     style: style,
-    tabIndex: dayState.disabled || mode === undefined ? -1 : 0,
+    tabIndex: dayState.disabled || mode === 'none' ? -1 : 0,
     onBlur,
     onClick,
     onKeyDown,

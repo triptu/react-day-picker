@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { DayPickerProps, DaysSelectionMode } from 'DayPicker';
+import { DayPickerProps } from 'DayPicker';
 
 import { CalendarProvider } from './CalendarContext';
 import { DayPickerProvider } from './DayPickerContext';
+import { SelectionProvider } from './SelectionContext';
 
-export interface ContextProvidersProps<TMode extends DaysSelectionMode> {
+export interface ContextProvidersProps {
   dayPickerProps: DayPickerProps;
   children: React.ReactNode;
 }
@@ -14,12 +15,16 @@ export interface ContextProvidersProps<TMode extends DaysSelectionMode> {
  * Provide the value for all the context providers.
  * @internal
  */
-export function ContextProviders<TMode extends DaysSelectionMode>(
-  props: ContextProvidersProps<TMode>
+export function ContextProviders(
+  contextProviderProps: ContextProvidersProps
 ): JSX.Element {
+  const { mode = 'none', ...dayPickerProps } =
+    contextProviderProps.dayPickerProps;
   return (
-    <DayPickerProvider dayPickerProps={props.dayPickerProps}>
-      <CalendarProvider>{props.children}</CalendarProvider>
+    <DayPickerProvider mode={mode} dayPickerProps={dayPickerProps}>
+      <CalendarProvider>
+        <SelectionProvider>{contextProviderProps.children}</SelectionProvider>
+      </CalendarProvider>
     </DayPickerProvider>
   );
 }

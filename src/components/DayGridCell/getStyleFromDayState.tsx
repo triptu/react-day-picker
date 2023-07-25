@@ -5,7 +5,7 @@ import { DayState, ModifiersStyles } from 'types/modifiers';
 
 export function getStyleFromDayState(
   dayState: DayState,
-  modifiersStyles: ModifiersStyles,
+  modifiersStyles: Partial<ModifiersStyles>,
   styles: Styles
 ) {
   let style: React.CSSProperties = { ...styles.day };

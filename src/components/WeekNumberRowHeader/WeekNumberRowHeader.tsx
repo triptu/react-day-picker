@@ -22,7 +22,7 @@ export function WeekNumberRowHeader(props: WeekNumberRowHeaderProps) {
       aria-colindex={1}
       aria-label={labelWeekNumber(props.week.weekNumber, { locale })}
       className={classNames.weeknumber_rowheader}
-      style={styles.weeknumber_rowheader}
+      style={styles?.weeknumber_rowheader}
     >
       {formatWeekNumber(props.week.weekNumber, { locale })}
     </div>

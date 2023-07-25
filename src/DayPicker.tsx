@@ -1,10 +1,9 @@
 import React from 'react';
 
-import * as CustomComponents from 'components';
+import * as components from 'components';
 import { Calendar } from 'components/Calendar';
 import { CaptionLayout } from 'components/Nav';
 import { ContextProviders } from 'contexts/ContextProviders';
-import { defaultProps } from 'contexts/DayPickerContext';
 import {
   DayFocusEventHandler,
   DayKeyboardEventHandler,
@@ -24,6 +23,10 @@ import {
   ModifiersStyles
 } from 'types/modifiers';
 import { ClassNames, Styles } from 'types/styles';
+
+export type CustomComponents = {
+  [key in keyof typeof components]?: (typeof components)[key];
+};
 
 /** The selection modes available in DayPicker. Specify the selection mode via the {@link DayPickerProps["mode"]} prop. */
 export enum DaysSelectionModeEnum {
@@ -226,9 +229,7 @@ export interface DayPickerBaseProps {
   /**
    * Replace the components used to create the layout with other components
    */
-  components?: {
-    [key in keyof typeof CustomComponents]?: (typeof CustomComponents)[key];
-  };
+  components?: CustomComponents;
 
   /**
    * Content to add to the table footer element.
@@ -314,9 +315,8 @@ export interface DayPickerBaseProps {
 }
 
 /**
- * The props for the {@link DayPicker} component when `mode="single"`.
+ * The props for the {@link DayPicker} component when `mode="none"`.
  */
-
 export interface DayPickerNoneProps {
   mode?: 'none' | undefined;
 }
@@ -324,7 +324,6 @@ export interface DayPickerNoneProps {
 /**
  * The props for the {@link DayPicker} component when `mode="single"`.
  */
-
 export interface DayPickerSingleProps {
   mode: 'single';
   selected?: DayPickerSelectedValue<'single'> | undefined;
@@ -357,25 +356,13 @@ export interface DayPickerRangeProps {
 /**
  * The props for the {@link DayPicker} component.
  */
-export type DayPickerPropXs<TMode extends DaysSelectionMode = 'none'> =
-  DayPickerBaseProps &
-    ([TMode] extends ['none']
-      ? DayPickerNoneProps
-      : [TMode] extends ['single']
-      ? DayPickerSingleProps
-      : [TMode] extends ['multi']
-      ? DayPickerMultiProps
-      : [TMode] extends ['range']
-      ? DayPickerRangeProps
-      : DayPickerNoneProps);
-
-type DaysSelectionProps =
-  | DayPickerSingleProps
-  | DayPickerMultiProps
-  | DayPickerRangeProps
-  | DayPickerNoneProps;
-
-export type DayPickerProps = DayPickerBaseProps & DaysSelectionProps;
+export type DayPickerProps = DayPickerBaseProps &
+  (
+    | DayPickerSingleProps
+    | DayPickerMultiProps
+    | DayPickerRangeProps
+    | DayPickerNoneProps
+  );
 /**
  * DayPicker render a date picker component to let users pick dates from a
  * calendar. See http://react-day-picker.js.org for updated documentation and
@@ -470,5 +457,3 @@ export function DayPicker(props: DayPickerProps): JSX.Element {
     </ContextProviders>
   );
 }
-
-DayPicker.defaultProps = defaultProps;

@@ -73,7 +73,6 @@ describe('when using the "classNames" prop', () => {
     day_selected: '',
     day_disabled: '',
     day_hidden: '',
-    rdp: '',
     day_range_start: '',
     day_range_end: '',
     day_range_middle: '',

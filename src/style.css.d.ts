@@ -30,7 +30,6 @@ declare const styles: {
   'day_selected': string
   'day_disabled': string
   'day_hidden': string
-  'rdp': string
   'day_range_start': string
   'day_range_end': string
   'day_range_middle': string

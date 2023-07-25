@@ -38,7 +38,7 @@ export function MonthGrid(props: MonthGridProps) {
   return (
     <div
       className={classNames.month_grid_wrapper}
-      style={styles.month_grid_wrapper}
+      style={styles?.month_grid_wrapper}
     >
       <MonthCaption id={captionId} month={props.month} />
       <div
@@ -46,13 +46,13 @@ export function MonthGrid(props: MonthGridProps) {
         aria-multiselectable={mode === 'multi' || mode === 'range'}
         aria-label={labelGrid(props.month.date)}
         className={classNames.month_grid}
-        style={styles.month_grid}
+        style={styles?.month_grid}
       >
         {!hideWeekdayRow && <WeekdaysRow />}
         <div
           role="rowgroup"
           className={classNames.month_rowgroup}
-          style={styles.month_rowgroup}
+          style={styles?.month_rowgroup}
         >
           {props.month.weeks.map((week, i) => (
             <WeekRow

@@ -8,7 +8,7 @@ export function Nav() {
   const { classNames, styles } = useDayPicker();
   const { goToNextMonth, goToPreviousMonth } = useCalendar();
   return (
-    <nav className={classNames.nav} style={styles.nav}>
+    <nav className={classNames.nav} style={styles?.nav}>
       <button
         name="previous-month"
         className={classNames.button_previous}

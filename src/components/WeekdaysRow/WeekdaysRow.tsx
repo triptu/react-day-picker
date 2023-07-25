@@ -24,7 +24,7 @@ export function WeekdaysRow() {
     <div
       role="row"
       aria-rowindex={1}
-      style={styles.weekdays_row}
+      style={styles?.weekdays_row}
       className={classNames.weekdays_row}
     >
       {showWeekNumber && <WeekdayColumnHeader aria-aria-colindex={1} />}

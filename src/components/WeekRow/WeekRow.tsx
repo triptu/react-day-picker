@@ -27,7 +27,7 @@ export function WeekRow(props: WeekRowProps): JSX.Element {
       role="row"
       aria-rowindex={props['aria-rowindex']}
       className={classNames.week_row}
-      style={styles.week_row}
+      style={styles?.week_row}
     >
       {showWeekNumber && <WeekNumberRowHeader week={props.week} />}
       {props.week.days.map((day, i) => (

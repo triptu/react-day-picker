@@ -5,8 +5,7 @@ import * as locales from 'date-fns/locale';
 import {
   DayPicker,
   DayPickerBaseProps,
-  DaysSelectionMode,
-  defaultProps
+  DaysSelectionMode
 } from 'react-day-picker';
 
 import {
@@ -22,8 +21,7 @@ export default function Playground() {
   const [mode, setMode] = React.useState<DaysSelectionMode | undefined>();
   const [locale, setLocale] = React.useState<Locale>();
 
-  const [baseProps, setBaseProps] =
-    React.useState<DayPickerBaseProps>(defaultProps);
+  const [baseProps, setBaseProps] = React.useState<DayPickerBaseProps>({});
 
   const [singleProps, setSingleProps] = React.useState<DayPickerSingleProps>({
     mode: 'single'
@@ -40,7 +38,7 @@ export default function Playground() {
   };
 
   const handleReset = () => {
-    setBaseProps(defaultProps);
+    setBaseProps({});
     setSingleProps({ mode: 'single' });
     setMultiProps({ mode: 'multi' });
     setRangeProps({ mode: 'range' });
