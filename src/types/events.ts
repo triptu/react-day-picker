@@ -2,18 +2,18 @@ import React from 'react';
 
 import { DayPickerSelectedValue, DaysSelectionMode } from 'DayPicker';
 
-import { DayState } from './modifiers';
+import { MatchingModifiers } from './modifiers';
 
 export type DaySelectEventHandler<TMode extends DaysSelectionMode> = (
   days: DayPickerSelectedValue<TMode>,
   selectedDay: Date,
-  state: DayState,
+  state: MatchingModifiers,
   e: React.MouseEvent
 ) => void;
 
 export type DayEventHandler<TEvent> = (
   day: Date,
-  state: DayState,
+  state: MatchingModifiers,
   e: TEvent
 ) => void;
 

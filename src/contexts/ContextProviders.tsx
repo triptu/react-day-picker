@@ -4,6 +4,7 @@ import { DayPickerProps } from 'DayPicker';
 
 import { CalendarProvider } from './CalendarContext';
 import { DayPickerProvider } from './DayPickerContext';
+import { ModifiersProvider } from './ModifiersContext';
 import { SelectionProvider } from './SelectionContext';
 
 export interface ContextProvidersProps {
@@ -23,7 +24,9 @@ export function ContextProviders(
   return (
     <DayPickerProvider mode={mode} dayPickerProps={dayPickerProps}>
       <CalendarProvider>
-        <SelectionProvider>{contextProviderProps.children}</SelectionProvider>
+        <SelectionProvider>
+          <ModifiersProvider>{contextProviderProps.children}</ModifiersProvider>
+        </SelectionProvider>
       </CalendarProvider>
     </DayPickerProvider>
   );

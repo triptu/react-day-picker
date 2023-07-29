@@ -1,11 +1,11 @@
-import { getCalendar } from './getCalendar';
+import { getMonthsAndDates } from './getMonthsAndDates';
 
 const today = new Date(2023, 6, 19);
 
 jest.setSystemTime(today);
 
 describe('when using the default options', () => {
-  const calendar = getCalendar(today);
+  const calendar = getMonthsAndDates(today);
   test('should match the snapshot', () => {
     expect(calendar).toMatchInlineSnapshot(`
       {
@@ -455,7 +455,7 @@ describe('when using the default options', () => {
 });
 
 describe('when using fixed weeks', () => {
-  const calendar = getCalendar(today, undefined, { fixedWeeks: true });
+  const calendar = getMonthsAndDates(today, undefined, { fixedWeeks: true });
   test('should return 42 dates', () => {
     expect(calendar.dates).toHaveLength(42);
   });

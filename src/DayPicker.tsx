@@ -18,7 +18,7 @@ import { Formatters } from 'types/formatters';
 import { Labels } from 'types/labels';
 import { DateRange, Matcher } from 'types/matchers';
 import {
-  DayModifiers,
+  CustomModifier,
   ModifiersClassNames,
   ModifiersStyles
 } from 'types/modifiers';
@@ -28,16 +28,8 @@ export type CustomComponents = {
   [key in keyof typeof components]?: (typeof components)[key];
 };
 
-/** The selection modes available in DayPicker. Specify the selection mode via the {@link DayPickerProps["mode"]} prop. */
-export enum DaysSelectionModeEnum {
-  single = 'single',
-  multi = 'multi',
-  range = 'range',
-  none = 'none'
-}
-
 /** The name of a color in our color palette. */
-export type DaysSelectionMode = keyof typeof DaysSelectionModeEnum;
+export type DaysSelectionMode = 'none' | 'range' | 'single' | 'multi';
 
 export type DayPickerSelectedValue<TMode extends DaysSelectionMode> = [
   TMode
@@ -268,7 +260,7 @@ export interface DayPickerBaseProps {
   /**
    * Add modifiers to the matching days.
    */
-  modifiers?: DayModifiers;
+  modifiers?: Record<CustomModifier, Matcher | Matcher[]> | undefined;
 
   /**
    * The date-fns locale object used to localize dates.

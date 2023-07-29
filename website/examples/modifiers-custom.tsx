@@ -8,8 +8,8 @@ const bookedStyle = { border: '2px solid currentColor' };
 export default function App() {
   const [booked, setBooked] = React.useState(false);
 
-  const handleDayClick: DayMouseEventHandler = (day, dayState) => {
-    setBooked(day && dayState.booked);
+  const handleDayClick: DayMouseEventHandler = (day, { booked }) => {
+    setBooked(day && booked);
   };
 
   const footer = booked

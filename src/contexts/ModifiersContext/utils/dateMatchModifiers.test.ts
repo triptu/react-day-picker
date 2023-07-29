@@ -8,7 +8,7 @@ import {
   DayOfWeek
 } from 'types/matchers';
 
-import { dateMatchModifiers } from './isMatch';
+import { dateMatchModifiers } from './dateMatchModifiers';
 
 const testDay = new Date();
 

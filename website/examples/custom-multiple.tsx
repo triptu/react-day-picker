@@ -6,9 +6,9 @@ import { DayMouseEventHandler, DayPicker } from 'react-day-picker';
 export default function App() {
   const [selectedDays, setSelectedDays] = useState<Date[]>([]);
 
-  const handleDayClick: DayMouseEventHandler = (day, dayState) => {
+  const handleDayClick: DayMouseEventHandler = (day, { selected }) => {
     const newSelectedDays = [...selectedDays];
-    if (dayState.selected) {
+    if (selected) {
       const index = selectedDays.findIndex((selectedDay) =>
         isSameDay(day, selectedDay)
       );

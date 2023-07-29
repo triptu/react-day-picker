@@ -1,15 +1,18 @@
 import React from 'react';
 
 import { Styles } from 'types';
-import { DayState, ModifiersStyles } from 'types/modifiers';
+import {
+  MatchingModifiers as MatchingModifiers,
+  ModifiersStyles
+} from 'types/modifiers';
 
-export function getStyleFromDayState(
-  dayState: DayState,
+export function getStyleFromMatchingModifiers(
+  matchingModifiers: MatchingModifiers,
   modifiersStyles: Partial<ModifiersStyles>,
   styles: Styles
 ) {
   let style: React.CSSProperties = { ...styles.day };
-  Object.keys(dayState).forEach((modifier) => {
+  Object.keys(matchingModifiers).forEach((modifier) => {
     style = {
       ...style,
       ...modifiersStyles?.[modifier]

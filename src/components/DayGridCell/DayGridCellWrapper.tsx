@@ -8,12 +8,12 @@ import React, {
 
 import { DayPickerDay } from 'contexts/CalendarContext';
 import { useDayPicker } from 'contexts/DayPickerContext';
+import { useModifiers } from 'contexts/ModifiersContext';
 import { useSelection } from 'contexts/SelectionContext';
 
 import { DayGridCell as _DayGridCell } from './DayGridCell';
-import { getClassNameByDayState } from './getClassNameByDayState';
-import { getStyleFromDayState } from './getStyleFromDayState';
-import { useDayState } from './useDayState';
+import { getClassNameByMatchingModifiers } from './getClassNameByMatchingModifiers';
+import { getStyleFromMatchingModifiers } from './getStyleFromMatchingModifiers';
 
 export interface DayGridCellWrapperProps
   extends Pick<React.AriaAttributes, 'aria-colindex'> {
@@ -54,82 +54,82 @@ export function DayGridCellWrapper(
     styles = {}
   } = useDayPicker();
 
-  const { setSingleValue, setMultiValue, setRangeValue } = useSelection();
-
-  const dayState = useDayState(props.day);
-
-  const className = getClassNameByDayState(
-    dayState,
+  const selection = useSelection();
+  const dayModifiers = useModifiers().getDayModifiers(props.day);
+  const style = getStyleFromMatchingModifiers(
+    dayModifiers,
+    modifiersStyles,
+    styles
+  );
+  const className = getClassNameByMatchingModifiers(
+    dayModifiers,
     modifiersClassNames,
     classNames
   );
 
-  const style = getStyleFromDayState(dayState, modifiersStyles, styles);
-
   const onClick: MouseEventHandler = (e) => {
-    console.log('click');
     switch (mode) {
       case 'single': {
-        const newValue = setSingleValue(props.day.date, dayState);
-        onSelectSingle?.(newValue, props.day.date, dayState, e);
-        console.log(newValue);
+        const newValue = selection.setSingleValue(props.day.date);
+        console.log('newValue', newValue);
+        onSelectSingle?.(newValue, props.day.date, dayModifiers, e);
         break;
       }
       case 'multi': {
-        const newValue = setMultiValue(props.day.date, dayState);
-        onSelectMulti?.(newValue, props.day.date, dayState, e);
+        const newValue = selection.setMultiValue(props.day.date);
+        onSelectMulti?.(newValue, props.day.date, dayModifiers, e);
         break;
       }
       case 'range': {
-        const newValue = setRangeValue(props.day.date, dayState);
-        onSelectRange?.(newValue, props.day.date, dayState, e);
+        const newValue = selection.setRangeValue(props.day.date);
+        onSelectRange?.(newValue, props.day.date, dayModifiers, e);
         break;
       }
     }
-    onDayClick?.(props.day.date, dayState, e);
+    onDayClick?.(props.day.date, dayModifiers, e);
   };
 
   // const onFocus: FocusEventHandler = (e) => {
   //   focus(props.day.date);
-  //   onDayFocus?.(props.day.date, dayState, e);
+  //   onDayFocus?.(props.day.date, matchingModifiers, e);
   // };
 
   const onBlur: FocusEventHandler = (e) => {
     blur();
-    onDayBlur?.(props.day.date, dayState, e);
+    onDayBlur?.(props.day.date, dayModifiers, e);
   };
 
   const onMouseEnter: MouseEventHandler = (e) => {
-    onDayMouseEnter?.(props.day.date, dayState, e);
+    onDayMouseEnter?.(props.day.date, dayModifiers, e);
   };
   const onMouseLeave: MouseEventHandler = (e) => {
-    onDayMouseLeave?.(props.day.date, dayState, e);
+    onDayMouseLeave?.(props.day.date, dayModifiers, e);
   };
   const onPointerEnter: PointerEventHandler = (e) => {
-    onDayPointerEnter?.(props.day.date, dayState, e);
+    onDayPointerEnter?.(props.day.date, dayModifiers, e);
   };
   const onPointerLeave: PointerEventHandler = (e) => {
-    onDayPointerLeave?.(props.day.date, dayState, e);
+    onDayPointerLeave?.(props.day.date, dayModifiers, e);
   };
   const onTouchCancel: TouchEventHandler = (e) => {
-    onDayTouchCancel?.(props.day.date, dayState, e);
+    onDayTouchCancel?.(props.day.date, dayModifiers, e);
   };
   const onTouchEnd: TouchEventHandler = (e) => {
-    onDayTouchEnd?.(props.day.date, dayState, e);
+    onDayTouchEnd?.(props.day.date, dayModifiers, e);
   };
   const onTouchMove: TouchEventHandler = (e) => {
-    onDayTouchMove?.(props.day.date, dayState, e);
+    onDayTouchMove?.(props.day.date, dayModifiers, e);
   };
   const onTouchStart: TouchEventHandler = (e) => {
-    onDayTouchStart?.(props.day.date, dayState, e);
+    onDayTouchStart?.(props.day.date, dayModifiers, e);
   };
 
   const onKeyUp: KeyboardEventHandler = (e) => {
-    onDayKeyUp?.(props.day.date, dayState, e);
+    onDayKeyUp?.(props.day.date, dayModifiers, e);
   };
 
   const onKeyPress: KeyboardEventHandler = (e) => {
-    onDayKeyPress?.(props.day.date, dayState, e);
+    onDayKeyPress?.(props.day.date, dayModifiers, e);
   };
 
   const onKeyDown: KeyboardEventHandler = (e) => {
@@ -175,18 +175,18 @@ export function DayGridCellWrapper(
     //     focusEndOfWeek();
     //     break;
     // }
-    onDayKeyDown?.(props.day.date, dayState, e);
+    onDayKeyDown?.(props.day.date, dayModifiers, e);
   };
 
   const htmlAttributes: React.HTMLAttributes<HTMLDivElement> = {
     role: 'gridcell',
     ['aria-colindex']: props['aria-colindex'],
-    ['aria-disabled']: dayState.disabled,
-    ['aria-hidden']: dayState.hidden,
-    ['aria-selected']: dayState.selected,
+    ['aria-disabled']: dayModifiers.disabled,
+    ['aria-hidden']: dayModifiers.hidden,
+    ['aria-selected']: dayModifiers.selected,
     className: className,
     style: style,
-    tabIndex: dayState.disabled || mode === 'none' ? -1 : 0,
+    tabIndex: dayModifiers.disabled || mode === 'none' ? -1 : 0,
     onBlur,
     onClick,
     onKeyDown,
@@ -207,7 +207,7 @@ export function DayGridCellWrapper(
   return (
     <DayGridCell
       day={props.day}
-      state={dayState}
+      state={dayModifiers}
       htmlAttributes={htmlAttributes}
     >
       {formatDay(props.day.date, { locale })}

@@ -5,10 +5,16 @@ import { DayPickerBaseProps } from 'DayPicker';
 export function parseFromToProps(
   props: Pick<
     DayPickerBaseProps,
-    'fromYear' | 'toYear' | 'fromDate' | 'toDate' | 'fromMonth' | 'toMonth'
+    | 'fromYear'
+    | 'toYear'
+    | 'fromDate'
+    | 'toDate'
+    | 'fromMonth'
+    | 'toMonth'
+    | 'today'
   >
 ): { fromDate: Date | undefined; toDate: Date | undefined } {
-  const { fromYear, toYear, fromMonth, toMonth } = props;
+  const { fromYear, toYear, fromMonth, toMonth, today = new Date() } = props;
   let { fromDate, toDate } = props;
 
   if (fromMonth) {
@@ -23,7 +29,7 @@ export function parseFromToProps(
   }
 
   return {
-    fromDate: fromDate ? startOfDay(fromDate) : undefined,
+    fromDate: startOfDay(fromDate ?? today),
     toDate: toDate ? startOfDay(toDate) : undefined
   };
 }

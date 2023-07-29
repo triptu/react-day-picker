@@ -6,8 +6,8 @@ export default function App() {
   const initialFooter = <p>Try clicking the today’s date.</p>;
   const [footer, setFooter] = useState(initialFooter);
 
-  const handleDayClick: DayMouseEventHandler = (day, dayState) => {
-    if (dayState.today) {
+  const handleDayClick: DayMouseEventHandler = (day, { today }) => {
+    if (today) {
       setFooter(<p>You clicked the today’s date.</p>);
     } else {
       setFooter(initialFooter);

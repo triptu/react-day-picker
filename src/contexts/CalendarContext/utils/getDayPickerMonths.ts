@@ -68,5 +68,6 @@ export function getDayPickerMonths(
     return months;
   }, []);
   if (options?.reverseMonths) dayPickerMonths.reverse();
+
   return dayPickerMonths;
 }

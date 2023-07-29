@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { DayPickerDay } from 'contexts/CalendarContext';
-import { DayState } from 'types/modifiers';
+import { MatchingModifiers } from 'types/modifiers';
 
 export interface DayGridCellProps extends React.PropsWithChildren {
   day: DayPickerDay;
-  state: DayState;
+  state: MatchingModifiers;
   htmlAttributes: React.HTMLAttributes<HTMLDivElement>;
 }
 

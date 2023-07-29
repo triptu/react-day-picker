@@ -1,12 +1,10 @@
 import { startOfDay, startOfMonth } from 'date-fns';
 
-import { DayPickerCalendar } from 'contexts/CalendarContext';
-
 import { getDates } from './utils/getDates';
 import { getDayPickerMonths } from './utils/getDayPickerMonths';
 import { getDisplayMonths } from './utils/getDisplayMonths';
 
-export function getCalendar(
+export function getMonthsAndDates(
   firstMonth: Date,
   toDate?: Date | undefined,
   options?: {
@@ -16,7 +14,7 @@ export function getCalendar(
     numberOfMonths?: number;
     weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   }
-): Pick<DayPickerCalendar, 'months' | 'dates'> {
+) {
   const { numberOfMonths = 1 } = options || {};
   const firstDayOfFirstMonth = startOfMonth(startOfDay(firstMonth));
   const displayMonths = getDisplayMonths(

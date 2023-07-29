@@ -26,7 +26,8 @@ const config = {
   rules: {
     'import/no-unresolved': 'off',
     'prettier/prettier': 'warn',
-    'no-console': 'warn'
+    'no-console': 'warn',
+    'typescript-eslint/no-empty-interface': 'off'
   },
   overrides: [
     {

@@ -14,9 +14,10 @@ import * as labels from 'labels';
 import { CaptionLayout } from 'components/Nav';
 import {
   ClassNames,
-  DayModifiers,
+  CustomModifier,
   Formatters,
   Labels,
+  Matcher,
   ModifiersClassNames,
   ModifiersStyles,
   Styles
@@ -42,7 +43,7 @@ export type DataAttributes = Record<string, unknown>;
  * The {@link DayPickerProps} with their default values. Use this type within
  * internal components to use safe props and avoid all conditionals.
  */
-export interface DayPickerContext<TMode extends DaysSelectionMode> {
+export interface DayPickerContext<TMode extends DaysSelectionMode | unknown> {
   mode: TMode | undefined;
 
   captionLayout: CaptionLayout;
@@ -70,7 +71,7 @@ export interface DayPickerContext<TMode extends DaysSelectionMode> {
   locale: Locale;
   max: number | undefined;
   min: number | undefined;
-  modifiers: DayModifiers;
+  modifiers: Record<CustomModifier, Matcher | Matcher[]> | undefined;
   modifiersClassNames: ModifiersClassNames | undefined;
   modifiersStyles: Partial<ModifiersStyles> | undefined;
   month: Date | undefined;
@@ -113,7 +114,7 @@ export interface DayPickerContext<TMode extends DaysSelectionMode> {
 }
 
 export const dayPickerContext = createContext<
-  DayPickerContext<any> | undefined
+  DayPickerContext<unknown> | undefined
 >(undefined);
 
 /** The props for the {@link DayPickerProvider}. */
@@ -178,10 +179,7 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
       props.mode === 'multi' || props.mode === 'range' ? props.max : undefined,
     min:
       props.mode === 'multi' || props.mode === 'range' ? props.min : undefined,
-    modifiers: {
-      ...props.modifiers,
-      ...(props.selected ? { selected: props.selected } : {})
-    },
+    modifiers: props.modifiers || undefined,
     modifiersClassNames: props.modifiersClassNames || undefined,
     modifiersStyles: props.modifiersStyles || undefined,
     styles: props.styles,

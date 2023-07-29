@@ -3,29 +3,23 @@ import React, { createContext, ReactNode, useContext, useState } from 'react';
 import { isSameDay } from 'date-fns';
 import { DayPickerSelectedValue } from 'DayPicker';
 
+import { useCalendar } from 'contexts/CalendarContext';
 import { useDayPicker } from 'contexts/DayPickerContext';
-import { DateRange, DayState } from 'types';
+import { dateMatchModifiers } from 'contexts/ModifiersContext/utils/dateMatchModifiers';
+import { DateRange } from 'types';
 
 import { addToRange } from './utils/addToRange';
 
 export type SelectionContext = {
-  setSingleValue: (
-    selectedDate: Date,
-    state: DayState
-  ) => DayPickerSelectedValue<'single'>;
+  setSingleValue: (selectedDate: Date) => DayPickerSelectedValue<'single'>;
   singleValue: DayPickerSelectedValue<'single'>;
-  setMultiValue: (
-    selectedDate: Date,
-    state: DayState
-  ) => DayPickerSelectedValue<'multi'>;
+  setMultiValue: (selectedDate: Date) => DayPickerSelectedValue<'multi'>;
   multiValue: DayPickerSelectedValue<'multi'>;
-  setRangeValue: (
-    selectedDate: Date,
-    state: DayState
-  ) => DayPickerSelectedValue<'range'>;
+  setRangeValue: (selectedDate: Date) => DayPickerSelectedValue<'range'>;
   rangeValue: DayPickerSelectedValue<'range'>;
   isSelected: (date: Date) => boolean;
 };
+
 export const selectionContext = createContext<SelectionContext | undefined>(
   undefined
 );
@@ -34,19 +28,31 @@ export const selectionContext = createContext<SelectionContext | undefined>(
  * The provider for the {@link selectionContext}, storing the calendar state.
  */
 export function SelectionProvider(providerProps: { children?: ReactNode }) {
-  const { required, min, max } = useDayPicker();
+  const { required, min, max, selected, mode } = useDayPicker();
+  const calendar = useCalendar();
 
-  const [singleValue, setSingleValue] = useState<Date | undefined>();
-  const [multiValue, setMultiValue] = useState<Date[]>([]);
+  const initialSelectedDates: Date[] = selected
+    ? calendar.dates.filter((date) => dateMatchModifiers(date, selected))
+    : [];
+
+  // console.log('initialSelectedDates', initialSelectedDates);
+
+  const [singleValue, setSingleValue] = useState<Date | undefined>(
+    mode === 'single' ? initialSelectedDates?.[0] : undefined
+  );
+  const [multiValue, setMultiValue] = useState<Date[]>(initialSelectedDates);
   const [rangeValue, setRangeValue] = useState<DateRange>({
-    from: undefined,
-    to: undefined
+    from: initialSelectedDates?.[0],
+    to: initialSelectedDates
+      ? initialSelectedDates[initialSelectedDates.length]
+      : undefined
   });
 
   const value: SelectionContext = {
-    setSingleValue: (date, dayState) => {
+    setSingleValue: (date) => {
+      console.debug('setSingle', date);
       let newSingleValue: DayPickerSelectedValue<'single'>;
-      if (dayState.selected && !required) {
+      if (singleValue && isSameDay(singleValue, date) && !required) {
         newSingleValue = undefined;
       } else {
         newSingleValue = date;
@@ -54,45 +60,49 @@ export function SelectionProvider(providerProps: { children?: ReactNode }) {
       setSingleValue(newSingleValue);
       return newSingleValue;
     },
-    singleValue,
+    singleValue: singleValue,
 
-    setMultiValue: (date, dayState) => {
-      const isMinSelected = Boolean(
-        dayState.selected && min && multiValue.length === min
-      );
-      if (isMinSelected) return;
-      const isMaxSelected = Boolean(
-        !dayState.selected && max && multiValue.length === max
-      );
-      if (isMaxSelected) return;
-      const newMultiValue = [...multiValue];
-      if (dayState.selected) {
-        const index = newMultiValue.findIndex((selectedDay) =>
-          isSameDay(date, selectedDay)
-        );
-        newMultiValue.splice(index, 1);
-      } else {
-        newMultiValue.push(date);
-      }
-      setMultiValue(newMultiValue);
-      return newMultiValue;
+    setMultiValue: (date) => {
+      // const isMinSelected = Boolean(
+      //   matchingModifiers.selected && min && multiValue.length === min
+      // );
+      // if (isMinSelected) return;
+      // const isMaxSelected = Boolean(
+      //   !matchingModifiers.selected && max && multiValue.length === max
+      // );
+      // if (isMaxSelected) return;
+      // const newMultiValue = [...multiValue];
+      // if (matchingModifiers.selected) {
+      //   const index = newMultiValue.findIndex((selectedDay) =>
+      //     isSameDay(date, selectedDay)
+      //   );
+      //   newMultiValue.splice(index, 1);
+      // } else {
+      //   newMultiValue.push(date);
+      // }
+      // setMultiValue(newMultiValue);
+      // return newMultiValue;
+      return undefined;
     },
     multiValue,
-    setRangeValue: (date, dayState) => {
+    setRangeValue: (date) => {
       const newRangeValue = addToRange(date, rangeValue);
       setRangeValue(newRangeValue ?? { from: undefined, to: undefined });
       return rangeValue;
     },
     rangeValue,
     isSelected: (date) => {
-      if (singleValue && isSameDay(date, singleValue)) return true;
-      if (multiValue.some((selectedDay) => isSameDay(date, selectedDay)))
+      if (singleValue && isSameDay(date, singleValue)) {
+        console.log('isSelected yes', date.toDateString());
         return true;
-      if (rangeValue.from && rangeValue.to) {
-        return (
-          isSameDay(date, rangeValue.from) || isSameDay(date, rangeValue.to)
-        );
       }
+      // } else if (multiValue.some((selectedDay) => isSameDay(date, selectedDay)))
+      //   return true;
+      // else if (rangeValue.from && rangeValue.to) {
+      //   return (
+      //     isSameDay(date, rangeValue.from) || isSameDay(date, rangeValue.to)
+      //   );
+      // }
       return false;
     }
   };
