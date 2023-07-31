@@ -62,14 +62,21 @@ export function ModifiersProvider({ children }: { children: ReactNode }) {
       Boolean(hidden && dateMatchModifiers(date, hidden)) ||
       (!showOutsideDays && isOutside);
 
-    if (isOutside) dayModifiers.outside.push(day);
-    if (isDisabled) dayModifiers.disabled.push(day);
-    if (isHidden) dayModifiers.hidden.push(day);
+    if (isOutside) {
+      dayModifiers.outside.push(day);
+    }
+    if (isDisabled) {
+      dayModifiers.disabled.push(day);
+    }
+    if (isHidden) {
+      dayModifiers.hidden.push(day);
+    }
     if (selection.isSelected(date)) {
-      console.log('push', day.date.toDateString());
       dayModifiers.selected.push(day);
     }
-    if (isSameDay(date, today)) dayModifiers.today.push(day); // TODO: remove?
+    if (isSameDay(date, today)) {
+      dayModifiers.today.push(day);
+    }
   }
 
   const getDayModifiers = (day: DayPickerDay) => {

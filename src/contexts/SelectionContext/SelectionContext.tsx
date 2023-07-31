@@ -35,8 +35,6 @@ export function SelectionProvider(providerProps: { children?: ReactNode }) {
     ? calendar.dates.filter((date) => dateMatchModifiers(date, selected))
     : [];
 
-  // console.log('initialSelectedDates', initialSelectedDates);
-
   const [singleValue, setSingleValue] = useState<Date | undefined>(
     mode === 'single' ? initialSelectedDates?.[0] : undefined
   );
