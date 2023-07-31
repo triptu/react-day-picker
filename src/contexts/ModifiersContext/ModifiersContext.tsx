@@ -71,7 +71,7 @@ export function ModifiersProvider({ children }: { children: ReactNode }) {
     if (isHidden) {
       dayModifiers.hidden.push(day);
     }
-    if (selection.isSelected(date)) {
+    if (selection?.isSelected(date)) {
       dayModifiers.selected.push(day);
     }
     if (isSameDay(date, today)) {
@@ -102,7 +102,6 @@ export function ModifiersProvider({ children }: { children: ReactNode }) {
   };
 
   const context = { days: dayModifiers, getDayModifiers };
-  console.log('modifiersContext', context);
   return (
     <modifiersContext.Provider value={context}>
       {children}

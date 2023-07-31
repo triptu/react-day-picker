@@ -5,7 +5,10 @@ import { enUS } from 'date-fns/locale';
 import {
   CustomComponents,
   DayPickerBaseProps,
+  DayPickerMultiProps,
   DayPickerProps,
+  DayPickerRangeProps,
+  DayPickerSingleProps,
   DaysSelectionMode
 } from 'DayPicker';
 import * as formatters from 'formatters';
@@ -44,7 +47,7 @@ export type DataAttributes = Record<string, unknown>;
  * internal components to use safe props and avoid all conditionals.
  */
 export interface DayPickerContext<TMode extends DaysSelectionMode | unknown> {
-  mode: TMode | undefined;
+  mode: TMode | unknown;
 
   captionLayout: CaptionLayout;
   className: string | undefined;
@@ -140,12 +143,20 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
   });
   const props = providerProps.dayPickerProps;
   const { fromDate, toDate } = parseFromToProps(props);
-  const { mode } = providerProps;
   const context: DayPickerContext<TMode> = {
-    mode,
-    onSelectSingle: props.mode === 'single' ? props.onSelect : undefined,
-    onSelectMulti: props.mode === 'multi' ? props.onSelect : undefined,
-    onSelectRange: props.mode === 'range' ? props.onSelect : undefined,
+    mode: providerProps.mode,
+    onSelectSingle:
+      providerProps.mode === 'single'
+        ? (props as DayPickerSingleProps).onSelect
+        : undefined,
+    onSelectMulti:
+      providerProps.mode === 'multi'
+        ? (props as DayPickerMultiProps).onSelect
+        : undefined,
+    onSelectRange:
+      providerProps.mode === 'range'
+        ? (props as DayPickerRangeProps).onSelect
+        : undefined,
 
     captionLayout: props.captionLayout || 'buttons',
     className: props.className,

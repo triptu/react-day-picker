@@ -12,13 +12,15 @@ export default function App() {
   ) : (
     <p>Please pick a day.</p>
   );
-
   return (
     <DayPicker
       mode="single"
       required
       selected={selectedDay}
-      onSelect={setSelectedDay}
+      onSelect={(date) => {
+        console.log('onSelect', date);
+        setSelectedDay(date);
+      }}
       footer={footer}
     />
   );

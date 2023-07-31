@@ -70,19 +70,18 @@ export function DayGridCellWrapper(
   const onClick: MouseEventHandler = (e) => {
     switch (mode) {
       case 'single': {
-        const newValue = selection.setSingleValue(props.day.date);
-        console.log('newValue', newValue);
-        onSelectSingle?.(newValue, props.day.date, dayModifiers, e);
+        selection?.setValue(props.day.date, dayModifiers, e);
+        onSelectSingle?.(props.day.date, props.day.date, dayModifiers, e);
         break;
       }
       case 'multi': {
-        const newValue = selection.setMultiValue(props.day.date);
-        onSelectMulti?.(newValue, props.day.date, dayModifiers, e);
+        // const newValue = selection.setValue(props.day.date);
+        // onSelectMulti?.(newValue, props.day.date, dayModifiers, e);
         break;
       }
       case 'range': {
-        const newValue = selection.setRangeValue(props.day.date);
-        onSelectRange?.(newValue, props.day.date, dayModifiers, e);
+        // const newValue = selection.setValue(props.day.date);
+        // onSelectRange?.(newValue, props.day.date, dayModifiers, e);
         break;
       }
     }

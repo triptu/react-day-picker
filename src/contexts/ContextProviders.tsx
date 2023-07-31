@@ -24,7 +24,7 @@ export function ContextProviders(
   return (
     <DayPickerProvider mode={mode} dayPickerProps={dayPickerProps}>
       <CalendarProvider>
-        <SelectionProvider>
+        <SelectionProvider mode={mode}>
           <ModifiersProvider>{contextProviderProps.children}</ModifiersProvider>
         </SelectionProvider>
       </CalendarProvider>

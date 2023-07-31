@@ -1,124 +1,154 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react';
+import React, {
+  createContext,
+  EventHandler,
+  ReactNode,
+  useContext,
+  useState
+} from 'react';
 
 import { isSameDay } from 'date-fns';
-import { DayPickerSelectedValue } from 'DayPicker';
+import { DayPickerSelectedValue, DaysSelectionMode } from 'DayPicker';
 
 import { useCalendar } from 'contexts/CalendarContext';
 import { useDayPicker } from 'contexts/DayPickerContext';
 import { dateMatchModifiers } from 'contexts/ModifiersContext/utils/dateMatchModifiers';
-import { DateRange } from 'types';
+import { DateRange, MatchingModifiers } from 'types';
 
 import { addToRange } from './utils/addToRange';
 
-export type SelectionContext = {
-  setSingleValue: (selectedDate: Date) => DayPickerSelectedValue<'single'>;
-  singleValue: DayPickerSelectedValue<'single'>;
-  setMultiValue: (selectedDate: Date) => DayPickerSelectedValue<'multi'>;
-  multiValue: DayPickerSelectedValue<'multi'>;
-  setRangeValue: (selectedDate: Date) => DayPickerSelectedValue<'range'>;
-  rangeValue: DayPickerSelectedValue<'range'>;
+export type SelectionContext<TMode extends DaysSelectionMode | unknown> = {
+  value: DayPickerSelectedValue<TMode>;
+  setValue: (
+    selectedDate: Date,
+    dayModifiers: MatchingModifiers,
+    e: React.MouseEvent<Element, MouseEvent>
+  ) => DayPickerSelectedValue<TMode>;
   isSelected: (date: Date) => boolean;
 };
 
-export const selectionContext = createContext<SelectionContext | undefined>(
-  undefined
-);
+export const singleSelectionContext = createContext<
+  SelectionContext<'single'> | undefined
+>({ value: undefined, setValue: () => undefined, isSelected: () => false });
+
+export const rangeSelectionContext = createContext<
+  SelectionContext<'range'> | undefined
+>({
+  value: { from: undefined },
+  setValue: () => ({ from: undefined }),
+  isSelected: () => false
+});
+
+export const multiSelectionContext = createContext<SelectionContext<'multi'>>({
+  value: [],
+  setValue: () => [],
+  isSelected: () => false
+});
 
 /**
  * The provider for the {@link selectionContext}, storing the calendar state.
  */
-export function SelectionProvider(providerProps: { children?: ReactNode }) {
-  const { required, min, max, selected, mode } = useDayPicker();
-  const calendar = useCalendar();
+export function SelectionProvider<
+  TMode extends DaysSelectionMode
+>(providerProps: { children?: ReactNode; mode: TMode }) {
+  const { required, onSelectSingle, mode } = useDayPicker();
 
-  const initialSelectedDates: Date[] = selected
-    ? calendar.dates.filter((date) => dateMatchModifiers(date, selected))
-    : [];
+  const initialSingleValue = undefined;
+  const [singleValue, setInternalSingleValue] = useState<
+    DayPickerSelectedValue<'single'> | undefined
+  >(initialSingleValue);
 
-  const [singleValue, setSingleValue] = useState<Date | undefined>(
-    mode === 'single' ? initialSelectedDates?.[0] : undefined
-  );
-  const [multiValue, setMultiValue] = useState<Date[]>(initialSelectedDates);
-  const [rangeValue, setRangeValue] = useState<DateRange>({
-    from: initialSelectedDates?.[0],
-    to: initialSelectedDates
-      ? initialSelectedDates[initialSelectedDates.length]
-      : undefined
-  });
+  const initialMultiValue: DayPickerSelectedValue<'multi'> = [];
+  const [multiValue, setInternalMultiValue] = useState(initialMultiValue);
 
-  const value: SelectionContext = {
-    setSingleValue: (date) => {
-      console.debug('setSingle', date);
-      let newSingleValue: DayPickerSelectedValue<'single'>;
-      if (singleValue && isSameDay(singleValue, date) && !required) {
-        newSingleValue = undefined;
-      } else {
-        newSingleValue = date;
-      }
-      setSingleValue(newSingleValue);
-      return newSingleValue;
-    },
-    singleValue: singleValue,
+  const initialRangeValue: DateRange = { from: undefined, to: undefined };
+  const [rangeValue, setInternalRangeValue] = useState(initialRangeValue);
 
-    setMultiValue: (date) => {
-      // const isMinSelected = Boolean(
-      //   matchingModifiers.selected && min && multiValue.length === min
-      // );
-      // if (isMinSelected) return;
-      // const isMaxSelected = Boolean(
-      //   !matchingModifiers.selected && max && multiValue.length === max
-      // );
-      // if (isMaxSelected) return;
-      // const newMultiValue = [...multiValue];
-      // if (matchingModifiers.selected) {
-      //   const index = newMultiValue.findIndex((selectedDay) =>
-      //     isSameDay(date, selectedDay)
-      //   );
-      //   newMultiValue.splice(index, 1);
-      // } else {
-      //   newMultiValue.push(date);
-      // }
-      // setMultiValue(newMultiValue);
-      // return newMultiValue;
-      return undefined;
-    },
-    multiValue,
-    setRangeValue: (date) => {
-      const newRangeValue = addToRange(date, rangeValue);
-      setRangeValue(newRangeValue ?? { from: undefined, to: undefined });
-      return rangeValue;
-    },
-    rangeValue,
-    isSelected: (date) => {
-      if (singleValue && isSameDay(date, singleValue)) {
-        console.log('isSelected yes', date.toDateString());
-        return true;
-      }
-      // } else if (multiValue.some((selectedDay) => isSameDay(date, selectedDay)))
-      //   return true;
-      // else if (rangeValue.from && rangeValue.to) {
-      //   return (
-      //     isSameDay(date, rangeValue.from) || isSameDay(date, rangeValue.to)
-      //   );
-      // }
-      return false;
+  const setSingleValue = (
+    date: Date,
+    dayModifiers: MatchingModifiers,
+    e: React.MouseEvent<Element, MouseEvent>
+  ) => {
+    debugger;
+    let newSingleValue: DayPickerSelectedValue<'single'>;
+    if (singleValue && isSameDay(singleValue, date) && !required) {
+      newSingleValue = undefined;
+    } else {
+      newSingleValue = date;
     }
+    setInternalSingleValue(newSingleValue);
+    onSelectSingle?.(newSingleValue, date, dayModifiers, e);
+    return newSingleValue;
   };
 
-  return (
-    <selectionContext.Provider value={value}>
-      {providerProps.children}
-    </selectionContext.Provider>
-  );
+  const setMultiValue = (date: Date) => {
+    setInternalMultiValue(multiValue);
+    return multiValue;
+  };
+
+  const setRangeValue = (date: Date) => {
+    setInternalRangeValue(rangeValue);
+    return rangeValue;
+  };
+
+  switch (mode) {
+    case 'single':
+      return (
+        <singleSelectionContext.Provider
+          value={{
+            value: singleValue,
+            setValue: setSingleValue,
+            isSelected: (date: Date) =>
+              Boolean(singleValue && isSameDay(singleValue, date))
+          }}
+        >
+          {providerProps.children}
+        </singleSelectionContext.Provider>
+      );
+    case 'multiple':
+      return (
+        <multiSelectionContext.Provider
+          value={{
+            value: multiValue,
+            setValue: setMultiValue,
+            isSelected: (date: Date) => Boolean(date) // TODO
+          }}
+        >
+          {providerProps.children}
+        </multiSelectionContext.Provider>
+      );
+    case 'range':
+      return (
+        <rangeSelectionContext.Provider
+          value={{
+            value: rangeValue,
+            setValue: setRangeValue,
+            isSelected: (date: Date) => Boolean(date) // TODO
+          }}
+        >
+          {providerProps.children}
+        </rangeSelectionContext.Provider>
+      );
+    default:
+      return <>{providerProps.children}</>;
+  }
 }
 
 /**
  * Use this hook to access to the dates displayed in the calendar and to navigate between months.
  */
-export function useSelection(): SelectionContext {
-  const context = useContext(selectionContext);
-  if (!context)
+export function useSelection(): SelectionContext<unknown> | undefined {
+  const { mode } = useDayPicker();
+
+  const singleContext = useContext(singleSelectionContext);
+  const multiContext = useContext(multiSelectionContext);
+  const rangeContext = useContext(rangeSelectionContext);
+
+  if (!singleContext || !multiContext || !rangeContext)
     throw new Error(`useSelection must be used within a SelectionProvider.`);
 
-  return context;
+  if (mode === 'single') return singleContext;
+  if (mode === 'multi') return multiContext;
+  if (mode === 'range') return rangeContext;
+
+  return undefined;
 }

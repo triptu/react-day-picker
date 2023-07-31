@@ -31,15 +31,14 @@ export type CustomComponents = {
 /** The name of a color in our color palette. */
 export type DaysSelectionMode = 'none' | 'range' | 'single' | 'multi';
 
-export type DayPickerSelectedValue<TMode extends DaysSelectionMode> = [
-  TMode
-] extends ['single']
-  ? Date | undefined
-  : [TMode] extends ['multi']
-  ? Array<Date> | undefined
-  : [TMode] extends ['range']
-  ? DateRange
-  : never;
+export type DayPickerSelectedValue<TMode extends DaysSelectionMode | unknown> =
+  [TMode] extends ['single']
+    ? Date | undefined
+    : [TMode] extends ['multi']
+    ? Array<Date>
+    : [TMode] extends ['range']
+    ? DateRange
+    : never;
 
 /**
  * The {@link DayPicker} component props shared with all the selection modes.
