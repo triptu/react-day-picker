@@ -1,5 +1,12 @@
 import { parseFromToProps } from './parseFromToProps';
 
+describe('when "fromMonth" is not passed in', () => {
+  test('"fromDate" should be undefined', () => {
+    const { fromDate } = parseFromToProps({});
+    expect(fromDate).toBeUndefined();
+  });
+});
+
 describe('when "fromMonth" is passed in', () => {
   const fromMonth = new Date(2021, 4, 3);
   const expectedFromDate = new Date(2021, 4, 1);

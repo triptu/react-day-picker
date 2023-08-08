@@ -27,9 +27,8 @@ export function parseFromToProps(
   } else if (toYear) {
     toDate = new Date(toYear, 11, 31);
   }
-
   return {
-    fromDate: startOfDay(fromDate ?? today),
+    fromDate: fromDate ? startOfDay(fromDate) : undefined,
     toDate: toDate ? startOfDay(toDate) : undefined
   };
 }
