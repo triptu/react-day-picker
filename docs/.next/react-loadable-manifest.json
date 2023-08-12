@@ -1,22 +1,4 @@
 {
-  "../../node_modules/.pnpm/@codesandbox+sandpack-client@2.6.0/node_modules/@codesandbox/sandpack-client/dist/index.mjs -> ./clients/node/index.mjs": {
-    "id": "../../node_modules/.pnpm/@codesandbox+sandpack-client@2.6.0/node_modules/@codesandbox/sandpack-client/dist/index.mjs -> ./clients/node/index.mjs",
-    "files": [
-      "static/chunks/node_modules_pnpm_codesandbox_sandpack-client_2_6_0_node_modules_codesandbox_sandpack-client_-b4a46a.js"
-    ]
-  },
-  "../../node_modules/.pnpm/@codesandbox+sandpack-client@2.6.0/node_modules/@codesandbox/sandpack-client/dist/index.mjs -> ./clients/runtime/index.mjs": {
-    "id": "../../node_modules/.pnpm/@codesandbox+sandpack-client@2.6.0/node_modules/@codesandbox/sandpack-client/dist/index.mjs -> ./clients/runtime/index.mjs",
-    "files": [
-      "static/chunks/node_modules_pnpm_codesandbox_sandpack-client_2_6_0_node_modules_codesandbox_sandpack-client_-f22425.js"
-    ]
-  },
-  "../../node_modules/.pnpm/@codesandbox+sandpack-client@2.6.0/node_modules/@codesandbox/sandpack-client/dist/index.mjs -> ./index-efde3ba4.mjs": {
-    "id": "../../node_modules/.pnpm/@codesandbox+sandpack-client@2.6.0/node_modules/@codesandbox/sandpack-client/dist/index.mjs -> ./index-efde3ba4.mjs",
-    "files": [
-      "static/chunks/node_modules_pnpm_codesandbox_sandpack-client_2_6_0_node_modules_codesandbox_sandpack-client_-665046.js"
-    ]
-  },
   "../../node_modules/.pnpm/mermaid@10.3.0/node_modules/mermaid/dist/mermaid-a98f434b.js -> ./c4Diagram-36d27044.js": {
     "id": "../../node_modules/.pnpm/mermaid@10.3.0/node_modules/mermaid/dist/mermaid-a98f434b.js -> ./c4Diagram-36d27044.js",
     "files": [

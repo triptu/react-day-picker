@@ -12,12 +12,10 @@
   },
   "folders": [
     {
-      "name": "react-day-picker",
       "path": "."
     },
     {
-      "name": "website",
-      "path": "website"
+      "path": "docs"
     }
   ],
   "tasks": {
@@ -85,7 +83,7 @@
         "label": "website: tsc-watch",
         "detail": "Typecheck website in watch mode.",
         "type": "shell",
-        "command": "pnpm -F website typecheck-watch",
+        "command": "pnpm -F docs typecheck-watch",
         "isBackground": true,
         "problemMatcher": ["$tsc-watch"],
         "runOptions": {
@@ -101,10 +99,10 @@
         "dependsOn": ["build"]
       },
       {
-        "label": "website: start",
+        "label": "docs: next",
         "detail": "Start the website app in development mode.",
         "type": "shell",
-        "command": "pnpm -F website start",
+        "command": "pnpm -F docs run next",
         "isBackground": true,
         "problemMatcher": ["$ts-webpack-watch"],
         "runOptions": {
@@ -145,7 +143,7 @@
   //         }
   //       },
   //       "problemMatcher": [],
-  //       "label": "website: start",
+  //       "label": "docs: next",
   //       "detail": "docusaurus start",
   //       "runOptions": {
   //         "runOn": "folderOpen"
@@ -195,7 +193,7 @@
   //         }
   //       },
   //       "problemMatcher": [],
-  //       "label": "website: start",
+  //       "label": "docs: next",
   //       "detail": "docusaurus start",
   //       "runOptions": {
   //         "runOn": "folderOpen"
