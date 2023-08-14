@@ -12,6 +12,7 @@ import {
   DayPickerRangeProps,
   DayPickerSingleProps
 } from '../../../dist';
+import { Shadow } from '../utils/Shadow';
 import { PropsForm } from './PropsForm';
 
 export function Playground() {
@@ -37,8 +38,8 @@ export function Playground() {
   };
 
   return (
-    <div className="md:flex">
-      <div className="md:shrink-1">
+    <div>
+      <div>
         <PropsForm
           baseProps={baseProps}
           locale={locale}
@@ -55,19 +56,20 @@ export function Playground() {
           onReset={handleReset}
         />
       </div>
-
       <div className="md:shrink-0">
         <div className="md:sticky md:nx-top-16">
-          <DayPicker
-            locale={locale}
-            {...(mode === 'single'
-              ? singleProps
-              : mode === 'multi'
-              ? multiProps
-              : mode === 'range'
-              ? rangeProps
-              : baseProps)}
-          />
+          <Shadow mode="open">
+            <DayPicker
+              locale={locale}
+              {...(mode === 'single'
+                ? singleProps
+                : mode === 'multi'
+                ? multiProps
+                : mode === 'range'
+                ? rangeProps
+                : baseProps)}
+            />
+          </Shadow>
         </div>
       </div>
     </div>

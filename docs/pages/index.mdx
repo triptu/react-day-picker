@@ -1,8 +1,16 @@
-import { DayPicker } from 'react-day-picker';
-import 'react-day-picker/src/style.css';
+import Readme from '../../README.md';
 
-# Welcome to React DayPicker
+<Readme />
 
-Hello, world!
+## Example
 
-<DayPicker />
+import StartRaw from '!!raw-loader!../examples/start.tsx';
+import Start from '../examples/start.tsx';
+
+import { Pre } from 'nextra/components';
+
+<Pre data-language="tsx">{StartRaw}</Pre>
+
+generates
+
+<Start />

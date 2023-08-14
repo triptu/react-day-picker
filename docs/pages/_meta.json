@@ -1,0 +1,49 @@
+{
+  "*": {
+    "theme": {
+      "breadcrumb": false,
+      "footer": true,
+      "sidebar": true,
+      "toc": true,
+      "pagination": true
+    }
+  },
+  "playground": {
+    "title": "Playground",
+    "type": "page",
+    "theme": {
+      "layout": "raw"
+    }
+  },
+  "reference": {
+    "title": "Reference",
+    "type": "page"
+  },
+  "index": {
+    "title": "Introduction",
+    "theme": {
+      "breadcrumb": false,
+      "footer": true,
+      "sidebar": true,
+      "toc": false,
+      "pagination": true
+    }
+  },
+  "start": "Getting Started",
+  "basics": "Basics",
+  "guides": "Guides",
+  "development": "Development",
+  "-- More": {
+    "type": "separator",
+    "title": "More"
+  },
+  "license": {
+    "theme": "raw"
+  },
+  "contributing": "",
+  "changelog-link": {
+    "title": "Changelog ↗",
+    "href": "https://github.com/gpbl/react-day-picker/releases",
+    "newWindow": true
+  }
+}

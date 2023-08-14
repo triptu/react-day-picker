@@ -2,7 +2,7 @@
 
 [DayPicker](http://react-day-picker.js.org) is a date picker component for [React](https://reactjs.org). Renders a monthly calendar to select days. DayPicker is customizable, works great with input fields and can be styled to match any design.
 
-➡️ **[react-day-picker.js.org](http://react-day-picker.js.org)** for guides, examples and API reference.
+See **[react-day-picker.js.org](http://react-day-picker.js.org)** for guides, examples and API reference.
 
 <a href="http://react-day-picker.js.org">
   <picture>
@@ -26,10 +26,8 @@
 
 ## Installation
 
-```shell
-npm install react-day-picker date-fns  # using npm
-pnpm install react-day-picker date-fns # using pnpm
-yarn add react-day-picker date-fns     # using yarn
+```sh
+npm install react-day-picker date-fns
 ```
 
 <a href="https://www.npmjs.com/package/react-day-picker">
@@ -41,35 +39,3 @@ yarn add react-day-picker date-fns     # using yarn
 </a> <a href="https://github.com/sponsors/gpbl">
   <img src="https://img.shields.io/github/sponsors/gpbl?style=flat-square" alt="sponsors"/>
 </a>
-
-## Example
-
-```tsx
-import React from 'react';
-
-import { format } from 'date-fns';
-import { DayPicker } from 'react-day-picker';
-import 'react-day-picker/dist/style.css';
-
-export default function Example() {
-  const [selected, setSelected] = React.useState<Date>();
-
-  let footer = <p>Please pick a day.</p>;
-  if (selected) {
-    footer = <p>You picked {format(selected, 'PP')}.</p>;
-  }
-  return (
-    <DayPicker
-      mode="single"
-      selected={selected}
-      onSelect={setSelected}
-      footer={footer}
-    />
-  );
-}
-```
-
-## Documentation
-
-See **[react-day-picker.js.org](http://react-day-picker.js.org)** for guides, examples and API reference of the latest version.
-<small>Docs for version 7 are at <a href="https://react-day-picker-v7.netlify.app" target="_blank">react-day-picker-v7.netlify.app</a>.</small>

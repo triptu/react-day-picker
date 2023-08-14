@@ -1,0 +1,8 @@
+{
+  "modules": "API Index",
+  "classes": "Classes",
+  "enums": "Enumerations",
+  "interfaces": "Interfaces",
+  "types": "Types",
+  "variables": "Variables"
+}
