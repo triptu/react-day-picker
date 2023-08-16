@@ -38,19 +38,11 @@ export function PropsForm(props: PropsFormProps) {
     multiProps,
     onMultiPropsChange,
     rangeProps,
-    onRangePropsChange,
-    onReset
+    onRangePropsChange
   } = props;
 
   return (
     <form className="my-4">
-      <button
-        type="button"
-        className="border rounded-md px-2 text-left text-xs font-medium"
-        onClick={onReset}
-      >
-        Reset
-      </button>
       <div className="flex overflow-scroll snap-both snap-mandatory gap-8 pb-8 pr-4">
         <fieldset className="snap-start flex-shrink-0 flex flex-col gap-2">
           <legend className="font-semibold text-lg mb-2">Selection mode</legend>

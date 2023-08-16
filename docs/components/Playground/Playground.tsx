@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { Locale } from 'date-fns';
+import { Pre } from 'nextra/components';
 import {
   DayPicker,
   DayPickerBaseProps,
@@ -39,39 +40,58 @@ export function Playground() {
 
   return (
     <div>
-      <div>
-        <PropsForm
-          baseProps={baseProps}
-          locale={locale}
-          mode={mode}
-          multiProps={multiProps}
-          rangeProps={rangeProps}
-          singleProps={singleProps}
-          onModeChange={setMode}
-          onLocaleChange={setLocale}
-          onBasePropsChange={setBaseProps}
-          onSinglePropsChange={setSingleProps}
-          onMultiPropsChange={setMultiProps}
-          onRangePropsChange={setRangeProps}
-          onReset={handleReset}
-        />
-      </div>
-      <div className="md:shrink-0">
-        <div className="md:sticky md:nx-top-16">
-          <Shadow mode="open">
-            <DayPicker
-              locale={locale}
-              {...(mode === 'single'
-                ? singleProps
-                : mode === 'multi'
-                ? multiProps
-                : mode === 'range'
-                ? rangeProps
-                : baseProps)}
-            />
-          </Shadow>
+      <h1 className="text-3xl my-4 font-bold">Playground</h1>
+      <hr className="border-neutral-500 my-4" />
+      <div className="flex justify-center flex-col">
+        <div>
+          <button
+            type="button"
+            className="border rounded-md px-2 text-left text-xs font-medium mx-4"
+            onClick={handleReset}
+          >
+            Reset Props
+          </button>
+          <PropsForm
+            baseProps={baseProps}
+            locale={locale}
+            mode={mode}
+            multiProps={multiProps}
+            rangeProps={rangeProps}
+            singleProps={singleProps}
+            onModeChange={setMode}
+            onLocaleChange={setLocale}
+            onBasePropsChange={setBaseProps}
+            onSinglePropsChange={setSingleProps}
+            onMultiPropsChange={setMultiProps}
+            onRangePropsChange={setRangeProps}
+            onReset={handleReset}
+          />
+        </div>
+        <div className="pb-36">
+          <div className="nx-shadow-lg w-fit p-8 mx-auto">
+            <Shadow mode="open">
+              <DayPicker
+                locale={locale}
+                {...(mode === 'single'
+                  ? singleProps
+                  : mode === 'multi'
+                  ? multiProps
+                  : mode === 'range'
+                  ? rangeProps
+                  : baseProps)}
+              />
+            </Shadow>
+          </div>
         </div>
       </div>
+      <Pre>
+        {`
+        <DayPicker 
+          mode={${JSON.stringify(mode)}}
+          required={${JSON.stringify(baseProps.required)}}
+        />
+      `}
+      </Pre>
     </div>
   );
 }

@@ -12,7 +12,8 @@
     "title": "Playground",
     "type": "page",
     "theme": {
-      "layout": "raw"
+      "layout": "full",
+      "breadcrumb": false
     }
   },
   "reference": {
