@@ -1,6 +1,6 @@
 {
   "name": "react-day-picker",
-  "version": "8.8.0",
+  "version": "9.0.0-alpha.1",
   "description": "Customizable Date Picker for React",
   "author": "Giampaolo Bellavite <io@gpbl.dev>",
   "homepage": "http://react-day-picker.js.org",
@@ -29,6 +29,7 @@
   },
   "files": [
     "dist",
+    "docs/examples",
     "src",
     "tsconfig.json"
   ],
@@ -44,6 +45,7 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^29.5.1",
+    "@types/jest-axe": "^3.5.5",
     "@types/node": "^18.15.13",
     "@types/react": "^18.0.38",
     "@types/react-dom": "^18.2.6",
@@ -60,6 +62,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-testing-library": "^5.10.3",
     "jest": "^29.5.0",
+    "jest-axe": "^8.0.0",
     "jest-environment-jsdom": "^29.5.0",
     "mockdate": "^3.0.5",
     "postcss": "^8.4.23",
@@ -70,6 +73,7 @@
     "react-classnaming": "^0.16.4",
     "react-dom": "^18.2.0",
     "rimraf": "^5.0.1",
+    "react-day-picker": "link:.",
     "rollup": "^3.20.7",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-dts": "^5.3.0",

@@ -119,88 +119,6 @@
       }
     ]
   },
-  // "tasks": {
-  //   "version": "2.0.0",
-  //   "tasks": [
-  //     {
-  //       "type": "npm",
-  //       "script": "build",
-  //       "group": {
-  //         "kind": "build",
-  //         "isDefault": true
-  //       },
-  //       "problemMatcher": [],
-  //       "label": "build",
-  //       "detail": "rimraf dist && rollup -c"
-  //     },
-  //     {
-  //       "type": "npm",
-  //       "script": "start",
-  //       "options": {
-  //         "cwd": "${workspaceFolder}/website",
-  //         "env": {
-  //           "TYPEDOC_WATCH": "true"
-  //         }
-  //       },
-  //       "problemMatcher": [],
-  //       "label": "docs: next",
-  //       "detail": "docusaurus start",
-  //       "runOptions": {
-  //         "runOn": "folderOpen"
-  //       }
-  //     },
-  //     {
-  //       "type": "npm",
-  //       "script": "build-watch",
-  //       "group": "build",
-  //       "problemMatcher": [],
-  //       "label": "build-watch",
-  //       "detail": "rollup -c -w",
-  //       "runOptions": {
-  //         "runOn": "folderOpen"
-  //       }
-  //     },
-  //     {
-  //       "type": "npm",
-  //       "script": "typecheck-watch",
-  //       "group": "build",
-  //       "problemMatcher": ["$tsc-watch"],
-  //       "label": "typecheck-watch",
-  //       "detail": "tsc --project ./tsconfig.json --noEmit --watch",
-  //       "runOptions": {
-  //         "runOn": "folderOpen"
-  //       }
-  //     },
-  //     {
-  //       "path": "website",
-  //       "type": "npm",
-  //       "script": "typecheck-watch",
-  //       "group": "build",
-  //       "problemMatcher": ["$tsc-watch"],
-  //       "label": "website: typecheck-watch",
-  //       "detail": "tsc --project ./tsconfig.json --noEmit --watch",
-  //       "runOptions": {
-  //         "runOn": "folderOpen"
-  //       }
-  //     },
-  //     {
-  //       "type": "npm",
-  //       "script": "start",
-  //       "options": {
-  //         "cwd": "${workspaceFolder}/website",
-  //         "env": {
-  //           "TYPEDOC_WATCH": "true"
-  //         }
-  //       },
-  //       "problemMatcher": [],
-  //       "label": "docs: next",
-  //       "detail": "docusaurus start",
-  //       "runOptions": {
-  //         "runOn": "folderOpen"
-  //       }
-  //     }
-  //   ]
-  // },
   "settings": {
     "[javascript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -231,19 +149,11 @@
         "regex": "^(contexts|components|hooks|types)"
       },
       {
-        "orderLevel": 25,
-        "regex": "^(test|react-day-picker/test)"
-      },
-      {
         "orderLevel": 40,
         "regex": "^[.]"
-      },
-      {
-        "orderLevel": 30,
-        "regex": "^@examples/"
       }
     ],
-    "jest.disabledWorkspaceFolders": ["repository"],
+    "jest.disabledWorkspaceFolders": ["repository", "docs"],
     "npm.packageManager": "pnpm",
     "task.allowAutomaticTasks": "on",
     "github-actions.workflows.pinned.workflows": [

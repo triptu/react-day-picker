@@ -2,11 +2,12 @@ import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
   preset: 'ts-jest',
-  roots: ['./src'],
+  roots: ['./src', './docs/examples'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
   },
   moduleNameMapper: {
+    '^react-day-picker$': ['<rootDir>/dist/index.js'],
     '^test/(.*)': ['<rootDir>/test/$1'],
     '^labels(.*)': ['<rootDir>/src/labels$1'],
     '^formatters(.*)': ['<rootDir>/src/formatters$1'],
