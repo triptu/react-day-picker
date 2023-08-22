@@ -1,23 +1,28 @@
 {
+  "private": true,
   "name": "docs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "next": "next"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.6.1",
     "@codesandbox/sandpack-themes": "^2.0.21",
+    "arraybuffer-loader": "^1.0.8",
     "next": "^13.4.12",
-    "nextra": "^2.10.0",
-    "nextra-theme-docs": "^2.10.0",
+    "nextra": "latest",
+    "nextra-theme-docs": "latest",
     "react": "^18.2.0",
     "react-day-picker": "link:..",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "shiki": "^0.14.3"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",

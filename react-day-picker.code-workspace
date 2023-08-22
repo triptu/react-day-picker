@@ -102,7 +102,7 @@
         "label": "docs: next",
         "detail": "Start the website app in development mode.",
         "type": "shell",
-        "command": "pnpm -F docs run next",
+        "command": "pnpm -F docs run dev",
         "isBackground": true,
         "problemMatcher": ["$ts-webpack-watch"],
         "runOptions": {
@@ -159,5 +159,34 @@
     "github-actions.workflows.pinned.workflows": [
       "react-day-picker/.github/workflows/website.yml"
     ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Next.js: debug server-side",
+        "type": "node-terminal",
+        "request": "launch",
+        "command": "pnpm --filter docs run dev"
+      },
+      {
+        "name": "Next.js: debug client-side",
+        "type": "chrome",
+        "request": "launch",
+        "url": "http://localhost:3000"
+      },
+      {
+        "name": "Next.js: debug full stack",
+        "type": "node-terminal",
+        "request": "launch",
+        "command": "pnpm --filter docs run dev",
+        "serverReadyAction": {
+          "pattern": "started server on .+, url: (https?://.+)",
+          "uriFormat": "%s",
+          "action": "debugWithChrome"
+        }
+      }
+    ],
+    "compounds": []
   }
 }

@@ -1,16 +1,16 @@
 import Readme from 'react-day-picker/README.md';
+import Start from 'react-day-picker/docs/examples/start.tsx';
+import { SourceCode, getSourceCodeStaticProps } from '../components/SourceCode';
 
 <Readme />
 
 ## Example
 
-import StartRaw from '!!raw-loader!react-day-picker/docs/examples/start.tsx';
-import Start from 'react-day-picker/docs//examples/start.tsx';
-
-import { Pre } from '../components/Pre';
-
-<Pre>{StartRaw}</Pre>
+<SourceCode fileName="start.tsx" />
 
 generates
 
 <Start />
+
+export const getStaticProps = () =>
+  getSourceCodeStaticProps(['start.tsx'], { lineOptions: {} });
