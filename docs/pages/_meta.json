@@ -20,19 +20,9 @@
     "title": "Reference",
     "type": "page"
   },
-  "index": {
-    "title": "Introduction",
-    "theme": {
-      "breadcrumb": false,
-      "footer": true,
-      "sidebar": true,
-      "toc": false,
-      "pagination": true
-    }
-  },
-  "start": "Getting Started",
-  "basics": "Basics",
-  "guides": "Guides",
+  "index": "Introduction",
+  "basics": "DayPicker Basics",
+  "guides": "Advanced Guides",
   "development": "Development",
   "-- More": {
     "type": "separator",

@@ -33,13 +33,27 @@ export function SourceCode(props: SourceCodeProps) {
 
   const examples = useData();
 
+  if (!examples[fileName]) {
+    return <Pre>Example not found.</Pre>;
+  }
+
   const html = examples[fileName]
-    .replace(/<\/?pre[^>]*>/, '')
-    .replace('</code>', '')
-    .replace('<code>', '');
+    // Remove out HTML components we replace with nextra components
+    .replace(/<\/?(pre|code) ?[^>]*>/gi, '')
+    // For some reasons, when doing this empty lines are lost
+    .replaceAll(
+      '<span class="line"></span>',
+      '<span class="line">\n</span>',
+      'gi'
+    );
 
   return (
-    <Pre data-theme="default" data-language="tsx">
+    <Pre
+      data-theme="default"
+      data-language="tsx"
+      hasCopyCode
+      filename={fileName}
+    >
       <Code
         data-theme={theme}
         data-language="tsx"

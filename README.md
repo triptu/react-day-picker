@@ -1,6 +1,16 @@
 # React DayPicker
 
-[DayPicker](http://react-day-picker.js.org) is a date picker component for [React](https://reactjs.org). Renders a monthly calendar to select days. DayPicker is customizable, works great with input fields and can be styled to match any design.
+<a href="https://www.npmjs.com/package/react-day-picker">
+  <img src="https://img.shields.io/npm/v/react-day-picker.svg?style=flat-square" alt="npm version"/>
+</a> <a href="http://npm-stat.com/charts.html?package=react-day-picker">
+  <img src="https://img.shields.io/npm/dm/react-day-picker.svg?style=flat-square" alt="npm downloads"/>
+</a> <a href="https://github.com/gpbl/react-day-picker/stargazers">
+<img src="https://img.shields.io/github/stars/gpbl/react-day-picker?style=flat-square" alt="stars"/>
+</a> <a href="https://github.com/sponsors/gpbl">
+  <img src="https://img.shields.io/github/sponsors/gpbl?style=flat-square" alt="sponsors"/>
+</a>
+
+[DayPicker](http://react-day-picker.js.org) is a customizable date picker component for [React](https://reactjs.org) that renders a calendar for selecting days.
 
 See **[react-day-picker.js.org](http://react-day-picker.js.org)** for guides, examples and API reference.
 
@@ -15,7 +25,7 @@ See **[react-day-picker.js.org](http://react-day-picker.js.org)** for guides, ex
 ## Main features
 
 - ☀️ Select days, ranges or whatever
-- 🧘‍♀️ using [date-fns](http://date-fns.org) as date library
+- 🧘‍♀️ Using [date-fns](http://date-fns.org) as date library
 - 🌎 Localizable into any language
 - ➡️ Keyboard navigation
 - ♿️ [WAI-ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) support
@@ -24,18 +34,23 @@ See **[react-day-picker.js.org](http://react-day-picker.js.org)** for guides, ex
 - 🗓 Support multiple calendars
 - 📄 Easy to integrate input fields
 
-## Installation
+## Getting started
 
-```sh
+### Install the dependencies
+
+Add `react-day-picker` and [date-fns](https://date-fns.org) to your dependencies.
+
+```sh npm2yarn
 npm install react-day-picker date-fns
 ```
 
-<a href="https://www.npmjs.com/package/react-day-picker">
-  <img src="https://img.shields.io/npm/v/react-day-picker.svg?style=flat-square" alt="npm version"/>
-</a> <a href="http://npm-stat.com/charts.html?package=react-day-picker">
-  <img src="https://img.shields.io/npm/dm/react-day-picker.svg?style=flat-square" alt="npm downloads"/>
-</a> <a href="https://github.com/gpbl/react-day-picker/stargazers">
-<img src="https://img.shields.io/github/stars/gpbl/react-day-picker?style=flat-square" alt="stars"/>
-</a> <a href="https://github.com/sponsors/gpbl">
-  <img src="https://img.shields.io/github/sponsors/gpbl?style=flat-square" alt="sponsors"/>
-</a>
+### Import DayPicker
+
+When importing, include the DayPicker CSS in your component.
+
+```tsx
+export default function Example() {
+  const [selected, setSelected] = React.useState<Date>();
+  return <DayPicker mode="single" selected={selected} onSelect={setSelected} />;
+}
+```
